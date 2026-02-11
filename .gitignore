@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+
+# Xcode
+ios/GitaVani/build/
+ios/GitaVani/*.xcuserdata/
+ios/GitaVani/DerivedData/
+*.xcworkspace/xcuserdata/
+
+# IDE
+.vscode/
+.idea/
