@@ -82,5 +82,7 @@ struct HelpView: View {
         .background(theme.backgroundColor)
         .navigationTitle("Help")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(theme.backgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }

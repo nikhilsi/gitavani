@@ -67,5 +67,7 @@ struct ChapterDetailView: View {
         .scrollContentBackground(.hidden)
         .navigationTitle("Chapter \(chapterNumber)")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(theme.backgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }

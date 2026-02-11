@@ -59,6 +59,8 @@ struct SettingsView: View {
         .background(theme.backgroundColor)
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(theme.backgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 
     private func languageButton(_ language: String, label: String) -> some View {

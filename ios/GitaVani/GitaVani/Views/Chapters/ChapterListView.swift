@@ -48,6 +48,8 @@ struct ChapterListView: View {
         .background(theme.backgroundColor)
         .scrollContentBackground(.hidden)
         .navigationTitle("Bhagavad Gita")
+        .toolbarBackground(theme.backgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 NavigationLink(value: "help") {

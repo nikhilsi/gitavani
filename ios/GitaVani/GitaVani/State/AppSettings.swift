@@ -26,7 +26,7 @@ class AppSettings {
         let defaults = UserDefaults.standard
         fontSize = defaults.object(forKey: "fontSize") as? Double ?? 18.0
         defaultLanguage = defaults.string(forKey: "defaultLanguage") ?? "english"
-        showTransliteration = defaults.bool(forKey: "showTransliteration")
+        showTransliteration = defaults.object(forKey: "showTransliteration") as? Bool ?? true
         preferredHindiAuthor = defaults.string(forKey: "preferredHindiAuthor") ?? ""
         preferredEnglishAuthor = defaults.string(forKey: "preferredEnglishAuthor") ?? ""
     }

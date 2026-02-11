@@ -61,6 +61,7 @@ struct ContentView: View {
             }
         }
         .tint(theme.accentColor)
+        .preferredColorScheme(themeManager.isDarkTheme ? .dark : .light)
         .fullScreenCover(isPresented: $showOnboarding) {
             OnboardingView {
                 hasSeenOnboarding = true
