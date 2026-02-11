@@ -25,16 +25,16 @@ struct ChapterDetailView: View {
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
                         Text(chapter.name)
-                            .font(.title3)
+                            .font(.system(size: settings.fontSize + 2, weight: .semibold))
                             .foregroundStyle(theme.primaryTextColor)
 
                         Text(chapter.meaning.en)
-                            .font(.subheadline)
+                            .font(.system(size: settings.fontSize - 2))
                             .foregroundStyle(theme.secondaryTextColor)
 
                         if showSummary {
                             Text(chapter.summary.en)
-                                .font(.body)
+                                .font(.system(size: settings.fontSize))
                                 .foregroundStyle(theme.primaryTextColor)
                                 .padding(.top, 4)
                         }
@@ -43,7 +43,7 @@ struct ChapterDetailView: View {
                             withAnimation { showSummary.toggle() }
                         } label: {
                             Text(showSummary ? "Hide Summary" : "Show Summary")
-                                .font(.caption)
+                                .font(.system(size: settings.fontSize - 4))
                                 .foregroundStyle(theme.accentColor)
                         }
                         .buttonStyle(.plain)
@@ -56,7 +56,7 @@ struct ChapterDetailView: View {
             Section {
                 ForEach(chapterVerses) { verse in
                     NavigationLink(value: verse.id) {
-                        VerseListRowView(verse: verse, theme: theme)
+                        VerseListRowView(verse: verse, theme: theme, fontSize: settings.fontSize)
                     }
                     .listRowBackground(theme.backgroundColor)
                 }

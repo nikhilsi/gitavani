@@ -3,29 +3,29 @@ import SwiftUI
 struct ChapterRowView: View {
     let chapter: Chapter
     let theme: AppTheme
+    let fontSize: Double
 
     var body: some View {
         HStack(spacing: 14) {
             Text("\(chapter.chapterNumber)")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.system(size: fontSize + 4, weight: .bold))
                 .foregroundStyle(theme.accentColor)
                 .frame(width: 40, alignment: .center)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(chapter.name)
-                    .font(.headline)
+                    .font(.system(size: fontSize, weight: .semibold))
                     .foregroundStyle(theme.primaryTextColor)
 
                 Text(chapter.meaning.en)
-                    .font(.subheadline)
+                    .font(.system(size: fontSize - 2))
                     .foregroundStyle(theme.secondaryTextColor)
             }
 
             Spacer()
 
             Text("\(chapter.versesCount)")
-                .font(.caption)
+                .font(.system(size: fontSize - 4))
                 .foregroundStyle(theme.secondaryTextColor)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     let themeManager: ThemeManager
-    let settings: AppSettings
+    @Bindable var settings: AppSettings
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -49,10 +49,7 @@ struct SettingsView: View {
 
                     Spacer()
 
-                    Toggle("", isOn: Binding(
-                        get: { settings.showTransliteration },
-                        set: { settings.showTransliteration = $0 }
-                    ))
+                    Toggle("", isOn: $settings.showTransliteration)
                     .tint(theme.accentColor)
                     .labelsHidden()
                 }

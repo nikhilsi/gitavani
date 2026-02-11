@@ -14,6 +14,8 @@ struct ContentView: View {
     let readingProgress: ReadingProgress
 
     @State private var navigationPath = NavigationPath()
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    @State private var showOnboarding = false
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -23,6 +25,7 @@ struct ContentView: View {
                 ChapterListView(
                     dataService: dataService,
                     themeManager: themeManager,
+                    settings: settings,
                     readingProgress: readingProgress,
                     navigationPath: $navigationPath
                 )
@@ -41,6 +44,8 @@ struct ContentView: View {
                             themeManager: themeManager,
                             settings: settings
                         )
+                    } else if route == "help" {
+                        HelpView(theme: theme)
                     } else {
                         VerseDetailView(
                             initialVerseId: route,
@@ -56,5 +61,16 @@ struct ContentView: View {
             }
         }
         .tint(theme.accentColor)
+        .fullScreenCover(isPresented: $showOnboarding) {
+            OnboardingView {
+                hasSeenOnboarding = true
+                showOnboarding = false
+            }
+        }
+        .onAppear {
+            if !hasSeenOnboarding {
+                showOnboarding = true
+            }
+        }
     }
 }

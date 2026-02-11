@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct FontSizeView: View {
-    let settings: AppSettings
+    @Bindable var settings: AppSettings
     let theme: AppTheme
 
     var body: some View {
@@ -15,10 +15,7 @@ struct FontSizeView: View {
                     .font(.system(size: 14))
                     .foregroundStyle(theme.secondaryTextColor)
 
-                Slider(value: Binding(
-                    get: { settings.fontSize },
-                    set: { settings.fontSize = $0 }
-                ), in: 14...28, step: 1)
+                Slider(value: $settings.fontSize, in: 14...28, step: 1)
                 .tint(theme.accentColor)
 
                 Text("A")

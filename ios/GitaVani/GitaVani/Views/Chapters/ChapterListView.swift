@@ -3,6 +3,7 @@ import SwiftUI
 struct ChapterListView: View {
     let dataService: GitaDataService
     let themeManager: ThemeManager
+    let settings: AppSettings
     let readingProgress: ReadingProgress
     @Binding var navigationPath: NavigationPath
 
@@ -37,7 +38,7 @@ struct ChapterListView: View {
             Section {
                 ForEach(dataService.chapters) { chapter in
                     NavigationLink(value: chapter.chapterNumber) {
-                        ChapterRowView(chapter: chapter, theme: theme)
+                        ChapterRowView(chapter: chapter, theme: theme, fontSize: settings.fontSize)
                     }
                     .listRowBackground(theme.backgroundColor)
                 }
@@ -48,6 +49,12 @@ struct ChapterListView: View {
         .scrollContentBackground(.hidden)
         .navigationTitle("Bhagavad Gita")
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                NavigationLink(value: "help") {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundStyle(theme.accentColor)
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(value: "settings") {
                     Image(systemName: "gearshape")
