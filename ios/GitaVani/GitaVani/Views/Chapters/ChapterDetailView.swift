@@ -32,17 +32,16 @@ struct ChapterDetailView: View {
                             .font(.system(size: settings.fontSize - 2))
                             .foregroundStyle(theme.secondaryTextColor)
 
-                        if showSummary {
-                            Text(chapter.summary.en)
-                                .font(.system(size: settings.fontSize))
-                                .foregroundStyle(theme.primaryTextColor)
-                                .padding(.top, 4)
-                        }
+                        Text(chapter.summary.en)
+                            .font(.system(size: settings.fontSize))
+                            .foregroundStyle(theme.primaryTextColor)
+                            .lineLimit(showSummary ? nil : 3)
+                            .padding(.top, 4)
 
                         Button {
                             withAnimation { showSummary.toggle() }
                         } label: {
-                            Text(showSummary ? "Hide Summary" : "Show Summary")
+                            Text(showSummary ? "Show less" : "Read more...")
                                 .font(.system(size: settings.fontSize - 4))
                                 .foregroundStyle(theme.accentColor)
                         }
