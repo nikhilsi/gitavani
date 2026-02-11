@@ -56,6 +56,8 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] Persistent language/author selections for both translations and commentaries
 - [x] Favorites — heart icon on verse detail, favorites list with sort toggle (Recent/Chapter Order)
 - [x] Favorites accessible from home screen and chapter detail toolbar
+- [x] Search — pull-down searchable on home (global) and chapter detail (chapter-scoped)
+- [x] Search across Sanskrit, transliteration, and all translations with debounce
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
@@ -76,7 +78,7 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
 - [ ] Update App Store content for V2 features (description, screenshots, website, help screen)
-- [ ] V2: search, share verse, widget, Dynamic Type
+- [ ] V2: share verse, widget, Dynamic Type
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
@@ -121,4 +123,5 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 | Accessibility labels | Done |
 | Async data loading | Done |
 | Favorites | Done |
+| Search | Done |
 | iPad layout | Basic (needs polish) |

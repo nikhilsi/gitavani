@@ -13,6 +13,9 @@ V2: Scholar commentaries, favorites, and persistence improvements.
 - Favorites list accessible from home screen and chapter detail toolbar
 - Favorites sort toggle (Recent vs Chapter Order)
 - Empty state with instructions when no favorites saved
+- Search: pull-down search bar on home screen (all verses) and chapter detail (chapter-scoped)
+- Search across Sanskrit, transliteration, and all translations with 300ms debounce
+- Smart match snippets showing context around the matched text
 
 ### Fixed
 - Commentary encoding issues in BG8.1 and BG12.18 (U+FFFD characters removed)

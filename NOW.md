@@ -24,7 +24,7 @@ V2 in progress. Commentaries and Favorites shipped. Waiting for Apple Developer 
 10. ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
 11. ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
 12. ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
-13. **Search across verses** — find verses by keyword in Sanskrit, translation, or transliteration
+13. ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
 14. **Share verse** — share verse as text or image
 15. **iOS Widget** — home screen widget with verse of the day
 16. **Dynamic Type** — respect system text size setting alongside custom slider
