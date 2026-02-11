@@ -48,6 +48,12 @@ struct ContentView: View {
                         HelpView(theme: theme)
                     } else if route == "about" {
                         AboutView(theme: theme)
+                    } else if route == "favorites" {
+                        FavoritesView(
+                            dataService: dataService,
+                            themeManager: themeManager,
+                            settings: settings
+                        )
                     } else {
                         VerseDetailView(
                             initialVerseId: route,

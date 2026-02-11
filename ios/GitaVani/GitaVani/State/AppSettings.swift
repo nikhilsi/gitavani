@@ -38,6 +38,26 @@ class AppSettings {
         didSet { UserDefaults.standard.set(preferredSanskritCommentaryAuthor, forKey: "preferredSanskritCommentaryAuthor") }
     }
 
+    var favoriteVerseIds: [String] {
+        didSet {
+            if let data = try? JSONEncoder().encode(favoriteVerseIds) {
+                UserDefaults.standard.set(data, forKey: "favoriteVerseIds")
+            }
+        }
+    }
+
+    func isFavorite(_ verseId: String) -> Bool {
+        favoriteVerseIds.contains(verseId)
+    }
+
+    func toggleFavorite(_ verseId: String) {
+        if let index = favoriteVerseIds.firstIndex(of: verseId) {
+            favoriteVerseIds.remove(at: index)
+        } else {
+            favoriteVerseIds.insert(verseId, at: 0)
+        }
+    }
+
     init() {
         let defaults = UserDefaults.standard
         fontSize = defaults.object(forKey: "fontSize") as? Double ?? 18.0
@@ -49,5 +69,11 @@ class AppSettings {
         preferredHindiCommentaryAuthor = defaults.string(forKey: "preferredHindiCommentaryAuthor") ?? ""
         preferredEnglishCommentaryAuthor = defaults.string(forKey: "preferredEnglishCommentaryAuthor") ?? ""
         preferredSanskritCommentaryAuthor = defaults.string(forKey: "preferredSanskritCommentaryAuthor") ?? ""
+        if let data = defaults.data(forKey: "favoriteVerseIds"),
+           let ids = try? JSONDecoder().decode([String].self, from: data) {
+            favoriteVerseIds = ids
+        } else {
+            favoriteVerseIds = []
+        }
     }
 }

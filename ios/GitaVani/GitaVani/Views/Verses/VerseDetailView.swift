@@ -47,6 +47,14 @@ struct VerseDetailView: View {
                                 Spacer()
 
                                 Button {
+                                    settings.toggleFavorite(currentVerseId)
+                                } label: {
+                                    Image(systemName: settings.isFavorite(currentVerseId) ? "heart.fill" : "heart")
+                                        .foregroundStyle(settings.isFavorite(currentVerseId) ? .red : theme.accentColor)
+                                }
+                                .accessibilityLabel(settings.isFavorite(currentVerseId) ? "Remove from favorites" : "Add to favorites")
+
+                                Button {
                                     settings.showTransliteration.toggle()
                                 } label: {
                                     Image(systemName: settings.showTransliteration ? "character.book.closed.fill" : "character.book.closed")

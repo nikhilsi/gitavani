@@ -54,6 +54,8 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] Commentary text truncation (1500 chars with Read more/Show less)
 - [x] Commentary encoding fix (BG8.1, BG12.18 U+FFFD removed)
 - [x] Persistent language/author selections for both translations and commentaries
+- [x] Favorites — heart icon on verse detail, favorites list with sort toggle (Recent/Chapter Order)
+- [x] Favorites accessible from home screen and chapter detail toolbar
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
@@ -73,8 +75,8 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
-- [ ] Update App Store content for commentaries (description, screenshots, website, help screen)
-- [ ] V2: search, favorites, share verse, widget, Dynamic Type
+- [ ] Update App Store content for V2 features (description, screenshots, website, help screen)
+- [ ] V2: search, share verse, widget, Dynamic Type
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
@@ -118,4 +120,5 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 | Privacy manifest | Done |
 | Accessibility labels | Done |
 | Async data loading | Done |
+| Favorites | Done |
 | iPad layout | Basic (needs polish) |

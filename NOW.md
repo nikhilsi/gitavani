@@ -5,14 +5,14 @@
 ## Phase: V2 Features + App Store Submission
 
 ### Status
-V2 in progress. Commentaries UI shipped. Waiting for Apple Developer enrollment activation.
+V2 in progress. Commentaries and Favorites shipped. Waiting for Apple Developer enrollment activation.
 
-### Content Updates (for commentaries)
-1. **App Store description** — add commentaries to feature list
-2. **App Store screenshots** — retake to show commentary UI
-3. **Website landing page** — add commentaries to feature list
-4. **Help screen** — explain commentary feature
-5. **Review notes** — mention commentaries as interactive feature
+### Content Updates (batch after all V2 features)
+1. **App Store description** — add commentaries, favorites to feature list
+2. **App Store screenshots** — retake to show new features
+3. **Website landing page** — update feature list
+4. **Help screen** — explain commentaries and favorites
+5. **Review notes** — mention new interactive features
 
 ### App Store (blocked on enrollment)
 6. **Developer enrollment activation** — waiting for Apple confirmation email
@@ -23,8 +23,8 @@ V2 in progress. Commentaries UI shipped. Waiting for Apple Developer enrollment 
 ### V2 Features
 10. ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
 11. ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
-12. **Search across verses** — find verses by keyword in Sanskrit, translation, or transliteration
-13. **Favorites/bookmarks list** — save multiple verses, view saved list
+12. ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
+13. **Search across verses** — find verses by keyword in Sanskrit, translation, or transliteration
 14. **Share verse** — share verse as text or image
 15. **iOS Widget** — home screen widget with verse of the day
 16. **Dynamic Type** — respect system text size setting alongside custom slider

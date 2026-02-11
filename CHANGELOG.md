@@ -2,13 +2,17 @@
 
 ## [1.2.0] - 2026-02-11
 
-V2: Scholar commentaries and persistence improvements.
+V2: Scholar commentaries, favorites, and persistence improvements.
 
 ### Added
 - Commentaries UI on verse reading screen — 11,189 commentaries from 17 scholars
 - Commentary language toggle (English, Hindi, Sanskrit) with author picker
 - Text truncation at 1,500 characters with Read more/Show less for long commentaries
 - Persistent language and author selections for both translations and commentaries
+- Favorites: heart icon on verse detail to save/unsave verses
+- Favorites list accessible from home screen and chapter detail toolbar
+- Favorites sort toggle (Recent vs Chapter Order)
+- Empty state with instructions when no favorites saved
 
 ### Fixed
 - Commentary encoding issues in BG8.1 and BG12.18 (U+FFFD characters removed)

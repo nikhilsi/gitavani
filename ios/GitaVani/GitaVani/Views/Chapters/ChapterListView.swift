@@ -87,11 +87,19 @@ struct ChapterListView: View {
                 .accessibilityLabel("Help")
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(value: "settings") {
-                    Image(systemName: "gearshape")
-                        .foregroundStyle(theme.accentColor)
+                HStack(spacing: 16) {
+                    NavigationLink(value: "favorites") {
+                        Image(systemName: settings.favoriteVerseIds.isEmpty ? "heart" : "heart.fill")
+                            .foregroundStyle(theme.accentColor)
+                    }
+                    .accessibilityLabel("Favorites")
+
+                    NavigationLink(value: "settings") {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(theme.accentColor)
+                    }
+                    .accessibilityLabel("Settings")
                 }
-                .accessibilityLabel("Settings")
             }
         }
     }
