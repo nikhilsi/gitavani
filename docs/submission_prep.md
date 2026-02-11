@@ -119,7 +119,7 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 | App icon 1024x1024 | Done |
 | Privacy policy URL | Done — gitavani.app/privacy |
 | PrivacyInfo.xcprivacy | Done |
-| Screenshots (iPhone 6.9", 6.5", iPad 13") | Need retake for V2 features |
+| Screenshots (iPhone 6.9", 6.5", iPad 13") | Done — 8 per device, all V2 features |
 | App description (4000 chars max) | Done — updated for V2, in appstore/metadata/ |
 | Keywords (100 chars max) | Done — updated for V2, in appstore/metadata/ |
 | Support URL | Done — gitavani.app/support |

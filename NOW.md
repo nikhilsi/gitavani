@@ -8,8 +8,8 @@
 All features complete (V1 + V2). Docs updated. Waiting for Apple Developer enrollment activation.
 
 ### Content Updates
-1. **App Store screenshots** — retake to show V2 features (commentaries, search, favorites, share)
-2. **Website landing page** — update feature list for V2
+1. ~~**App Store screenshots**~~ — Done (8 per device × 3 devices = 24 total, all V2 features + 4 themes)
+2. ~~**Website landing page**~~ — Done (V2 features added)
 3. **Help screen** — explain commentaries, favorites, search, share
 
 ### App Store (blocked on enrollment)

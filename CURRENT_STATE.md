@@ -72,16 +72,15 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 ### What's Next
 - [x] Apple Developer Program signup ($99/year) — enrolled, pending activation
 - [x] Add privacy policy link in app About screen — done (gitavani.app/privacy)
-- [x] App Store screenshots (iPhone 6.9", 6.5", iPad 13") — 6 each, all 4 themes
+- [x] App Store screenshots (iPhone 6.9", 6.5", iPad 13") — 8 each, all V2 features + 4 themes
 - [x] App Store metadata (description, keywords, category) — saved in appstore/metadata/
+- [x] Update website landing page for V2 features
 - [ ] Developer enrollment activation (waiting for Apple email)
 - [ ] Create app in App Store Connect
 - [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
-- [ ] Update App Store content for V2 features (description, screenshots, website, help screen)
-- [ ] Retake screenshots to show V2 features
-- [ ] Update website and help screen for V2
+- [ ] Update help screen for V2 features
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
