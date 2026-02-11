@@ -8,15 +8,18 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ## Features (V1)
 
-- All 18 chapters, 700 verses of the Bhagavad Gita
+- All 18 chapters, 701 verses of the Bhagavad Gita
 - Original Sanskrit text in Devanagari
-- Romanized transliteration (toggleable)
-- Hindi translations from multiple authors
-- English translations from multiple authors
+- Romanized transliteration (on by default, toggleable)
+- Hindi translations from 3 authors
+- English translations from 9 authors
+- Per-verse author picker — switch translators on any verse
 - 4 visual themes (Sattva, Parchment, Dusk, Lotus)
-- Adjustable font size
+- Adjustable font size (14-28pt, applies globally)
 - Auto-bookmark (resume where you left off)
-- Swipe and button navigation between verses
+- Swipe and button navigation between verses (cross-chapter)
+- First-launch onboarding walkthrough
+- Help screen for feature discovery
 - Fully offline — all data bundled locally
 - Universal app (iPhone + iPad)
 
@@ -37,10 +40,13 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ```
 GitaVani/
-├── docs/               # Architecture documentation
+├── docs/                # Architecture documentation
 ├── scripts/             # Data pipeline (Python)
-├── data/                # Generated JSON data
-└── ios/                 # Xcode project (SwiftUI)
+│   ├── fetch_gita_data.py      # Fetch from API
+│   ├── parse_gita_data.py      # Parse from local repo clone
+│   └── validate_gita_data.py   # 8-section data validation
+├── data/                # Generated JSON data (35.6 MB)
+└── ios/GitaVani/        # Xcode project (SwiftUI)
 ```
 
 ## Getting Started
@@ -48,14 +54,19 @@ GitaVani/
 ### Data Pipeline
 
 ```bash
-cd scripts
-python3 fetch_gita_data.py
-# Outputs: data/gita_data.json
+# Fetch from API (takes ~4 min with rate limiting)
+python3 scripts/fetch_gita_data.py
+
+# Or parse from local repo clone (instant)
+python3 scripts/parse_gita_data.py
+
+# Validate the output
+python3 scripts/validate_gita_data.py
 ```
 
 ### iOS App
 
-Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device.
+Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device (iOS 17+).
 
 ## Data Source
 

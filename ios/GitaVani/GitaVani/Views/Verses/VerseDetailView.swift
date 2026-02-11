@@ -110,6 +110,14 @@ struct VerseDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(value: "settings") {
+                    Image(systemName: "gearshape")
+                        .foregroundStyle(theme.accentColor)
+                }
+            }
+        }
         .onAppear {
             if currentVerseId.isEmpty {
                 currentVerseId = initialVerseId

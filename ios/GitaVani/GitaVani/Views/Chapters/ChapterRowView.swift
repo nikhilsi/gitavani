@@ -4,6 +4,17 @@ struct ChapterRowView: View {
     let chapter: Chapter
     let theme: AppTheme
     let fontSize: Double
+    let defaultLanguage: String
+
+    /// English default: transliteration title, Hindi meaning subtitle
+    /// Hindi default: Sanskrit name title, English meaning subtitle
+    private var title: String {
+        defaultLanguage == "hindi" ? chapter.name : chapter.transliteration
+    }
+
+    private var subtitle: String {
+        chapter.meaning.oppositeLanguage(defaultLanguage)
+    }
 
     var body: some View {
         HStack(spacing: 14) {
@@ -13,11 +24,11 @@ struct ChapterRowView: View {
                 .frame(width: 40, alignment: .center)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(chapter.name)
+                Text(title)
                     .font(.system(size: fontSize, weight: .semibold))
                     .foregroundStyle(theme.primaryTextColor)
 
-                Text(chapter.meaning.en)
+                Text(subtitle)
                     .font(.system(size: fontSize - 2))
                     .foregroundStyle(theme.secondaryTextColor)
             }

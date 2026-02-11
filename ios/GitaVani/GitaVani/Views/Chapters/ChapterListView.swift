@@ -50,7 +50,7 @@ struct ChapterListView: View {
                     ResumeReadingBanner(
                         chapter: readingProgress.lastReadChapter,
                         verse: readingProgress.lastReadVerse,
-                        chapterName: ch.meaning.en,
+                        chapterName: ch.meaning.oppositeLanguage(settings.defaultLanguage),
                         theme: theme,
                         onTap: {
                             if let verseId = resumeVerseId {
@@ -67,7 +67,7 @@ struct ChapterListView: View {
             Section {
                 ForEach(dataService.chapters) { chapter in
                     NavigationLink(value: chapter.chapterNumber) {
-                        ChapterRowView(chapter: chapter, theme: theme, fontSize: settings.fontSize)
+                        ChapterRowView(chapter: chapter, theme: theme, fontSize: settings.fontSize, defaultLanguage: settings.defaultLanguage)
                     }
                     .listRowBackground(theme.backgroundColor)
                 }

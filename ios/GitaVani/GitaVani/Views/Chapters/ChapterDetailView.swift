@@ -19,20 +19,32 @@ struct ChapterDetailView: View {
 
     @State private var showSummary = false
 
+    /// English default: transliteration title, Hindi meaning subtitle
+    /// Hindi default: Sanskrit name title, English meaning subtitle
+    private var chapterTitle: String {
+        guard let chapter else { return "" }
+        return settings.defaultLanguage == "hindi" ? chapter.name : chapter.transliteration
+    }
+
+    private var chapterSubtitle: String {
+        guard let chapter else { return "" }
+        return chapter.meaning.oppositeLanguage(settings.defaultLanguage)
+    }
+
     var body: some View {
         List {
             if let chapter {
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(chapter.name)
+                        Text(chapterTitle)
                             .font(.system(size: settings.fontSize + 2, weight: .semibold))
                             .foregroundStyle(theme.primaryTextColor)
 
-                        Text(chapter.meaning.en)
+                        Text(chapterSubtitle)
                             .font(.system(size: settings.fontSize - 2))
                             .foregroundStyle(theme.secondaryTextColor)
 
-                        Text(chapter.summary.en)
+                        Text(chapter.summary.forLanguage(settings.defaultLanguage))
                             .font(.system(size: settings.fontSize))
                             .foregroundStyle(theme.primaryTextColor)
                             .lineLimit(showSummary ? nil : 3)
@@ -68,5 +80,13 @@ struct ChapterDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(theme.backgroundColor, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(value: "settings") {
+                    Image(systemName: "gearshape")
+                        .foregroundStyle(theme.accentColor)
+                }
+            }
+        }
     }
 }

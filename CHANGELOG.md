@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.0] - 2026-02-11
+
+V1 complete. All features built, tested on iPhone 15 Pro, docs updated.
+
+### Added
+- Book cover header on home screen (app name in serif, tagline, chapter/verse count)
+- Read-more summary snippets on chapter detail (3-line preview with expand/collapse)
+
+### Fixed
+- Navigation bars now fully honor active theme (background color, title color, tint)
+- Status bar adapts to dark themes via preferredColorScheme
+- Transliteration defaults to on for new installs (was off)
+
+### Changed
+- Architecture docs rewritten to match V1 as built (data models, view hierarchy, technical decisions)
+- All project docs updated for V1 completion
+
 ## [0.2.0] - 2026-02-11
 
 ### Added
