@@ -2,22 +2,22 @@
 
 **Last Updated**: February 11, 2026
 
-## Phase: Testing & Polish
+## Phase: Device Testing & Visual Polish
 
 ### Goal
-Test the complete V1 app on physical devices, fix visual issues, and polish the experience before it's ready for daily use.
+V1 is feature-complete and running on device. Collect feedback, fix visual issues, and refine the experience.
 
 ### Tasks
 
-1. **Test on iPhone 15 Pro** — connect via USB, run on physical device
-2. **Visual feedback loop** — identify spacing, color, font, and layout issues
-3. **iPad layout polish** — wider reading area, better use of space
-4. **App icon** — design and add to Assets.xcassets
+1. **Device testing feedback** — test all flows on iPhone 15 Pro, note visual issues
+2. **iPad layout polish** — wider reading area, better use of space
+3. **Clean up** — remove unused icon PNGs from project root
 
-### Previous Phase: iOS App Build (Done)
+### Previous Phase: iOS App Build + Polish (Done)
 - All 11 build steps complete
-- Full navigation: Chapters → Verses → Reading screen
-- 4 themes, font size control, language toggle, author picker
-- Swipe + button verse navigation
-- Resume reading with persistent bookmarking
-- Settings screen with all controls
+- Onboarding flow (4 pages, first launch only)
+- Help screen for older users
+- App icon (lotus + book, saffron gradient)
+- Font size applies globally
+- Fixed settings bindings (@Bindable)
+- Tested on physical iPhone 15 Pro

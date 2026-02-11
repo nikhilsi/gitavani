@@ -2,7 +2,7 @@
 
 **Last Updated**: February 11, 2026
 
-## Status: V1 iOS App Built — Testing & Polish
+## Status: V1 Complete — Testing on Device
 
 ### What's Done
 - [x] Architecture design and documentation
@@ -24,12 +24,17 @@
 - [x] Settings screen — theme picker, font size slider, language, transliteration toggle
 - [x] Resume reading banner — auto-saves progress, tap to jump back
 - [x] App display name set to "GitaVani"
+- [x] First-launch onboarding (4 swipeable pages)
+- [x] Help screen (accessible from ? icon on home screen)
+- [x] Font size applies globally (chapter list, verse list, reading screen)
+- [x] Fixed @Bindable bindings for settings controls
+- [x] App icon (lotus + open book, saffron gradient, AI-generated via Recraft)
+- [x] Tested on physical device (iPhone 15 Pro)
 
 ### What's Next
-- [ ] Test on physical device (iPhone 15 Pro)
-- [ ] Visual polish based on testing feedback
+- [ ] Visual polish based on device testing feedback
 - [ ] iPad layout refinements
-- [ ] App icon
+- [ ] Clean up unused icon PNG files from project root
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — this is correct, other scholars did not comment on these verses
@@ -63,4 +68,7 @@
 | Swipe navigation | Done |
 | Prev/Next buttons | Done |
 | Settings screen | Done |
+| Onboarding | Done |
+| Help screen | Done |
+| App icon | Done |
 | iPad layout | Basic (needs polish) |

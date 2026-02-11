@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0] - 2026-02-11
+
+### Added
+- First-launch onboarding: 4 swipeable pages introducing features (skip/get started)
+- Help screen: accessible via ? icon on home screen, explains all app features for older users
+- App icon: lotus + open book with saffron gradient (AI-generated via Recraft)
+
+### Fixed
+- Settings controls (font size slider, transliteration toggle) now work correctly using @Bindable
+- Font size setting now applies globally to chapter list, verse list, and chapter detail (was only on reading screen)
+
 ## [0.1.0] - 2026-02-11
 
 ### Added
