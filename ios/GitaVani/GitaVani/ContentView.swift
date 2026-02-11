@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var navigationPath = NavigationPath()
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @State private var showOnboarding = false
+    @ScaledMetric(relativeTo: .body) private var dynamicTypeBase: CGFloat = 16
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -94,6 +95,10 @@ struct ContentView: View {
             if !hasSeenOnboarding {
                 showOnboarding = true
             }
+            settings.dynamicTypeScale = dynamicTypeBase / 16.0
+        }
+        .onChange(of: dynamicTypeBase) { _, newValue in
+            settings.dynamicTypeScale = newValue / 16.0
         }
     }
 }

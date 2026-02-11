@@ -105,7 +105,7 @@ struct ChapterListView: View {
 
                                     if let snippet = matchSnippet(for: verse, query: debouncedSearchText) {
                                         Text(snippet)
-                                            .font(.system(size: settings.fontSize - 2))
+                                            .font(.system(size: settings.scaledFontSize - 2))
                                             .foregroundStyle(theme.primaryTextColor)
                                             .lineLimit(3)
                                             .lineSpacing(2)
@@ -126,16 +126,16 @@ struct ChapterListView: View {
                             .foregroundStyle(theme.accentColor)
 
                         Text("GitaVani")
-                            .font(.system(size: settings.fontSize + 10, weight: .bold, design: .serif))
+                            .font(.system(size: settings.scaledFontSize + 10, weight: .bold, design: .serif))
                             .foregroundStyle(theme.primaryTextColor)
 
                         Text("The Bhagavad Gita")
-                            .font(.system(size: settings.fontSize, design: .serif))
+                            .font(.system(size: settings.scaledFontSize, design: .serif))
                             .italic()
                             .foregroundStyle(theme.secondaryTextColor)
 
                         Text("\(dataService.chapters.count) chapters  ·  \(dataService.verses.count) verses")
-                            .font(.system(size: settings.fontSize - 4))
+                            .font(.system(size: settings.scaledFontSize - 4))
                             .foregroundStyle(theme.secondaryTextColor)
                             .padding(.top, 2)
                     }
@@ -169,7 +169,7 @@ struct ChapterListView: View {
                 Section {
                     ForEach(dataService.chapters) { chapter in
                         NavigationLink(value: chapter.chapterNumber) {
-                            ChapterRowView(chapter: chapter, theme: theme, fontSize: settings.fontSize, defaultLanguage: settings.defaultLanguage)
+                            ChapterRowView(chapter: chapter, theme: theme, fontSize: settings.scaledFontSize, defaultLanguage: settings.defaultLanguage)
                         }
                         .listRowBackground(theme.backgroundColor)
                     }

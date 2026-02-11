@@ -16,6 +16,7 @@ V2: Scholar commentaries, favorites, and persistence improvements.
 - Search: pull-down search bar on home screen (all verses) and chapter detail (chapter-scoped)
 - Search across Sanskrit, transliteration, and all translations with 300ms debounce
 - Smart match snippets showing context around the matched text
+- Dynamic Type support — respects system text size setting alongside custom font slider
 
 ### Fixed
 - Commentary encoding issues in BG8.1 and BG12.18 (U+FFFD characters removed)

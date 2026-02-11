@@ -69,14 +69,14 @@ struct VerseDetailView: View {
                                 transliteration: verse.transliteration,
                                 showTransliteration: settings.showTransliteration,
                                 theme: theme,
-                                fontSize: settings.fontSize
+                                fontSize: settings.scaledFontSize
                             )
 
                             // Translation
                             TranslationView(
                                 translations: verse.translations,
                                 theme: theme,
-                                fontSize: settings.fontSize,
+                                fontSize: settings.scaledFontSize,
                                 settings: settings
                             )
                             .id(currentVerseId)
@@ -88,7 +88,7 @@ struct VerseDetailView: View {
                             CommentaryView(
                                 commentaries: verse.commentaries,
                                 theme: theme,
-                                fontSize: settings.fontSize,
+                                fontSize: settings.scaledFontSize,
                                 settings: settings
                             )
                             .id("commentary-\(currentVerseId)")

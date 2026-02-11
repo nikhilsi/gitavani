@@ -106,12 +106,12 @@ struct FavoritesView: View {
                                     }
 
                                     Text(verse.slok.components(separatedBy: "\n").first ?? "")
-                                        .font(.system(size: settings.fontSize - 2))
+                                        .font(.system(size: settings.scaledFontSize - 2))
                                         .foregroundStyle(theme.primaryTextColor)
                                         .lineLimit(1)
 
                                     Text(translationSnippet(for: verse))
-                                        .font(.system(size: settings.fontSize - 4))
+                                        .font(.system(size: settings.scaledFontSize - 4))
                                         .foregroundStyle(theme.secondaryTextColor)
                                         .lineLimit(2)
                                         .lineSpacing(2)

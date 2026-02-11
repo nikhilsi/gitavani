@@ -54,15 +54,15 @@ struct ChapterDetailView: View {
                     Section {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(chapterTitle)
-                                .font(.system(size: settings.fontSize + 2, weight: .semibold))
+                                .font(.system(size: settings.scaledFontSize + 2, weight: .semibold))
                                 .foregroundStyle(theme.primaryTextColor)
 
                             Text(chapterSubtitle)
-                                .font(.system(size: settings.fontSize - 2))
+                                .font(.system(size: settings.scaledFontSize - 2))
                                 .foregroundStyle(theme.secondaryTextColor)
 
                             Text(chapter.summary.forLanguage(settings.defaultLanguage))
-                                .font(.system(size: settings.fontSize))
+                                .font(.system(size: settings.scaledFontSize))
                                 .foregroundStyle(theme.primaryTextColor)
                                 .lineLimit(showSummary ? nil : 3)
                                 .padding(.top, 4)
@@ -71,7 +71,7 @@ struct ChapterDetailView: View {
                                 withAnimation { showSummary.toggle() }
                             } label: {
                                 Text(showSummary ? "Show less" : "Read more...")
-                                    .font(.system(size: settings.fontSize - 4))
+                                    .font(.system(size: settings.scaledFontSize - 4))
                                     .foregroundStyle(theme.accentColor)
                             }
                             .buttonStyle(.plain)
@@ -101,7 +101,7 @@ struct ChapterDetailView: View {
                 Section {
                     ForEach(filteredVerses) { verse in
                         NavigationLink(value: verse.id) {
-                            VerseListRowView(verse: verse, theme: theme, fontSize: settings.fontSize)
+                            VerseListRowView(verse: verse, theme: theme, fontSize: settings.scaledFontSize)
                         }
                         .listRowBackground(theme.backgroundColor)
                     }

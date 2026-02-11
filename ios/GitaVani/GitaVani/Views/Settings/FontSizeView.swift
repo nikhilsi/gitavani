@@ -24,7 +24,7 @@ struct FontSizeView: View {
             }
 
             Text("Preview text at \(Int(settings.fontSize))pt")
-                .font(.system(size: settings.fontSize))
+                .font(.system(size: settings.scaledFontSize))
                 .foregroundStyle(theme.primaryTextColor)
         }
     }

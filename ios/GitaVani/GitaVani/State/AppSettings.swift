@@ -38,6 +38,12 @@ class AppSettings {
         didSet { UserDefaults.standard.set(preferredSanskritCommentaryAuthor, forKey: "preferredSanskritCommentaryAuthor") }
     }
 
+    /// Dynamic Type scale factor — set from ContentView's @ScaledMetric, not persisted
+    var dynamicTypeScale: Double = 1.0
+
+    /// Font size adjusted for Dynamic Type system setting
+    var scaledFontSize: Double { fontSize * dynamicTypeScale }
+
     var favoriteVerseIds: [String] {
         didSet {
             if let data = try? JSONEncoder().encode(favoriteVerseIds) {

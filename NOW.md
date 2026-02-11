@@ -27,7 +27,7 @@ V2 in progress. Commentaries and Favorites shipped. Waiting for Apple Developer 
 13. ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
 14. **Share verse** — share verse as text or image
 15. **iOS Widget** — home screen widget with verse of the day
-16. **Dynamic Type** — respect system text size setting alongside custom slider
+16. ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
 
 ### Polish
 17. **iPad layout polish** — better use of screen space on verse reading
