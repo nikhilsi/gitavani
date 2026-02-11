@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0] - 2026-02-11
+
+V2: Scholar commentaries and persistence improvements.
+
+### Added
+- Commentaries UI on verse reading screen — 11,189 commentaries from 17 scholars
+- Commentary language toggle (English, Hindi, Sanskrit) with author picker
+- Text truncation at 1,500 characters with Read more/Show less for long commentaries
+- Persistent language and author selections for both translations and commentaries
+
+### Fixed
+- Commentary encoding issues in BG8.1 and BG12.18 (U+FFFD characters removed)
+- VerseDetailView toolbar now honors theme background (was showing white border on Dusk)
+- Translation author selection now persists across verse navigation
+
 ## [1.1.0] - 2026-02-11
 
 App Store preparation: code review, hardening, licensing, and accessibility.

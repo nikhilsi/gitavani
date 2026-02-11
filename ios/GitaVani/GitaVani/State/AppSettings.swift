@@ -22,6 +22,22 @@ class AppSettings {
         didSet { UserDefaults.standard.set(preferredEnglishAuthor, forKey: "preferredEnglishAuthor") }
     }
 
+    var preferredCommentaryLanguage: String {
+        didSet { UserDefaults.standard.set(preferredCommentaryLanguage, forKey: "preferredCommentaryLanguage") }
+    }
+
+    var preferredHindiCommentaryAuthor: String {
+        didSet { UserDefaults.standard.set(preferredHindiCommentaryAuthor, forKey: "preferredHindiCommentaryAuthor") }
+    }
+
+    var preferredEnglishCommentaryAuthor: String {
+        didSet { UserDefaults.standard.set(preferredEnglishCommentaryAuthor, forKey: "preferredEnglishCommentaryAuthor") }
+    }
+
+    var preferredSanskritCommentaryAuthor: String {
+        didSet { UserDefaults.standard.set(preferredSanskritCommentaryAuthor, forKey: "preferredSanskritCommentaryAuthor") }
+    }
+
     init() {
         let defaults = UserDefaults.standard
         fontSize = defaults.object(forKey: "fontSize") as? Double ?? 18.0
@@ -29,5 +45,9 @@ class AppSettings {
         showTransliteration = defaults.object(forKey: "showTransliteration") as? Bool ?? true
         preferredHindiAuthor = defaults.string(forKey: "preferredHindiAuthor") ?? ""
         preferredEnglishAuthor = defaults.string(forKey: "preferredEnglishAuthor") ?? ""
+        preferredCommentaryLanguage = defaults.string(forKey: "preferredCommentaryLanguage") ?? ""
+        preferredHindiCommentaryAuthor = defaults.string(forKey: "preferredHindiCommentaryAuthor") ?? ""
+        preferredEnglishCommentaryAuthor = defaults.string(forKey: "preferredEnglishCommentaryAuthor") ?? ""
+        preferredSanskritCommentaryAuthor = defaults.string(forKey: "preferredSanskritCommentaryAuthor") ?? ""
     }
 }

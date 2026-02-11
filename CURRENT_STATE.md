@@ -49,6 +49,12 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] License files — MIT (app code) + LGPL-3.0 (data attribution)
 - [x] App Store submission prep doc (docs/submission_prep.md)
 
+**V2 Features:**
+- [x] Commentaries UI — 17 authors, 3 languages (EN/HI/SA), language toggle + author picker
+- [x] Commentary text truncation (1500 chars with Read more/Show less)
+- [x] Commentary encoding fix (BG8.1, BG12.18 U+FFFD removed)
+- [x] Persistent language/author selections for both translations and commentaries
+
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
 - [x] Static site hosted on GitHub Pages (nikhilsi/gitavani-site)
@@ -67,7 +73,8 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
-- [ ] V2 planning (commentaries, search, favorites)
+- [ ] Update App Store content for commentaries (description, screenshots, website, help screen)
+- [ ] V2: search, favorites, share verse, widget, Dynamic Type
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment

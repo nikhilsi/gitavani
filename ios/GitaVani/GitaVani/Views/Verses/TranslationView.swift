@@ -4,9 +4,7 @@ struct TranslationView: View {
     let translations: [Translation]
     let theme: AppTheme
     let fontSize: Double
-    let defaultLanguage: String
-    let preferredHindiAuthor: String
-    let preferredEnglishAuthor: String
+    let settings: AppSettings
 
     @State private var selectedLanguage: Language = .english
     @State private var selectedAuthor: String = ""
@@ -41,6 +39,7 @@ struct TranslationView: View {
                         ForEach(availableAuthors, id: \.self) { author in
                             Button {
                                 selectedAuthor = author
+                                saveAuthorPreference()
                             } label: {
                                 Text(author)
                                     .font(.caption)
@@ -90,16 +89,24 @@ struct TranslationView: View {
     }
 
     private func setupDefaults() {
-        selectedLanguage = defaultLanguage == "hindi" ? .hindi : .english
+        selectedLanguage = settings.defaultLanguage == "hindi" ? .hindi : .english
         pickPreferredAuthor()
     }
 
     private func pickPreferredAuthor() {
-        let preferred = selectedLanguage == .hindi ? preferredHindiAuthor : preferredEnglishAuthor
+        let preferred = selectedLanguage == .hindi ? settings.preferredHindiAuthor : settings.preferredEnglishAuthor
         if !preferred.isEmpty && availableAuthors.contains(preferred) {
             selectedAuthor = preferred
         } else {
             selectedAuthor = availableAuthors.first ?? ""
+        }
+    }
+
+    private func saveAuthorPreference() {
+        if selectedLanguage == .hindi {
+            settings.preferredHindiAuthor = selectedAuthor
+        } else {
+            settings.preferredEnglishAuthor = selectedAuthor
         }
     }
 }

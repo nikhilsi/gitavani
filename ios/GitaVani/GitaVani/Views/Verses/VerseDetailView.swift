@@ -69,11 +69,21 @@ struct VerseDetailView: View {
                                 translations: verse.translations,
                                 theme: theme,
                                 fontSize: settings.fontSize,
-                                defaultLanguage: settings.defaultLanguage,
-                                preferredHindiAuthor: settings.preferredHindiAuthor,
-                                preferredEnglishAuthor: settings.preferredEnglishAuthor
+                                settings: settings
                             )
                             .id(currentVerseId)
+
+                            Divider()
+                                .background(theme.secondaryTextColor.opacity(0.3))
+
+                            // Commentary
+                            CommentaryView(
+                                commentaries: verse.commentaries,
+                                theme: theme,
+                                fontSize: settings.fontSize,
+                                settings: settings
+                            )
+                            .id("commentary-\(currentVerseId)")
                         }
                         .padding()
                     }

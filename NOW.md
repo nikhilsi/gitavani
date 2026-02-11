@@ -2,28 +2,32 @@
 
 **Last Updated**: February 11, 2026
 
-## Phase: App Store Prep
+## Phase: V2 Features + App Store Submission
 
 ### Status
-V1 is feature-complete and hardened for App Store submission. Code review done, all issues fixed. Website live at gitavani.app.
+V2 in progress. Commentaries UI shipped. Waiting for Apple Developer enrollment activation.
 
-### Done
-1. ~~Apple Developer Program~~ — Enrolled, pending activation
-2. ~~Privacy policy~~ — Live at gitavani.app/privacy
-3. ~~Support page~~ — Live at gitavani.app/support
-4. ~~Domain~~ — gitavani.app purchased, DNS configured, GitHub Pages hosting
-5. ~~Support email~~ — thegitavani@gmail.com
-6. ~~Privacy policy link in app~~ — Added to About screen
-7. ~~Screenshots~~ — 6 per device, 3 devices (iPhone 6.9", 6.5", iPad 13"), all 4 themes
-8. ~~App Store metadata~~ — Description, keywords, release notes, review notes in appstore/metadata/
-9. ~~Dusk toolbar fix~~ — VerseDetailView nav bar now honors theme
+### Content Updates (for commentaries)
+1. **App Store description** — add commentaries to feature list
+2. **App Store screenshots** — retake to show commentary UI
+3. **Website landing page** — add commentaries to feature list
+4. **Help screen** — explain commentary feature
+5. **Review notes** — mention commentaries as interactive feature
 
-### Remaining for App Store
-10. **Developer enrollment activation** — waiting for Apple confirmation email
-11. **Create app in App Store Connect** — enter metadata, upload screenshots
-12. **Upload build** — archive and upload via Xcode
-13. **TestFlight** — distribute build for wife's testing
+### App Store (blocked on enrollment)
+6. **Developer enrollment activation** — waiting for Apple confirmation email
+7. **Create app in App Store Connect** — enter metadata, upload screenshots
+8. **Upload build** — archive and upload via Xcode
+9. **TestFlight** — distribute build for wife's testing
 
-### After Wife's Feedback
-14. **iPad layout polish** — based on feedback
-15. **V2 planning** — commentaries UI, search, favorites, share verse, widget
+### V2 Features
+10. ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
+11. ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
+12. **Search across verses** — find verses by keyword in Sanskrit, translation, or transliteration
+13. **Favorites/bookmarks list** — save multiple verses, view saved list
+14. **Share verse** — share verse as text or image
+15. **iOS Widget** — home screen widget with verse of the day
+16. **Dynamic Type** — respect system text size setting alongside custom slider
+
+### Polish
+17. **iPad layout polish** — better use of screen space on verse reading
