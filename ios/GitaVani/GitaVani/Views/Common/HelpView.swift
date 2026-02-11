@@ -26,14 +26,34 @@ struct HelpView: View {
             description: "Tap the book icon on the reading screen to show Sanskrit verses in Roman script. You can also toggle this in Settings."
         ),
         HelpItem(
+            icon: "text.book.closed.fill",
+            title: "Commentaries",
+            description: "Scroll below the translation on any verse to find commentaries from 17 scholars in English, Hindi, and Sanskrit. Use the language and author tabs to switch between them."
+        ),
+        HelpItem(
+            icon: "magnifyingglass",
+            title: "Search Verses",
+            description: "Pull down on the home screen to search across all verses — Sanskrit, transliteration, and translations. You can also search within a specific chapter from its verse list."
+        ),
+        HelpItem(
+            icon: "heart.fill",
+            title: "Favorites",
+            description: "Tap the heart icon on any verse to save it as a favorite. Access your saved verses from the heart icon in the toolbar. Sort by recent or chapter order."
+        ),
+        HelpItem(
+            icon: "square.and.arrow.up",
+            title: "Share Verses",
+            description: "Tap the share icon on the reading screen to share a verse as a beautiful themed image card. The card includes the Sanskrit text, transliteration, and translation."
+        ),
+        HelpItem(
             icon: "paintpalette.fill",
             title: "Change Theme",
-            description: "Go to Settings (gear icon on home screen) to choose between 4 themes: Sattva (light), Parchment (warm), Dusk (dark), or Lotus (saffron)."
+            description: "Go to Settings (gear icon) to choose between 4 themes: Sattva (light), Parchment (warm), Dusk (dark), or Lotus (saffron)."
         ),
         HelpItem(
             icon: "textformat.size",
             title: "Adjust Font Size",
-            description: "In Settings, use the font size slider to make text larger or smaller. The range is 14pt to 28pt."
+            description: "In Settings, use the font size slider to make text larger or smaller (14–28pt). The app also responds to your system Dynamic Type setting."
         ),
         HelpItem(
             icon: "bookmark.fill",

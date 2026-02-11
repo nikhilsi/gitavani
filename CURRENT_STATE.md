@@ -80,7 +80,7 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 - [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
-- [ ] Update help screen for V2 features
+- [x] Update help screen for V2 features
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
