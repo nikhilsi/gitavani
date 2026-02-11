@@ -2,21 +2,22 @@
 
 **Last Updated**: February 11, 2026
 
-## Phase: Xcode Project Setup
+## Phase: Testing & Polish
 
 ### Goal
-Create the iOS project, set up the folder structure, bundle the data, and build the foundation layer (models + data service + theming).
+Test the complete V1 app on physical devices, fix visual issues, and polish the experience before it's ready for daily use.
 
 ### Tasks
 
-1. **Create Xcode project** — iOS App, SwiftUI, iOS 17+, universal (iPhone + iPad)
-2. **Set up folder structure** — Models/, Views/, Services/, State/, Theme/, Extensions/, Resources/
-3. **Bundle gita_data.json** — Copy into Resources/
-4. **Swift models** — Chapter, Verse, Translation, Commentary, Language, LocalizedText
-5. **GitaDataService** — Load and parse bundled JSON
-6. **ThemeManager + AppSettings** — 4 themes, persistent settings
+1. **Test on iPhone 15 Pro** — connect via USB, run on physical device
+2. **Visual feedback loop** — identify spacing, color, font, and layout issues
+3. **iPad layout polish** — wider reading area, better use of space
+4. **App icon** — design and add to Assets.xcassets
 
-### Previous Phase: Data Pipeline (Done)
-- Data pipeline complete and validated
-- 701 verses, 8183 translations, 11189 commentaries
-- Two scripts: fetch (API) and parse (local repo) — both produce identical output
+### Previous Phase: iOS App Build (Done)
+- All 11 build steps complete
+- Full navigation: Chapters → Verses → Reading screen
+- 4 themes, font size control, language toggle, author picker
+- Swipe + button verse navigation
+- Resume reading with persistent bookmarking
+- Settings screen with all controls

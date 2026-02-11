@@ -2,24 +2,34 @@
 
 **Last Updated**: February 11, 2026
 
-## Status: Data Pipeline Complete — Ready for Xcode Project Setup
+## Status: V1 iOS App Built — Testing & Polish
 
 ### What's Done
 - [x] Architecture design and documentation
 - [x] Data source identified and validated (Vedic Scriptures API)
-- [x] Screen flow and view hierarchy designed
-- [x] Theming system designed (4 themes)
-- [x] CLAUDE.md and project documentation
 - [x] Data pipeline — fetch script (API) and parse script (local repo)
 - [x] Generated gita_data.json — 18 chapters, 701 verses, 8183 translations, 11189 commentaries
 - [x] Data validation — structure, content quality, author coverage, Swift compatibility all verified
-- [x] Validated parsed data (local repo) matches fetched data (API) — identical
+- [x] Xcode project setup (iOS 17+, universal iPhone + iPad)
+- [x] Swift models (Chapter, Verse, Translation, Commentary, Language, LocalizedText, GitaData)
+- [x] GitaDataService — loads and parses bundled JSON
+- [x] ThemeManager — 4 themes (Sattva, Parchment, Dusk, Lotus)
+- [x] AppSettings — persistent font size, language, transliteration, preferred authors
+- [x] ReadingProgress — persistent last-read chapter/verse
+- [x] Chapter list (home screen) with resume reading banner
+- [x] Chapter detail with collapsible summary + verse list
+- [x] Verse detail (reading screen) — Sanskrit shlok, transliteration toggle, translation
+- [x] Language toggle (Hindi/English) with author picker
+- [x] Verse navigation — swipe gestures + prev/next buttons (works across chapters)
+- [x] Settings screen — theme picker, font size slider, language, transliteration toggle
+- [x] Resume reading banner — auto-saves progress, tap to jump back
+- [x] App display name set to "GitaVani"
 
 ### What's Next
-- [ ] Xcode project setup (iOS App, SwiftUI, iOS 17+)
-- [ ] Swift models (Chapter, Verse, Translation)
-- [ ] GitaDataService (JSON loading)
-- [ ] ThemeManager + AppSettings
+- [ ] Test on physical device (iPhone 15 Pro)
+- [ ] Visual polish based on testing feedback
+- [ ] iPad layout refinements
+- [ ] App icon
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — this is correct, other scholars did not comment on these verses
@@ -41,16 +51,16 @@
 | Feature | Status |
 |---------|--------|
 | Data pipeline | Done |
-| Chapter list (Home) | Not started |
-| Chapter detail (Verse list) | Not started |
-| Verse detail (Reading screen) | Not started |
-| Sanskrit + transliteration | Not started |
-| Hindi/English translations | Not started |
-| Author picker | Not started |
-| Theming (4 themes) | Not started |
-| Font size control | Not started |
-| Bookmark/resume | Not started |
-| Swipe navigation | Not started |
-| Prev/Next buttons | Not started |
-| Settings screen | Not started |
-| iPad layout | Not started |
+| Chapter list (Home) | Done |
+| Chapter detail (Verse list) | Done |
+| Verse detail (Reading screen) | Done |
+| Sanskrit + transliteration | Done |
+| Hindi/English translations | Done |
+| Author picker | Done |
+| Theming (4 themes) | Done |
+| Font size control | Done |
+| Bookmark/resume | Done |
+| Swipe navigation | Done |
+| Prev/Next buttons | Done |
+| Settings screen | Done |
+| iPad layout | Basic (needs polish) |

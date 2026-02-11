@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.1.0] - 2026-02-11
+
+### Added
+- Complete V1 iOS app with full Bhagavad Gita reader functionality
+- Xcode project (iOS 17+, universal iPhone + iPad, SwiftUI)
+- Swift models: Chapter, Verse, Translation, Commentary, Language, LocalizedText, GitaData
+- GitaDataService: loads and parses bundled 35.6 MB JSON (701 verses)
+- Chapter list home screen with resume reading banner
+- Chapter detail with collapsible summary and verse list
+- Verse detail reading screen with Sanskrit shlok display
+- Transliteration toggle for romanized Sanskrit
+- Hindi/English language toggle with author picker (12 authors)
+- Swipe gesture + prev/next button verse navigation (cross-chapter)
+- 4 themes: Sattva (white), Parchment (cream), Dusk (dark), Lotus (saffron)
+- Settings screen: theme picker, font size slider (14-28pt), language, transliteration
+- Persistent reading progress with resume banner on home screen
+- All settings persisted via UserDefaults
+
+### Changed
+- Deployment target set to iOS 17.0 (from default 26.2)
+- App display name set to "GitaVani"
+
 ## [0.0.2] - 2026-02-11
 
 ### Added
