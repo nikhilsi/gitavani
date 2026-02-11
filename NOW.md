@@ -27,4 +27,4 @@ All features complete (V1 + V2). Docs updated. Waiting for Apple Developer enrol
 - ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
 
 ### Polish
-8. **iPad layout polish** — better use of screen space on verse reading
+8. ~~**iPad layout polish**~~ — Done (larger default font size 22pt vs 18pt)

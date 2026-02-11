@@ -79,7 +79,7 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 - [ ] Create app in App Store Connect
 - [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
-- [ ] iPad layout refinements based on feedback
+- [x] iPad layout refinements — larger default font size (22pt vs 18pt)
 - [x] Update help screen for V2 features
 
 ### Known Issues
@@ -128,4 +128,4 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 | Search | Done |
 | Dynamic Type | Done |
 | Share verse | Done |
-| iPad layout | Basic (needs polish) |
+| iPad layout | Done |

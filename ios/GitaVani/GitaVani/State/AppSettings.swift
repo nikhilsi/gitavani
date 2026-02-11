@@ -66,7 +66,8 @@ class AppSettings {
 
     init() {
         let defaults = UserDefaults.standard
-        fontSize = defaults.object(forKey: "fontSize") as? Double ?? 18.0
+        let defaultFontSize: Double = UIDevice.current.userInterfaceIdiom == .pad ? 22.0 : 18.0
+        fontSize = defaults.object(forKey: "fontSize") as? Double ?? defaultFontSize
         defaultLanguage = defaults.string(forKey: "defaultLanguage") ?? "english"
         showTransliteration = defaults.object(forKey: "showTransliteration") as? Bool ?? true
         preferredHindiAuthor = defaults.string(forKey: "preferredHindiAuthor") ?? ""
