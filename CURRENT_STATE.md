@@ -58,10 +58,13 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] Support email (thegitavani@gmail.com)
 
 ### What's Next
-- [ ] Apple Developer Program signup ($99/year)
-- [ ] Add privacy policy link in app About screen
-- [ ] App Store screenshots (iPhone 6.9", 6.5", iPad 13")
-- [ ] App Store metadata (description, keywords, category)
+- [x] Apple Developer Program signup ($99/year) — enrolled, pending activation
+- [x] Add privacy policy link in app About screen — done (gitavani.app/privacy)
+- [x] App Store screenshots (iPhone 6.9", 6.5", iPad 13") — 6 each, all 4 themes
+- [x] App Store metadata (description, keywords, category) — saved in appstore/metadata/
+- [ ] Developer enrollment activation (waiting for Apple email)
+- [ ] Create app in App Store Connect
+- [ ] Upload build via Xcode
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
 - [ ] V2 planning (commentaries, search, favorites)
