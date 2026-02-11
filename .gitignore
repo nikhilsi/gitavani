@@ -9,9 +9,8 @@ venv/
 
 # Xcode
 ios/GitaVani/build/
-ios/GitaVani/*.xcuserdata/
 ios/GitaVani/DerivedData/
-*.xcworkspace/xcuserdata/
+xcuserdata/
 
 # IDE
 .vscode/

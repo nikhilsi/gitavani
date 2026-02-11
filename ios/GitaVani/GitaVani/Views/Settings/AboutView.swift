@@ -68,6 +68,14 @@ struct AboutView: View {
                     title: "Privacy",
                     text: "GitaVani collects no personal data. All data is stored locally on your device. No analytics, no tracking, no network calls. Your reading is entirely private."
                 )
+
+                linkRow(title: "Privacy Policy", url: "https://gitavani.app/privacy")
+
+                Divider()
+                    .background(theme.secondaryTextColor.opacity(0.3))
+
+                // Support
+                linkRow(title: "Support & FAQ", url: "https://gitavani.app/support")
             }
             .padding()
         }

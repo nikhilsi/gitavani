@@ -49,12 +49,20 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] License files — MIT (app code) + LGPL-3.0 (data attribution)
 - [x] App Store submission prep doc (docs/submission_prep.md)
 
+**Website (gitavani.app):**
+- [x] Domain purchased (gitavani.app on GoDaddy)
+- [x] Static site hosted on GitHub Pages (nikhilsi/gitavani-site)
+- [x] Landing page with app description and features
+- [x] Privacy policy page (gitavani.app/privacy)
+- [x] Support page with FAQ (gitavani.app/support)
+- [x] Support email (thegitavani@gmail.com)
+
 ### What's Next
-- [ ] Apple Developer Program signup ($99/year) for TestFlight distribution
-- [ ] Privacy policy page (hosted on GitHub Pages or similar)
+- [ ] Apple Developer Program signup ($99/year)
+- [ ] Add privacy policy link in app About screen
 - [ ] App Store screenshots (iPhone 6.9", 6.5", iPad 13")
 - [ ] App Store metadata (description, keywords, category)
-- [ ] Wife's feedback — real user testing drives V2 priorities
+- [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
 - [ ] V2 planning (commentaries, search, favorites)
 

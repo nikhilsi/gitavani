@@ -117,12 +117,12 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 |------|--------|
 | Apple Developer Program ($99/year) | Not started |
 | App icon 1024x1024 | Done |
-| Privacy policy URL | Not done |
+| Privacy policy URL | Done — gitavani.app/privacy |
 | PrivacyInfo.xcprivacy | Done |
 | Screenshots (iPhone 6.9", 6.5", iPad 13") | Not done |
 | App description (4000 chars max) | Not done |
 | Keywords (100 chars max) | Not done |
-| Support URL | Not done |
+| Support URL | Done — gitavani.app/support |
 | Age rating questionnaire | Not done (will be 4+) |
 | About/Credits screen | Done |
 | Accessibility labels | Done |
@@ -161,7 +161,7 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 
 ### Must Fix (Blockers)
 1. ~~Background thread data loading~~ — Done
-2. Privacy policy + link in app — **Remaining** (need hosted page)
+2. ~~Privacy policy~~ — Done (gitavani.app/privacy). Link in app About screen still needed.
 3. ~~PrivacyInfo.xcprivacy manifest~~ — Done
 4. ~~About/Credits screen with attribution~~ — Done
 5. ~~Accessibility labels on key controls~~ — Done

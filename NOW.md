@@ -5,15 +5,21 @@
 ## Phase: App Store Prep
 
 ### Status
-V1 is feature-complete and hardened for App Store submission. Code review done, all issues fixed.
+V1 is feature-complete and hardened for App Store submission. Code review done, all issues fixed. Website live at gitavani.app.
+
+### Done
+1. ~~Apple Developer Program~~ — **In progress** (signing up)
+2. ~~Privacy policy~~ — Live at gitavani.app/privacy
+3. ~~Support page~~ — Live at gitavani.app/support
+4. ~~Domain~~ — gitavani.app purchased, DNS configured, GitHub Pages hosting
+5. ~~Support email~~ — thegitavani@gmail.com
 
 ### Remaining for App Store
-1. **Apple Developer Program** — sign up ($99/year) to get access to App Store Connect
-2. **Privacy policy** — write and host a simple page (GitHub Pages or similar)
-3. **Screenshots** — capture for iPhone 6.9", 6.5", and iPad 13"
-4. **App Store metadata** — description, keywords, category, age rating
-5. **TestFlight** — upload build for wife's testing
+6. **Add privacy policy link in app** — link from About screen to gitavani.app/privacy
+7. **Screenshots** — capture for iPhone 6.9", 6.5", and iPad 13"
+8. **App Store metadata** — description, keywords, category, age rating
+9. **TestFlight** — upload build for wife's testing
 
 ### After Wife's Feedback
-6. **iPad layout polish** — based on feedback
-7. **V2 planning** — commentaries UI, search, favorites, share verse, widget
+10. **iPad layout polish** — based on feedback
+11. **V2 planning** — commentaries UI, search, favorites, share verse, widget
