@@ -3,6 +3,11 @@ Initial release.
 • All 18 chapters and 701 verses of the Bhagavad Gita
 • Sanskrit text with Roman transliteration
 • Translations from 12 scholars in Hindi and English
+• 11,000+ commentaries from 17 scholars in English, Hindi, and Sanskrit
+• Search verses by keyword
+• Save and browse favorite verses
+• Share verses as themed image cards
 • 4 reading themes including dark mode
 • Swipe navigation, bookmarking, adjustable font size
+• Dynamic Type support for accessibility
 • Completely offline — no ads, no tracking

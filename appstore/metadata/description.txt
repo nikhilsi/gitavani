@@ -1,4 +1,4 @@
-GitaVani is a clean, ad-free reader for the Bhagavad Gita. Read all 701 verses across 18 chapters with Sanskrit text, transliteration, and translations from 12 renowned scholars in Hindi and English.
+GitaVani is a clean, ad-free reader for the Bhagavad Gita. Read all 701 verses across 18 chapters with Sanskrit text, transliteration, and translations from 12 renowned scholars in Hindi and English. Explore 11,000+ commentaries from 17 scholars in English, Hindi, and Sanskrit.
 
 Built for focused, distraction-free reading of the Gita.
 
@@ -8,9 +8,13 @@ FEATURES
 • Sanskrit shlokas in Devanagari with optional Roman transliteration
 • Translations from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, and others
 • Hindi and English translations with author picker
+• 11,000+ commentaries from 17 scholars in English, Hindi, and Sanskrit
+• Search across all verses — find by keyword in Sanskrit, transliteration, or translations
+• Save favorite verses and browse them with sort by recent or chapter order
+• Share verses as beautiful themed image cards
 • Swipe between verses — navigation flows across chapters
 • 4 reading themes: Sattva (light), Parchment (warm), Dusk (dark), Lotus (saffron)
-• Adjustable font size
+• Adjustable font size with Dynamic Type support
 • Bookmark your place — resume reading where you left off
 • First-launch onboarding and built-in help
 

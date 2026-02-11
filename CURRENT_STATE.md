@@ -2,9 +2,9 @@
 
 **Last Updated**: February 11, 2026
 
-## Status: V1 Complete — App Store Prep In Progress
+## Status: V2 Complete — App Store Submission Pending
 
-All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store submission.
+All V1 + V2 features built and tested. Waiting for Apple Developer enrollment activation.
 
 ### What's Done
 
@@ -80,7 +80,8 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
 - [ ] Update App Store content for V2 features (description, screenshots, website, help screen)
-- [ ] V2: widget
+- [ ] Retake screenshots to show V2 features
+- [ ] Update website and help screen for V2
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment

@@ -3,7 +3,7 @@
 > **Voice of the Gita** — A personal Bhagavad Gita reader app for iOS
 > Created: February 2026
 > Author: Nikhil
-> Status: V1 Complete
+> Status: V2 Complete
 
 ---
 
@@ -25,7 +25,7 @@ GitaVani is a clean, ad-free iOS app for reading and studying the Bhagavad Gita.
 | Phase | Features | Status |
 |-------|----------|--------|
 | **V1** | Chapter list, verse reader, Sanskrit/Hindi/English translations, 4 themes, bookmarking, transliteration, onboarding, help | Complete |
-| **V2** | Commentaries/explanations from scholars, search across verses, favorites/bookmarks list | Next |
+| **V2** | Commentaries (17 scholars, 3 languages), search, favorites, share verse, Dynamic Type | Complete |
 | **V3** | Audio recitation of Sanskrit verses, read-along mode | Future |
 | **V4** | Additional languages (Telugu, Tamil, Gujarati, Bengali, etc.), study group sharing features | Future |
 
@@ -142,7 +142,7 @@ Field key conventions in raw API:
 | Verses | 701 |
 | Hindi translations | 2,050 (3 authors) |
 | English translations | 6,133 (9 authors) |
-| Commentaries | 11,189 (V2 feature) |
+| Commentaries | 11,189 (17 authors, 3 languages) |
 | File size | 35.6 MB |
 
 ### 2.8 Available Translators
@@ -167,7 +167,7 @@ All translators included. User can switch per-verse via author picker.
 
 ### 2.9 Known Data Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation — other scholars did not comment
-- 2 commentaries have U+FFFD encoding issues (BG8.1, BG12.18) — upstream source data
+- 2 commentaries had U+FFFD encoding issues (BG8.1, BG12.18) — fixed in V2
 
 ---
 
@@ -275,11 +275,13 @@ JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps
 │                                                  │
 │   ↓ After onboarding (or on subsequent launches) │
 │                                                  │
-│   Home (Chapter List)              [?]     [⚙]   │
+│   Home (Chapter List)           [?]  [♥]  [⚙]   │
 │   ┌──────────────────────────────────────────┐   │
 │   │       📖 GitaVani                        │   │
 │   │    The Bhagavad Gita                     │   │
 │   │    18 chapters · 701 verses              │   │
+│   ├──────────────────────────────────────────┤   │
+│   │ 🔍 Search verses... (pull down)          │   │
 │   ├──────────────────────────────────────────┤   │
 │   │ ▸ Continue Reading: Ch 2, Verse 14       │   │
 │   ├──────────────────────────────────────────┤   │
@@ -310,7 +312,7 @@ JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps
 │                                                  │
 │   Verse Detail (Main Reading Screen)             │
 │   ┌──────────────────────────────────────────┐   │
-│   │ Chapter 1 · Verse 1           [📖 toggle]│   │
+│   │ Chapter 1, Verse 1    [♥] [📖] [↗ share] │   │
 │   │                                          │   │
 │   │ धृतराष्ट्र उवाच |                          │   │
 │   │ धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |    │   │
@@ -326,9 +328,23 @@ JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps
 │   │  when they assembled..."                 │   │
 │   │                          — Swami Sivananda│   │
 │   │                                          │   │
+│   │ ─────────── Commentary ─────────────     │   │
+│   │ [English] [Hindi] [Sanskrit]             │   │
+│   │ [Author 1] [Author 2] ...               │   │
+│   │ Commentary text... Read more...          │   │
+│   │                                          │   │
 │   │          [← Prev]  [Next →]              │   │
 │   └──────────────────────────────────────────┘   │
 │   ← Swipe left/right also navigates verses →     │
+│                                                  │
+│   Favorites (accessible via ♥ icon)              │
+│   ┌──────────────────────────────────────────┐   │
+│   │ [Recent] [Chapter Order]                 │   │
+│   ├──────────────────────────────────────────┤   │
+│   │ Chapter 2, Verse 47              ♥       │   │
+│   │ कर्मण्येवाधिकारस्ते...                       │   │
+│   │ "You have a right to perform..."         │   │
+│   └──────────────────────────────────────────┘   │
 │                                                  │
 │   Settings Screen                                │
 │   ┌──────────────────────────────────────────┐   │
@@ -357,6 +373,9 @@ JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps
 ### 4.1 Navigation Pattern
 - **NavigationStack** with programmatic `NavigationPath` for drill-down: Home → Chapter → Verse
 - **DragGesture + buttons** for verse-to-verse navigation (works across chapter boundaries)
+- **Search** via pull-down `.searchable` on home (global) and chapter detail (chapter-scoped), debounced 300ms
+- **Favorites** accessible via heart icon from Home and chapter detail toolbars
+- **Share** via iOS share sheet from verse detail (themed image card)
 - **Settings** accessible via gear icon from all screens (Home, chapter detail, verse detail)
 - **Help** accessible via ? icon from Home screen
 - **About** accessible from Settings screen (credits, license, privacy)
@@ -386,7 +405,12 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   │   ├── VerseDetailView.swift    (Main reading screen — swipe + nav buttons)
 │   │   ├── ShlokView.swift          (Sanskrit text + transliteration toggle)
 │   │   ├── TranslationView.swift    (Language toggle + author picker + text)
+│   │   ├── CommentaryView.swift     (Commentary language/author picker + truncation)
+│   │   ├── ShareCardView.swift      (Themed card rendered to image for sharing)
 │   │   └── VerseNavigationView.swift (Prev/Next buttons)
+│   │
+│   ├── Favorites/
+│   │   └── FavoritesView.swift      (Saved verses list with sort toggle)
 │   │
 │   ├── Settings/
 │   │   ├── SettingsView.swift       (Main settings screen)
@@ -396,7 +420,8 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   │
 │   └── Common/
 │       ├── ResumeReadingBanner.swift (Shows on Home — tap to resume)
-│       └── HelpView.swift           (Feature guide for older users)
+│       ├── HelpView.swift           (Feature guide for older users)
+│       └── ShareSheetView.swift     (UIActivityViewController wrapper)
 │
 ├── Models/
 │   ├── Language.swift
@@ -410,7 +435,7 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   └── GitaDataService.swift        (Async load + dictionary lookups)
 │
 ├── State/
-│   ├── AppSettings.swift            (Font size, language, transliteration, preferred authors)
+│   ├── AppSettings.swift            (Font size, language, transliteration, preferred authors, favorites)
 │   └── ReadingProgress.swift        (Last read chapter/verse)
 │
 ├── Theme/
@@ -442,6 +467,11 @@ Using `@Observable` classes with `UserDefaults` persistence:
 | `lastReadVerse` | Int | 0 | Bookmark — last verse |
 | `preferredHindiAuthor` | String | "" | Preferred Hindi translator |
 | `preferredEnglishAuthor` | String | "" | Preferred English translator |
+| `preferredCommentaryLanguage` | String | "" | Preferred commentary language |
+| `preferredHindiCommentaryAuthor` | String | "" | Preferred Hindi commentator |
+| `preferredEnglishCommentaryAuthor` | String | "" | Preferred English commentator |
+| `preferredSanskritCommentaryAuthor` | String | "" | Preferred Sanskrit commentator |
+| `favoriteVerseIds` | [String] (JSON) | [] | Saved favorite verse IDs |
 | `hasSeenOnboarding` | Bool | false | First-launch onboarding flag |
 
 ### 6.2 Transient State (in-memory only)
@@ -450,8 +480,12 @@ Using `@State`:
 - Navigation path (NavigationStack)
 - Currently selected language tab (Hindi/English) per verse view
 - Currently selected author per verse view
+- Currently selected commentary language and author
+- Commentary expanded/collapsed state
 - Chapter summary expanded/collapsed
 - Current verse ID during navigation
+- Search text and debounced search text
+- Dynamic Type scale factor (from `@ScaledMetric`)
 
 ---
 
@@ -492,6 +526,7 @@ struct AppTheme {
 - Hindi: Same system Devanagari rendering
 - Book cover header and app name: Serif design font
 - Font size adjustable via settings slider (range: 14-28pt)
+- Dynamic Type: `@ScaledMetric` scales custom font size with system accessibility setting
 
 ---
 
@@ -524,6 +559,7 @@ GitaVani/
             │   ├── Onboarding/
             │   ├── Chapters/
             │   ├── Verses/
+            │   ├── Favorites/
             │   ├── Settings/
             │   └── Common/
             ├── Services/
@@ -589,6 +625,10 @@ Same normalization logic but reads from local clone of `vedicscriptures.github.i
 | Architecture | MVVM-lite | Views + Services + Observable state — no heavy frameworks |
 | Dependencies | Zero external Swift packages | SwiftUI + Foundation + UIKit only |
 | JSON decoding | .convertFromSnakeCase | Automatic snake_case → camelCase mapping |
+| Dynamic Type | @ScaledMetric × custom slider | System accessibility setting multiplies custom font size |
+| Search | .searchable + debounce | Native iOS pull-down search, 300ms debounce via Task.sleep |
+| Favorites | JSON-encoded [String] in UserDefaults | Simple, ordered list of verse IDs |
+| Share | ImageRenderer + UIActivityViewController | Themed card rendered at 3x as shareable image |
 | App icon | AI-generated via Recraft | Lotus + open book, saffron gradient |
 
 ---

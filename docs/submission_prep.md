@@ -92,8 +92,8 @@ No `.accessibilityLabel()` modifiers in codebase:
 - Swipe navigation needs VoiceOver alternatives (prev/next buttons exist, good)
 - Sanskrit/Devanagari text — test with VoiceOver
 
-### 3.4 Dynamic Type (NICE TO HAVE)
-App has custom font size slider (14-28pt) but does NOT respond to system Dynamic Type setting. Apple reviewers sometimes test with accessibility text sizes. Custom slider is good as additional control, but should also respect system setting.
+### 3.4 Dynamic Type (DONE)
+~~App has custom font size slider (14-28pt) but does NOT respond to system Dynamic Type setting.~~ Fixed — `@ScaledMetric` in ContentView feeds a scale factor into AppSettings. All views use `scaledFontSize` (base × Dynamic Type multiplier). Custom slider still controls base size, system accessibility setting multiplies on top.
 
 ### 3.5 iPad Layout Polish (SHOULD FIX)
 Already noted as "Basic (needs polish)". Apple reviewers test on iPad. Broken layout = rejection risk.
@@ -119,9 +119,9 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 | App icon 1024x1024 | Done |
 | Privacy policy URL | Done — gitavani.app/privacy |
 | PrivacyInfo.xcprivacy | Done |
-| Screenshots (iPhone 6.9", 6.5", iPad 13") | Done — 6 each, all 4 themes |
-| App description (4000 chars max) | Done — saved below |
-| Keywords (100 chars max) | Done — saved below |
+| Screenshots (iPhone 6.9", 6.5", iPad 13") | Need retake for V2 features |
+| App description (4000 chars max) | Done — updated for V2, in appstore/metadata/ |
+| Keywords (100 chars max) | Done — updated for V2, in appstore/metadata/ |
 | Support URL | Done — gitavani.app/support |
 | Age rating questionnaire | Not done (will be 4+) |
 | About/Credits screen | Done |
@@ -154,37 +154,9 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 bhagavad gita,sanskrit,hindu,scripture,verse,translation,hindi,english,spiritual,shloka
 ```
 
-**Description**:
-```
-GitaVani is a clean, ad-free reader for the Bhagavad Gita. Read all 701 verses across 18 chapters with Sanskrit text, transliteration, and translations from 12 renowned scholars in Hindi and English.
+**Description**: See `appstore/metadata/description.txt` (kept in sync)
 
-Built for focused, distraction-free reading of the Gita.
-
-FEATURES
-
-• Complete Bhagavad Gita: All 18 chapters, 701 verses
-• Sanskrit shlokas in Devanagari with optional Roman transliteration
-• Translations from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, and others
-• Hindi and English translations with author picker
-• Swipe between verses — navigation flows across chapters
-• 4 reading themes: Sattva (light), Parchment (warm), Dusk (dark), Lotus (saffron)
-• Adjustable font size
-• Bookmark your place — resume reading where you left off
-• First-launch onboarding and built-in help
-
-PRIVACY
-
-No ads. No tracking. No analytics. No internet required. All data is stored locally on your device. Your reading is entirely private.
-
-DATA SOURCE
-
-Verse data sourced from the Vedic Scriptures project by Pt. Prashant Tripathi, used under LGPL-3.0 license. Original Sanskrit shlokas are ancient public domain text.
-```
-
-**Notes for Review**:
-```
-GitaVani is an offline Bhagavad Gita reader. All 701 verses are bundled locally — the app makes no network calls. Interactive features include: swipe gesture and button navigation between verses (including cross-chapter), Hindi/English language toggle with 12-author picker, Sanskrit transliteration toggle, 4 color themes, adjustable font size (14-28pt), persistent reading progress with resume banner, onboarding flow, and help screen.
-```
+**Notes for Review**: See `appstore/metadata/review_notes.txt` (kept in sync)
 
 ### Religious Content (Guideline 1.1.5)
 - Scripture text presented accurately — fine
@@ -215,4 +187,4 @@ GitaVani is an offline Bhagavad Gita reader. All 701 verses are bundled locally 
 
 ### Nice to Have (Quality)
 13. ~~Dictionary-based verse lookup~~ — Done
-14. Dynamic Type system setting support — **Remaining** (V2 candidate)
+14. ~~Dynamic Type system setting support~~ — Done (@ScaledMetric)

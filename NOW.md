@@ -2,32 +2,29 @@
 
 **Last Updated**: February 11, 2026
 
-## Phase: V2 Features + App Store Submission
+## Phase: App Store Submission
 
 ### Status
-V2 in progress. Commentaries and Favorites shipped. Waiting for Apple Developer enrollment activation.
+All features complete (V1 + V2). Docs updated. Waiting for Apple Developer enrollment activation.
 
-### Content Updates (batch after all V2 features)
-1. **App Store description** — add commentaries, favorites to feature list
-2. **App Store screenshots** — retake to show new features
-3. **Website landing page** — update feature list
-4. **Help screen** — explain commentaries and favorites
-5. **Review notes** — mention new interactive features
+### Content Updates
+1. **App Store screenshots** — retake to show V2 features (commentaries, search, favorites, share)
+2. **Website landing page** — update feature list for V2
+3. **Help screen** — explain commentaries, favorites, search, share
 
 ### App Store (blocked on enrollment)
-6. **Developer enrollment activation** — waiting for Apple confirmation email
-7. **Create app in App Store Connect** — enter metadata, upload screenshots
-8. **Upload build** — archive and upload via Xcode
-9. **TestFlight** — distribute build for wife's testing
+4. **Developer enrollment activation** — waiting for Apple confirmation email
+5. **Create app in App Store Connect** — enter metadata, upload screenshots
+6. **Upload build** — archive and upload via Xcode
+7. **TestFlight** — distribute build for wife's testing
 
-### V2 Features
-10. ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
-11. ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
-12. ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
-13. ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
-14. ~~Share verse~~ — Done (themed image card via iOS share sheet, 3x resolution, text fallback)
-15. **iOS Widget** — home screen widget with verse of the day
-16. ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
+### Completed V2 Features
+- ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
+- ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
+- ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
+- ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
+- ~~Share verse~~ — Done (themed image card via iOS share sheet, 3x resolution)
+- ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
 
 ### Polish
-17. **iPad layout polish** — better use of screen space on verse reading
+8. **iPad layout polish** — better use of screen space on verse reading
