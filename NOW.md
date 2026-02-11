@@ -1,28 +1,22 @@
 # Now — Current Priorities
 
-**Last Updated**: February 10, 2026
+**Last Updated**: February 11, 2026
 
-## Phase: Data Pipeline
+## Phase: Xcode Project Setup
 
 ### Goal
-Fetch all Bhagavad Gita data from the Vedic Scriptures API and produce a clean, normalized JSON file to bundle with the iOS app.
+Create the iOS project, set up the folder structure, bundle the data, and build the foundation layer (models + data service + theming).
 
 ### Tasks
 
-1. **Run `scripts/fetch_gita_data.py`** — Fetches all 18 chapters and 700 verses
-2. **Verify `data/gita_data.json`** — Check data integrity:
-   - All 18 chapters present with summaries in Hindi and English
-   - All 700 verses present
-   - Each verse has Sanskrit slok, transliteration
-   - Hindi translations extracted and normalized
-   - English translations extracted and normalized
-   - Commentaries extracted (for V2, but capture now)
-3. **Spot check** — Manually verify a few verses against the live API
+1. **Create Xcode project** — iOS App, SwiftUI, iOS 17+, universal (iPhone + iPad)
+2. **Set up folder structure** — Models/, Views/, Services/, State/, Theme/, Extensions/, Resources/
+3. **Bundle gita_data.json** — Copy into Resources/
+4. **Swift models** — Chapter, Verse, Translation, Commentary, Language, LocalizedText
+5. **GitaDataService** — Load and parse bundled JSON
+6. **ThemeManager + AppSettings** — 4 themes, persistent settings
 
-### Next Phase: Xcode Project Setup
-After data pipeline is validated:
-1. Create Xcode project (iOS App, SwiftUI, iOS 17+)
-2. Set up folder structure per architecture doc
-3. Copy gita_data.json into Resources/
-4. Create Swift model structs
-5. Create GitaDataService to load JSON
+### Previous Phase: Data Pipeline (Done)
+- Data pipeline complete and validated
+- 701 verses, 8183 translations, 11189 commentaries
+- Two scripts: fetch (API) and parse (local repo) — both produce identical output
