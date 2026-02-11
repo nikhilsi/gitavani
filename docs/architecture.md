@@ -3,7 +3,7 @@
 > **Voice of the Gita** — A personal Bhagavad Gita reader app for iOS
 > Created: February 2026
 > Author: Nikhil
-> Status: Pre-development
+> Status: V1 Complete
 
 ---
 
@@ -14,17 +14,17 @@ GitaVani is a clean, ad-free iOS app for reading and studying the Bhagavad Gita.
 
 ### 1.2 Target Users
 - Primary: Nikhil's wife — English-first reader learning Hindi, part of a Gita study group
-- Secondary: Study group members (multi-language potential in future)
+- Secondary: Family members and study group members
 
 ### 1.3 Platforms
-- iPhone (primary)
+- iPhone (primary, tested on iPhone 15 Pro)
 - iPad (universal app — SwiftUI handles layout adaptation)
 
 ### 1.4 Phased Roadmap
 
-| Phase | Features | Priority |
-|-------|----------|----------|
-| **V1** | Chapter list, verse reader, Sanskrit/Hindi/English translations, 4 themes, bookmarking, transliteration toggle | Current |
+| Phase | Features | Status |
+|-------|----------|--------|
+| **V1** | Chapter list, verse reader, Sanskrit/Hindi/English translations, 4 themes, bookmarking, transliteration, onboarding, help | Complete |
 | **V2** | Commentaries/explanations from scholars, search across verses, favorites/bookmarks list | Next |
 | **V3** | Audio recitation of Sanskrit verses, read-along mode | Future |
 | **V4** | Additional languages (Telugu, Tamil, Gujarati, Bengali, etc.), study group sharing features | Future |
@@ -52,18 +52,20 @@ GitaVani is a clean, ad-free iOS app for reading and studying the Bhagavad Gita.
 
 Rationale:
 - The Gita is a static text — it never changes
-- 700 verses × ~5KB each ≈ 3-5MB total — perfectly manageable
+- 701 verses with all translations and commentaries ≈ 35.6 MB — manageable
 - Offline-first is essential for a reader app (commute, travel, no-wifi scenarios)
 - Instant loading with zero network dependency
 - No API downtime risk
 
 ### 2.4 Data Pipeline
 
-A one-time Python script will:
-1. Fetch all 18 chapters from `/chapters`
-2. Fetch all 700 verses from `/slok/:ch/:sl`
-3. Normalize the messy author-keyed format into clean structured JSON
-4. Output a single `gita_data.json` file bundled with the app
+Two Python scripts in `scripts/`:
+
+1. **`fetch_gita_data.py`** — Fetches from API, normalizes, outputs `data/gita_data.json`
+2. **`parse_gita_data.py`** — Reads from local repo clone (`vedicscriptures.github.io`), same normalization, outputs `data/gita_data_parsed.json`
+3. **`validate_gita_data.py`** — 8-section validation: structure, chapters, verse continuity, content quality, author coverage, commentary quality, Swift compatibility, data size
+
+Both fetch and parse scripts produce byte-identical output. Validated against local repo clone for data integrity.
 
 ### 2.5 Raw API Structure (per verse)
 
@@ -93,6 +95,14 @@ Field key conventions in raw API:
 
 ```json
 {
+  "metadata": {
+    "source": "Vedic Scriptures API",
+    "source_url": "https://vedicscriptures.github.io",
+    "license": "GPL-3.0",
+    "generated_at": "2026-02-11T...",
+    "total_chapters": 18,
+    "total_verses": 701
+  },
   "chapters": [
     {
       "chapter_number": 1,
@@ -113,13 +123,10 @@ Field key conventions in raw API:
       "transliteration": "Romanized text...",
       "translations": [
         { "author": "Swami Tejomayananda", "language": "hindi", "text": "..." },
-        { "author": "Swami Sivananda", "language": "english", "text": "..." },
-        { "author": "Swami Ramsukhdas", "language": "hindi", "text": "..." },
-        { "author": "A.C. Bhaktivedanta Swami Prabhupada", "language": "english", "text": "..." }
+        { "author": "Swami Sivananda", "language": "english", "text": "..." }
       ],
       "commentaries": [
         { "author": "Swami Sivananda", "language": "english", "text": "..." },
-        { "author": "Swami Chinmayananda", "language": "hindi", "text": "..." },
         { "author": "Sri Shankaracharya", "language": "sanskrit", "text": "..." }
       ]
     }
@@ -127,25 +134,40 @@ Field key conventions in raw API:
 }
 ```
 
-### 2.7 Available Translators
+### 2.7 Data Stats
 
-**Hindi Translations (~6 authors):**
+| Metric | Value |
+|--------|-------|
+| Chapters | 18 |
+| Verses | 701 |
+| Hindi translations | 2,050 (3 authors) |
+| English translations | 6,133 (9 authors) |
+| Commentaries | 11,189 (V2 feature) |
+| File size | 35.6 MB |
+
+### 2.8 Available Translators
+
+**Hindi Translations (3 authors):**
 - Swami Tejomayananda
 - Swami Ramsukhdas
-- Swami Chinmayananda (commentary)
 - Sri Shankaracharya
-- And others
 
-**English Translations (~8 authors):**
+**English Translations (9 authors):**
 - Swami Sivananda
 - Shri Purohit Swami
 - Swami Adidevananda
 - Swami Gambirananda
 - Dr. S. Sankaranarayan
 - A.C. Bhaktivedanta Swami Prabhupada
-- And others
+- Sri Ramanuja
+- Sri Abhinav Gupta
+- Sri Shankaracharya
 
-**V1 Recommendation:** Include all translators. Let user pick their preferred default, but allow switching per-verse. More choice = more value vs. competing apps.
+All translators included. User can switch per-verse via author picker.
+
+### 2.9 Known Data Issues
+- 2 verses (BG12.3, BG12.18) have only 1 translation — other scholars did not comment
+- 2 commentaries have U+FFFD encoding issues (BG8.1, BG12.18) — upstream source data
 
 ---
 
@@ -171,15 +193,13 @@ struct Chapter: Codable, Identifiable {
 
 ```swift
 struct Verse: Codable, Identifiable {
-    let verseId: String           // "BG1.1"
+    let id: String                // "BG1.1"
     let chapter: Int
     let verse: Int
     let slok: String              // Sanskrit in Devanagari
     let transliteration: String   // Romanized Sanskrit
     let translations: [Translation]
     let commentaries: [Commentary]
-
-    var id: String { verseId }
 }
 ```
 
@@ -191,7 +211,7 @@ struct Translation: Codable, Identifiable {
     let language: Language
     let text: String
 
-    var id: String { "\(author)-\(language)" }
+    var id: String { "\(author)-\(language.rawValue)" }
 }
 
 struct Commentary: Codable, Identifiable {
@@ -199,7 +219,7 @@ struct Commentary: Codable, Identifiable {
     let language: Language
     let text: String
 
-    var id: String { "\(author)-\(language)-commentary" }
+    var id: String { "\(author)-\(language.rawValue)-commentary" }
 }
 
 enum Language: String, Codable, CaseIterable {
@@ -218,6 +238,27 @@ struct LocalizedText: Codable {
 }
 ```
 
+### 3.5 GitaData (top-level wrapper)
+
+```swift
+struct GitaMetadata: Codable {
+    let source: String
+    let sourceUrl: String
+    let license: String
+    let generatedAt: String
+    let totalChapters: Int
+    let totalVerses: Int
+}
+
+struct GitaData: Codable {
+    let metadata: GitaMetadata
+    let chapters: [Chapter]
+    let verses: [Verse]
+}
+```
+
+JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps to `chapterNumber` automatically.
+
 ---
 
 ## 4. Screen Flow
@@ -225,8 +266,23 @@ struct LocalizedText: Codable {
 ```
 ┌──────────────────────────────────────────────────┐
 │                                                  │
-│   Home (Chapter List)                            │
+│   First Launch: Onboarding (4 swipeable pages)   │
+│   - Welcome to GitaVani                          │
+│   - Multiple Translations                        │
+│   - Transliteration                              │
+│   - Make It Yours (themes/fonts)                 │
+│   [Skip] / [Next] / [Get Started]                │
+│                                                  │
+│   ↓ After onboarding (or on subsequent launches) │
+│                                                  │
+│   Home (Chapter List)              [?]     [⚙]   │
 │   ┌──────────────────────────────────────────┐   │
+│   │       📖 GitaVani                        │   │
+│   │    The Bhagavad Gita                     │   │
+│   │    18 chapters · 701 verses              │   │
+│   ├──────────────────────────────────────────┤   │
+│   │ ▸ Continue Reading: Ch 2, Verse 14       │   │
+│   ├──────────────────────────────────────────┤   │
 │   │ Ch 1 · अर्जुनविषादयोग                     │   │
 │   │        Arjuna's Dilemma · 47 verses      │   │
 │   ├──────────────────────────────────────────┤   │
@@ -235,13 +291,13 @@ struct LocalizedText: Codable {
 │   ├──────────────────────────────────────────┤   │
 │   │ ...                                      │   │
 │   └──────────────────────────────────────────┘   │
-│                                    [⚙ Settings]  │
 │                                                  │
 │   ↓ Tap chapter                                  │
 │                                                  │
 │   Chapter Detail (Verse List)                    │
 │   ┌──────────────────────────────────────────┐   │
-│   │ Chapter Summary (collapsible)            │   │
+│   │ Chapter Summary (3-line preview)         │   │
+│   │ Read more...                             │   │
 │   ├──────────────────────────────────────────┤   │
 │   │ 1.1  धृतराष्ट्र उवाच | धर्मक्षेत्रे...       │   │
 │   ├──────────────────────────────────────────┤   │
@@ -254,21 +310,21 @@ struct LocalizedText: Codable {
 │                                                  │
 │   Verse Detail (Main Reading Screen)             │
 │   ┌──────────────────────────────────────────┐   │
-│   │ Chapter 1 · Verse 1                      │   │
+│   │ Chapter 1 · Verse 1           [📖 toggle]│   │
 │   │                                          │   │
 │   │ धृतराष्ट्र उवाच |                          │   │
 │   │ धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |    │   │
 │   │ मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||    │   │
 │   │                                          │   │
-│   │ [Transliteration toggle]                 │   │
-│   │ dhṛtarāṣṭra uvāca ...                   │   │
+│   │ dhṛtarāṣṭra uvāca ...  (transliteration)│   │
 │   │                                          │   │
-│   │ ─── Translation ──────────────────────── │   │
-│   │ [Hindi] [English]     Author: [Picker]   │   │
+│   │ [English] [Hindi]                        │   │
+│   │ [Author 1] [Author 2] [Author 3]        │   │
 │   │                                          │   │
 │   │ "Dhritarashtra said: O Sanjaya, what     │   │
 │   │  did my sons and the sons of Pandu do    │   │
 │   │  when they assembled..."                 │   │
+│   │                          — Swami Sivananda│   │
 │   │                                          │   │
 │   │          [← Prev]  [Next →]              │   │
 │   └──────────────────────────────────────────┘   │
@@ -276,74 +332,94 @@ struct LocalizedText: Codable {
 │                                                  │
 │   Settings Screen                                │
 │   ┌──────────────────────────────────────────┐   │
-│   │ Theme: [Sattva] [Parchment] [Dusk] [Lo] │   │
-│   │ Default Language: [Hindi / English]      │   │
-│   │ Font Size: [─────●────]                  │   │
-│   │ About GitaVani                           │   │
+│   │ Theme: [Sattva] [Parchment]              │   │
+│   │        [Dusk]   [Lotus]                  │   │
+│   │ Font Size: [A ─────●──── A]              │   │
+│   │ Default Language: [English] [Hindi]      │   │
+│   │ Transliteration: [toggle]                │   │
+│   └──────────────────────────────────────────┘   │
+│                                                  │
+│   Help Screen (accessible via ? icon)            │
+│   ┌──────────────────────────────────────────┐   │
+│   │ How to use GitaVani                      │   │
+│   │ - Navigate verses (swipe/buttons)        │   │
+│   │ - Switch language                        │   │
+│   │ - Transliteration                        │   │
+│   │ - Change theme                           │   │
+│   │ - Adjust font size                       │   │
+│   │ - Resume reading                         │   │
+│   │ - Chapter summary                        │   │
 │   └──────────────────────────────────────────┘   │
 │                                                  │
 └──────────────────────────────────────────────────┘
 ```
 
 ### 4.1 Navigation Pattern
-- **NavigationStack** for drill-down: Home → Chapter → Verse
-- **Swipe gesture + buttons** for verse-to-verse navigation
+- **NavigationStack** with programmatic `NavigationPath` for drill-down: Home → Chapter → Verse
+- **DragGesture + buttons** for verse-to-verse navigation (works across chapter boundaries)
 - **Settings** accessible via gear icon from Home screen
-- **Resume reading** banner on Home screen (shows last read verse)
+- **Help** accessible via ? icon from Home screen
+- **Resume reading** banner on Home screen (taps navigate directly to saved verse)
+- **Onboarding** shown as full-screen cover on first launch only
 
 ---
 
 ## 5. SwiftUI View Hierarchy
 
 ```
-GitaVaniApp.swift                    (App entry point)
+GitaVaniApp.swift                    (App entry point — creates shared services)
 │
-├── ContentView.swift                (Root view with NavigationStack)
+├── ContentView.swift                (Root view with NavigationStack + onboarding)
 │
 ├── Views/
+│   ├── Onboarding/
+│   │   └── OnboardingView.swift     (4-page first-launch walkthrough)
+│   │
 │   ├── Chapters/
-│   │   ├── ChapterListView.swift    (Home screen — list of 18 chapters)
+│   │   ├── ChapterListView.swift    (Home screen — book cover header + chapter list)
 │   │   ├── ChapterRowView.swift     (Single chapter row component)
-│   │   └── ChapterDetailView.swift  (Verse list for a chapter + summary)
+│   │   └── ChapterDetailView.swift  (Chapter summary snippet + verse list)
 │   │
 │   ├── Verses/
 │   │   ├── VerseListRowView.swift   (Single verse row in chapter detail)
-│   │   ├── VerseDetailView.swift    (Main reading screen — swipeable)
+│   │   ├── VerseDetailView.swift    (Main reading screen — swipe + nav buttons)
 │   │   ├── ShlokView.swift          (Sanskrit text + transliteration toggle)
 │   │   ├── TranslationView.swift    (Language toggle + author picker + text)
 │   │   └── VerseNavigationView.swift (Prev/Next buttons)
 │   │
 │   ├── Settings/
 │   │   ├── SettingsView.swift       (Main settings screen)
-│   │   ├── ThemePickerView.swift    (Visual theme selection)
-│   │   └── FontSizeView.swift       (Font size slider)
+│   │   ├── ThemePickerView.swift    (Visual 2x2 grid theme selector)
+│   │   └── FontSizeView.swift       (Font size slider with preview)
 │   │
 │   └── Common/
 │       ├── ResumeReadingBanner.swift (Shows on Home — tap to resume)
-│       └── LoadingView.swift         (Initial data load spinner)
+│       └── HelpView.swift           (Feature guide for older users)
 │
 ├── Models/
+│   ├── Language.swift
+│   ├── LocalizedText.swift
+│   ├── Translation.swift            (includes Commentary)
 │   ├── Chapter.swift
 │   ├── Verse.swift
-│   ├── Translation.swift
-│   └── Commentary.swift
+│   └── GitaData.swift               (includes GitaMetadata)
 │
 ├── Services/
 │   └── GitaDataService.swift        (Loads & parses bundled JSON)
 │
 ├── State/
-│   ├── AppSettings.swift            (Theme, font size, default language, transliteration)
-│   └── ReadingProgress.swift        (Last read chapter/verse, bookmarks)
+│   ├── AppSettings.swift            (Font size, language, transliteration, preferred authors)
+│   └── ReadingProgress.swift        (Last read chapter/verse)
 │
 ├── Theme/
-│   ├── AppTheme.swift               (Theme definition — colors, fonts)
-│   └── ThemeManager.swift           (Theme switching logic)
+│   ├── AppTheme.swift               (Theme definitions — 4 themes with colors)
+│   └── ThemeManager.swift           (Theme switching + UINavigationBar appearance)
 │
 ├── Resources/
-│   └── gita_data.json               (Bundled dataset — all chapters + verses)
+│   └── gita_data.json               (Bundled dataset — 35.6 MB)
 │
-└── Extensions/
-    └── Color+Theme.swift            (Color extensions for themes)
+└── Assets.xcassets/
+    └── AppIcon.appiconset/          (Lotus + book icon, saffron gradient)
 ```
 
 ---
@@ -352,27 +428,28 @@ GitaVaniApp.swift                    (App entry point)
 
 ### 6.1 Persisted State (survives app restart)
 
-Using `@AppStorage` (UserDefaults wrapper):
+Using `@Observable` classes with `UserDefaults` persistence:
 
 | Key | Type | Default | Purpose |
 |-----|------|---------|---------|
 | `selectedTheme` | String | "sattva" | Current visual theme |
 | `fontSize` | Double | 18.0 | Base font size |
 | `defaultLanguage` | String | "english" | Default translation language |
-| `showTransliteration` | Bool | false | Transliteration toggle |
+| `showTransliteration` | Bool | true | Transliteration toggle |
 | `lastReadChapter` | Int | 0 | Bookmark — last chapter |
 | `lastReadVerse` | Int | 0 | Bookmark — last verse |
 | `preferredHindiAuthor` | String | "" | Preferred Hindi translator |
 | `preferredEnglishAuthor` | String | "" | Preferred English translator |
+| `hasSeenOnboarding` | Bool | false | First-launch onboarding flag |
 
 ### 6.2 Transient State (in-memory only)
 
-Using `@State` / `@Observable`:
-- Currently selected chapter
-- Currently selected verse
-- Currently selected language tab (Hindi/English)
-- Currently selected author (per session override)
-- Search text (V2)
+Using `@State`:
+- Navigation path (NavigationStack)
+- Currently selected language tab (Hindi/English) per verse view
+- Currently selected author per verse view
+- Chapter summary expanded/collapsed
+- Current verse ID during navigation
 
 ---
 
@@ -392,72 +469,83 @@ Using `@State` / `@Observable`:
 ```swift
 struct AppTheme {
     let name: String
+    let displayName: String
     let backgroundColor: Color
     let primaryTextColor: Color
     let secondaryTextColor: Color
     let accentColor: Color
     let cardBackgroundColor: Color
-    let shlokFontName: String       // Sanskrit-appropriate font
-    let bodyFontName: String        // Body text font
 }
 ```
 
-### 7.3 Font Considerations
+### 7.3 Theme Application
+- **ThemeManager** is `@Observable`, updates `UINavigationBarAppearance` on theme change
+- Navigation bar background and title colors honor the active theme
+- Status bar adapts via `preferredColorScheme` (dark for Dusk theme)
+- Font size applies globally: chapter list, verse list, chapter detail, reading screen
 
-- Sanskrit (Devanagari): System Devanagari font or "Kohinoor Devanagari" (bundled with iOS)
+### 7.4 Font Considerations
+- Sanskrit (Devanagari): System font — iOS renders Devanagari natively
 - English: System font (San Francisco) — clean and readable
-- Hindi: Same Devanagari font as Sanskrit
+- Hindi: Same system Devanagari rendering
+- Book cover header and app name: Serif design font
 - Font size adjustable via settings slider (range: 14-28pt)
 
 ---
 
-## 8. Project Structure (Xcode)
+## 8. Project Structure
 
 ```
 GitaVani/
-├── GitaVani.xcodeproj
-├── GitaVani/
-│   ├── GitaVaniApp.swift
-│   ├── ContentView.swift
-│   ├── Models/
-│   ├── Views/
-│   │   ├── Chapters/
-│   │   ├── Verses/
-│   │   ├── Settings/
-│   │   └── Common/
-│   ├── Services/
-│   ├── State/
-│   ├── Theme/
-│   ├── Extensions/
-│   ├── Resources/
-│   │   └── gita_data.json
-│   └── Assets.xcassets/
-│       ├── AppIcon.appiconset/
-│       └── Colors/
-├── GitaVaniTests/
-└── README.md
+├── CLAUDE.md                    (Development rules & workflow)
+├── README.md                    (Project overview)
+├── CURRENT_STATE.md             (What's built & status)
+├── NOW.md                       (Current priorities)
+├── CHANGELOG.md                 (Version history)
+├── docs/
+│   └── architecture.md          (This file)
+├── scripts/
+│   ├── fetch_gita_data.py       (API-based data pipeline)
+│   ├── parse_gita_data.py       (Local repo-based pipeline)
+│   └── validate_gita_data.py    (Data validation)
+├── data/
+│   ├── gita_data.json           (Generated — 35.6 MB)
+│   └── gita_data_parsed.json    (From local repo — identical)
+└── ios/
+    └── GitaVani/
+        ├── GitaVani.xcodeproj
+        └── GitaVani/
+            ├── GitaVaniApp.swift
+            ├── ContentView.swift
+            ├── Models/
+            ├── Views/
+            │   ├── Onboarding/
+            │   ├── Chapters/
+            │   ├── Verses/
+            │   ├── Settings/
+            │   └── Common/
+            ├── Services/
+            ├── State/
+            ├── Theme/
+            ├── Resources/
+            │   └── gita_data.json
+            └── Assets.xcassets/
 ```
 
 ---
 
-## 9. Data Pipeline Script
+## 9. Data Pipeline Scripts
 
-### 9.1 Purpose
-One-time Python script to fetch all data from the API and produce the bundled JSON.
+### 9.1 fetch_gita_data.py
+Fetches from API with 0.3s delay between calls, normalizes author-keyed format into clean arrays, filters "did not comment" placeholders. Uses `AUTHOR_MAP` with 22 author keys.
 
-### 9.2 Script: `scripts/fetch_gita_data.py`
+### 9.2 parse_gita_data.py
+Same normalization logic but reads from local clone of `vedicscriptures.github.io` repo. Accepts optional path argument. Produces byte-identical output to fetch script.
 
-Steps:
-1. Fetch `GET /chapters` → parse all 18 chapters
-2. For each chapter, loop through verses: `GET /slok/:ch/:verse`
-3. Normalize each verse:
-   - Extract translations (filter for `ht` and `et` fields)
-   - Extract commentaries (filter for `hc`, `ec`, `sc` fields)
-   - Map author keys to full names
-4. Combine into single JSON structure
-5. Write to `gita_data.json`
+### 9.3 validate_gita_data.py
+8-section validation: structure/schema, chapter metadata, verse continuity, content quality, author coverage, commentary quality, Swift compatibility, data size.
 
-### 9.3 Author Key Mapping
+### 9.4 Author Key Mapping
 
 | API Key | Author Name | Available Fields |
 |---------|-------------|-----------------|
@@ -490,80 +578,16 @@ Steps:
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Data storage | Bundled local JSON | Offline-first, instant load, static content |
-| Navigation | NavigationStack | Standard iOS drill-down pattern |
-| Verse navigation | Swipe (TabView) + buttons | Covers both gesture and tap users |
-| State persistence | @AppStorage (UserDefaults) | Simple key-value, perfect for settings + bookmark |
-| Theming | Observable ThemeManager | Instant app-wide theme switching |
-| Minimum iOS | iOS 17+ | Access to latest SwiftUI features (@Observable, etc.) |
-| Architecture | MVVM-lite | Views + Services + Observable state — no heavy framework needed |
-
----
-
-## 11. CLAUDE.md (for Claude Code sessions)
-
-When working on this project in Claude Code, the following context should be maintained:
-
-```
-# GitaVani — Bhagavad Gita Reader for iOS
-
-## Project
-- SwiftUI iOS app (iPhone + iPad universal)
-- Minimum iOS 17
-- No external dependencies for V1
-- Bundled local data (no network calls)
-
-## Architecture
-- MVVM-lite: Views → Services → Models
-- @AppStorage for persistent settings
-- @Observable for data service and theme manager
-- NavigationStack for chapter → verse drill-down
-- TabView with page style for verse swiping
-
-## Data
-- Source: vedicscriptures.github.io API (GPL-3.0)
-- Bundled as gita_data.json (all 700 verses + 18 chapters)
-- Normalized from API format into clean Translation/Commentary arrays
-
-## Key Files
-- GitaVaniApp.swift — entry point
-- GitaDataService.swift — loads and parses gita_data.json
-- ThemeManager.swift — manages 4 themes (Sattva, Parchment, Dusk, Lotus)
-- AppSettings.swift — persisted user preferences
-- ReadingProgress.swift — bookmark state
-
-## Current Phase: V1
-- Chapter list, verse reader
-- Sanskrit shloka with transliteration toggle
-- Hindi/English translations with author picker
-- 4 themes, font size control
-- Auto-bookmark last read verse
-- Swipe + button verse navigation
-
-## Conventions
-- Use SwiftUI previews for all views
-- Group files by feature (Chapters/, Verses/, Settings/)
-- Keep views small — extract reusable components
-```
-
----
-
-## 12. Build Order (Implementation Plan)
-
-Recommended sequence for building V1:
-
-1. **Data pipeline** — Python script to fetch and normalize all Gita data
-2. **Xcode project setup** — Create project, folder structure, add gita_data.json
-3. **Models** — Chapter, Verse, Translation, Commentary Swift structs
-4. **GitaDataService** — Load and parse JSON, expose chapters and verses
-5. **ThemeManager + AppSettings** — Theme definitions and persistent settings
-6. **ChapterListView** — Home screen with list of 18 chapters
-7. **ChapterDetailView** — Verse list for a chapter
-8. **VerseDetailView** — Main reading screen (Sanskrit + translation toggle)
-9. **Verse navigation** — Swipe + prev/next buttons
-10. **Settings screen** — Theme picker, font size, language preference
-11. **Resume reading** — Bookmark persistence + banner on home screen
-12. **Polish** — iPad layout, animations, app icon
+| Data storage | Bundled local JSON (35.6 MB) | Offline-first, instant load, static content |
+| Navigation | NavigationStack + NavigationPath | Standard iOS drill-down with programmatic navigation |
+| Verse navigation | DragGesture + prev/next buttons | Covers both gesture and tap users, works across chapters |
+| State persistence | @Observable + UserDefaults | Simple, reactive, no database needed |
+| Theming | Observable ThemeManager + UIKit appearance | Instant app-wide switching including nav bars |
+| Minimum iOS | iOS 17+ | @Observable, modern SwiftUI features |
+| Architecture | MVVM-lite | Views + Services + Observable state — no heavy frameworks |
+| Dependencies | Zero external Swift packages | SwiftUI + Foundation + UIKit only |
+| JSON decoding | .convertFromSnakeCase | Automatic snake_case → camelCase mapping |
+| App icon | AI-generated via Recraft | Lotus + open book, saffron gradient |
 
 ---
 
