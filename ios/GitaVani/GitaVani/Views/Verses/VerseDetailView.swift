@@ -112,6 +112,8 @@ struct VerseDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(theme.backgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(value: "settings") {
