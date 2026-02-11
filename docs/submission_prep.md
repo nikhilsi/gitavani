@@ -115,13 +115,13 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 
 | Item | Status |
 |------|--------|
-| Apple Developer Program ($99/year) | Not started |
+| Apple Developer Program ($99/year) | Done — enrolled, pending activation |
 | App icon 1024x1024 | Done |
 | Privacy policy URL | Done — gitavani.app/privacy |
 | PrivacyInfo.xcprivacy | Done |
 | Screenshots (iPhone 6.9", 6.5", iPad 13") | Not done |
-| App description (4000 chars max) | Not done |
-| Keywords (100 chars max) | Not done |
+| App description (4000 chars max) | Done — saved below |
+| Keywords (100 chars max) | Done — saved below |
 | Support URL | Done — gitavani.app/support |
 | Age rating questionnaire | Not done (will be 4+) |
 | About/Credits screen | Done |
@@ -141,12 +141,50 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 
 ### App Store Metadata
 
-- **Name**: "GitaVani" or "GitaVani - Bhagavad Gita"
-- **Subtitle**: "Voice of the Gita" (max 30 chars)
-- **Category**: Books or Reference
-- **Age Rating**: 4+ (no objectionable content)
-- **Keywords**: bhagavad gita,gita,sanskrit,hindu,scripture,verse,translation,hindi,english,spiritual
-- **Notes for Review**: Explain interactive features (swipe nav, themes, language toggle, author picker, transliteration, bookmarking) to address Guideline 4.2 minimum functionality
+- **Name**: GitaVani - Bhagavad Gita
+- **Subtitle**: Voice of the Gita
+- **Category**: Books (primary), Reference (secondary)
+- **Age Rating**: 4+
+- **Privacy URL**: https://gitavani.app/privacy
+- **Support URL**: https://gitavani.app/support
+- **Marketing URL**: https://gitavani.app
+
+**Keywords** (100 chars max, 97 used):
+```
+bhagavad gita,sanskrit,hindu,scripture,verse,translation,hindi,english,spiritual,shloka
+```
+
+**Description**:
+```
+GitaVani is a clean, ad-free reader for the Bhagavad Gita. Read all 701 verses across 18 chapters with Sanskrit text, transliteration, and translations from 12 renowned scholars in Hindi and English.
+
+Built for focused, distraction-free reading of the Gita.
+
+FEATURES
+
+• Complete Bhagavad Gita: All 18 chapters, 701 verses
+• Sanskrit shlokas in Devanagari with optional Roman transliteration
+• Translations from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, and others
+• Hindi and English translations with author picker
+• Swipe between verses — navigation flows across chapters
+• 4 reading themes: Sattva (light), Parchment (warm), Dusk (dark), Lotus (saffron)
+• Adjustable font size
+• Bookmark your place — resume reading where you left off
+• First-launch onboarding and built-in help
+
+PRIVACY
+
+No ads. No tracking. No analytics. No internet required. All data is stored locally on your device. Your reading is entirely private.
+
+DATA SOURCE
+
+Verse data sourced from the Vedic Scriptures project by Pt. Prashant Tripathi, used under LGPL-3.0 license. Original Sanskrit shlokas are ancient public domain text.
+```
+
+**Notes for Review**:
+```
+GitaVani is an offline Bhagavad Gita reader. All 701 verses are bundled locally — the app makes no network calls. Interactive features include: swipe gesture and button navigation between verses (including cross-chapter), Hindi/English language toggle with 12-author picker, Sanskrit transliteration toggle, 4 color themes, adjustable font size (14-28pt), persistent reading progress with resume banner, onboarding flow, and help screen.
+```
 
 ### Religious Content (Guideline 1.1.5)
 - Scripture text presented accurately — fine
