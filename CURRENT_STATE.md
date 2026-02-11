@@ -59,6 +59,7 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [x] Search — pull-down searchable on home (global) and chapter detail (chapter-scoped)
 - [x] Search across Sanskrit, transliteration, and all translations with debounce
 - [x] Dynamic Type — system text size scales on top of custom font slider via @ScaledMetric
+- [x] Share verse — themed image card via iOS share sheet with text fallback
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
@@ -79,7 +80,7 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 - [ ] TestFlight build for wife's testing
 - [ ] iPad layout refinements based on feedback
 - [ ] Update App Store content for V2 features (description, screenshots, website, help screen)
-- [ ] V2: share verse, widget
+- [ ] V2: widget
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
@@ -126,4 +127,5 @@ All V1 features built, tested on iPhone 15 Pro. Now hardening for App Store subm
 | Favorites | Done |
 | Search | Done |
 | Dynamic Type | Done |
+| Share verse | Done |
 | iPad layout | Basic (needs polish) |

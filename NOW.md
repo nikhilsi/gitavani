@@ -25,7 +25,7 @@ V2 in progress. Commentaries and Favorites shipped. Waiting for Apple Developer 
 11. ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
 12. ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
 13. ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
-14. **Share verse** — share verse as text or image
+14. ~~Share verse~~ — Done (themed image card via iOS share sheet, 3x resolution, text fallback)
 15. **iOS Widget** — home screen widget with verse of the day
 16. ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
 

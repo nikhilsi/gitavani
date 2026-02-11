@@ -8,6 +8,7 @@ struct VerseDetailView: View {
     let readingProgress: ReadingProgress
 
     @State private var currentVerseId: String = ""
+    @State private var showShareSheet = false
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -61,6 +62,14 @@ struct VerseDetailView: View {
                                         .foregroundStyle(theme.accentColor)
                                 }
                                 .accessibilityLabel(settings.showTransliteration ? "Hide transliteration" : "Show transliteration")
+
+                                Button {
+                                    showShareSheet = true
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                        .foregroundStyle(theme.accentColor)
+                                }
+                                .accessibilityLabel("Share verse")
                             }
 
                             // Sanskrit shlok
@@ -149,6 +158,50 @@ struct VerseDetailView: View {
                 readingProgress.update(chapter: v.chapter, verse: v.verse)
             }
         }
+        .sheet(isPresented: $showShareSheet) {
+            if let verse {
+                let translation = currentTranslation(for: verse)
+                let shareImage = renderShareCard(verse: verse, translation: translation)
+                let shareText = buildShareText(verse: verse, translation: translation)
+                ShareSheetView(items: shareImage.map { [$0 as Any] } ?? [shareText])
+            }
+        }
+    }
+
+    private func currentTranslation(for verse: Verse) -> Translation? {
+        let lang: Language = settings.defaultLanguage == "hindi" ? .hindi : .english
+        let preferredAuthor = lang == .hindi ? settings.preferredHindiAuthor : settings.preferredEnglishAuthor
+        if !preferredAuthor.isEmpty,
+           let match = verse.translations.first(where: { $0.language == lang && $0.author == preferredAuthor }) {
+            return match
+        }
+        return verse.translations.first(where: { $0.language == lang })
+    }
+
+    private func buildShareText(verse: Verse, translation: Translation?) -> String {
+        var text = "Bhagavad Gita — Chapter \(verse.chapter), Verse \(verse.verse)\n\n"
+        text += verse.slok + "\n"
+        if settings.showTransliteration {
+            text += "\n" + verse.transliteration + "\n"
+        }
+        if let translation {
+            text += "\n\"\(translation.text)\"\n— \(translation.author)\n"
+        }
+        text += "\nShared via GitaVani"
+        return text
+    }
+
+    @MainActor
+    private func renderShareCard(verse: Verse, translation: Translation?) -> UIImage? {
+        let cardView = ShareCardView(
+            verse: verse,
+            translation: translation,
+            showTransliteration: settings.showTransliteration,
+            theme: theme
+        )
+        let renderer = ImageRenderer(content: cardView)
+        renderer.scale = 3.0
+        return renderer.uiImage
     }
 
     private func goToPrevious() {
