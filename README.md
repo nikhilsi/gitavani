@@ -1,6 +1,6 @@
 # GitaVani — Voice of the Gita
 
-A clean, ad-free iOS app for reading and studying the Bhagavad Gita. Sanskrit shlokas with Hindi and English translations from 20+ scholars and commentators.
+A clean, ad-free iOS app for reading and studying the Bhagavad Gita. Sanskrit shlokas with Hindi and English translations from 12 scholars and commentators.
 
 ## Why
 
@@ -33,8 +33,8 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 - **App**: Swift / SwiftUI (iOS 17+)
 - **Data**: Bundled JSON — no backend, no API calls
-- **Data Source**: [Vedic Scriptures Bhagavad Gita API](https://vedicscriptures.github.io/) (GPL-3.0)
-- **Data Pipeline**: Python script to fetch and normalize data
+- **Data Source**: [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) (LGPL-3.0 via [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database))
+- **Data Pipeline**: Python scripts to fetch, parse, and validate data
 
 ## Project Structure
 
@@ -70,9 +70,12 @@ Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device (
 
 ## Data Source
 
-All verse data sourced from the [Vedic Scriptures Bhagavad Gita API](https://github.com/vedicscriptures/bhagavad-gita), an open-source dataset with translations and commentaries from 20+ scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, A.C. Bhaktivedanta Swami Prabhupada, and many others.
+All verse data sourced from the [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) project by Pt. Prashant Tripathi. Includes translations and commentaries from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, A.C. Bhaktivedanta Swami Prabhupada, and others.
+
+Also available on [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database) under LGPL-3.0.
 
 ## License
 
-Data: GPL-3.0 (inherited from source API)
-App Code: GPL-3.0
+- **App Code**: MIT License (see [LICENSE](LICENSE))
+- **Verse Data**: LGPL-3.0 (see [LICENSE-LGPL-3.0](LICENSE-LGPL-3.0))
+- **Sanskrit Shlokas**: Public domain (ancient religious text)

@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.1.0] - 2026-02-11
+
+App Store preparation: code review, hardening, licensing, and accessibility.
+
+### Added
+- About/Credits screen with app version, data attribution, license info, privacy statement
+- PrivacyInfo.xcprivacy privacy manifest (UserDefaults declaration)
+- Accessibility labels on all icon-only buttons (transliteration, settings, help, nav)
+- Settings gear icon accessible from chapter detail and verse detail screens
+- Chapter titles/summaries now honor default language setting (transliteration for English, Sanskrit for Hindi)
+- LICENSE file (MIT for app code) and LICENSE-LGPL-3.0 (data attribution)
+- App Store submission prep doc (docs/submission_prep.md)
+
+### Fixed
+- Data loading moved to background thread (was blocking main thread with 35.6 MB JSON)
+- Error state when data fails to load (was stuck on "Loading..." forever)
+- TranslationView state now resets properly when swiping between verses
+- Lotus theme secondary text and accent color adjusted for WCAG 4.5:1 contrast compliance
+- All 4 themes verified for WCAG AA color contrast
+
+### Changed
+- Verse/chapter lookups now O(1) via dictionaries (was O(n) linear search)
+- Print statements gated behind #if DEBUG
+- License changed from GPL-3.0 to MIT (app code) + LGPL-3.0 (data, via Kaggle source)
+
 ## [1.0.0] - 2026-02-11
 
 V1 complete. All features built, tested on iPhone 15 Pro, docs updated.

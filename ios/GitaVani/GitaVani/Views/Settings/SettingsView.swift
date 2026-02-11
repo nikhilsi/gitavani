@@ -53,6 +53,30 @@ struct SettingsView: View {
                     .tint(theme.accentColor)
                     .labelsHidden()
                 }
+
+                Divider()
+                    .background(theme.secondaryTextColor.opacity(0.3))
+
+                // About
+                NavigationLink(value: "about") {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("About GitaVani")
+                                .font(.headline)
+                                .foregroundStyle(theme.primaryTextColor)
+                            Text("Credits, license, and privacy")
+                                .font(.caption)
+                                .foregroundStyle(theme.secondaryTextColor)
+                        }
+
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(theme.secondaryTextColor)
+                    }
+                }
+                .buttonStyle(.plain)
             }
             .padding()
         }

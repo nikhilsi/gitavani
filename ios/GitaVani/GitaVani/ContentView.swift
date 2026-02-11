@@ -46,6 +46,8 @@ struct ContentView: View {
                         )
                     } else if route == "help" {
                         HelpView(theme: theme)
+                    } else if route == "about" {
+                        AboutView(theme: theme)
                     } else {
                         VerseDetailView(
                             initialVerseId: route,
@@ -55,6 +57,20 @@ struct ContentView: View {
                             readingProgress: readingProgress
                         )
                     }
+                }
+            } else if let error = dataService.loadError {
+                VStack(spacing: 16) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 48))
+                        .foregroundStyle(.secondary)
+                    Text("Unable to Load")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Text(error)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
                 }
             } else {
                 ProgressView("Loading...")

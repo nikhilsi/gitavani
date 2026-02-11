@@ -357,8 +357,9 @@ JSON uses `keyDecodingStrategy = .convertFromSnakeCase` so `chapter_number` maps
 ### 4.1 Navigation Pattern
 - **NavigationStack** with programmatic `NavigationPath` for drill-down: Home → Chapter → Verse
 - **DragGesture + buttons** for verse-to-verse navigation (works across chapter boundaries)
-- **Settings** accessible via gear icon from Home screen
+- **Settings** accessible via gear icon from all screens (Home, chapter detail, verse detail)
 - **Help** accessible via ? icon from Home screen
+- **About** accessible from Settings screen (credits, license, privacy)
 - **Resume reading** banner on Home screen (taps navigate directly to saved verse)
 - **Onboarding** shown as full-screen cover on first launch only
 
@@ -390,7 +391,8 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   ├── Settings/
 │   │   ├── SettingsView.swift       (Main settings screen)
 │   │   ├── ThemePickerView.swift    (Visual 2x2 grid theme selector)
-│   │   └── FontSizeView.swift       (Font size slider with preview)
+│   │   ├── FontSizeView.swift       (Font size slider with preview)
+│   │   └── AboutView.swift          (Credits, license, privacy info)
 │   │
 │   └── Common/
 │       ├── ResumeReadingBanner.swift (Shows on Home — tap to resume)
@@ -405,7 +407,7 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   └── GitaData.swift               (includes GitaMetadata)
 │
 ├── Services/
-│   └── GitaDataService.swift        (Loads & parses bundled JSON)
+│   └── GitaDataService.swift        (Async load + dictionary lookups)
 │
 ├── State/
 │   ├── AppSettings.swift            (Font size, language, transliteration, preferred authors)

@@ -43,6 +43,7 @@ struct ThemePickerView: View {
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("\(t.displayName) theme\(theme.name == t.name ? ", selected" : "")")
                 }
             }
         }

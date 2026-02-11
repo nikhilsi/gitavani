@@ -89,7 +89,8 @@ Bundled JSON (gita_data.json, 35.6 MB)
 ## 🗄️ Data Source
 
 - **API**: Vedic Scriptures Bhagavad Gita API (`https://vedicscriptures.github.io`)
-- **License**: GPL-3.0
+- **Data License**: LGPL-3.0 (via [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database))
+- **App License**: MIT
 - **Data pipeline**: `scripts/fetch_gita_data.py` (API) and `scripts/parse_gita_data.py` (local repo)
 - **Validation**: `scripts/validate_gita_data.py` — 8-section data validation
 - **Re-run pipeline** if you need to add/remove translators or the API updates
@@ -107,6 +108,7 @@ Bundled JSON (gita_data.json, 35.6 MB)
 
 **Docs:**
 - **docs/architecture.md** - Full architecture, data model, screen flow, theming
+- **docs/submission_prep.md** - App Store submission checklist and code review
 
 **Code:**
 - **scripts/** - Data pipeline (Python)
@@ -125,7 +127,8 @@ GitaVani/
 ├── NOW.md
 ├── CHANGELOG.md
 ├── docs/
-│   └── architecture.md
+│   ├── architecture.md
+│   └── submission_prep.md
 ├── scripts/
 │   ├── fetch_gita_data.py
 │   ├── parse_gita_data.py
@@ -190,4 +193,4 @@ All themes defined in `AppTheme.swift`, managed by `ThemeManager.swift`. Theme a
 - **I have zero iOS/Swift experience** — explain SwiftUI concepts as we build, don't assume knowledge.
 - The data source API is **static and free** — no API keys, no rate limits.
 - **No external Swift dependencies** for V1. SwiftUI + Foundation + UIKit only.
-- **GPL-3.0 license** on data source — if publishing to App Store, app code must be open-sourced.
+- **MIT license** on app code, **LGPL-3.0** on data source. Source code is public on GitHub.

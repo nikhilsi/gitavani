@@ -46,8 +46,8 @@ extension AppTheme {
         displayName: "Lotus",
         backgroundColor: Color(red: 1.0, green: 0.961, blue: 0.902),
         primaryTextColor: Color(red: 0.29, green: 0.11, blue: 0.11),
-        secondaryTextColor: Color(red: 0.545, green: 0.451, blue: 0.333),
-        accentColor: Color(red: 1.0, green: 0.42, blue: 0.0),
+        secondaryTextColor: Color(red: 0.47, green: 0.37, blue: 0.27),
+        accentColor: Color(red: 0.86, green: 0.33, blue: 0.0),
         cardBackgroundColor: Color(red: 0.976, green: 0.929, blue: 0.863)
     )
 

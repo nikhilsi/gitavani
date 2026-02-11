@@ -52,6 +52,7 @@ struct VerseDetailView: View {
                                     Image(systemName: settings.showTransliteration ? "character.book.closed.fill" : "character.book.closed")
                                         .foregroundStyle(theme.accentColor)
                                 }
+                                .accessibilityLabel(settings.showTransliteration ? "Hide transliteration" : "Show transliteration")
                             }
 
                             // Sanskrit shlok
@@ -72,6 +73,7 @@ struct VerseDetailView: View {
                                 preferredHindiAuthor: settings.preferredHindiAuthor,
                                 preferredEnglishAuthor: settings.preferredEnglishAuthor
                             )
+                            .id(currentVerseId)
                         }
                         .padding()
                     }
@@ -116,6 +118,7 @@ struct VerseDetailView: View {
                     Image(systemName: "gearshape")
                         .foregroundStyle(theme.accentColor)
                 }
+                .accessibilityLabel("Settings")
             }
         }
         .onAppear {

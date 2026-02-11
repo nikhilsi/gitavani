@@ -86,6 +86,7 @@ struct ChapterDetailView: View {
                     Image(systemName: "gearshape")
                         .foregroundStyle(theme.accentColor)
                 }
+                .accessibilityLabel("Settings")
             }
         }
     }

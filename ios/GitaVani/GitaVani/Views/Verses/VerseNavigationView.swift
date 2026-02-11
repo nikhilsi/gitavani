@@ -18,6 +18,7 @@ struct VerseNavigationView: View {
                 .foregroundStyle(hasPrevious ? theme.accentColor : theme.secondaryTextColor.opacity(0.4))
             }
             .disabled(!hasPrevious)
+            .accessibilityLabel("Previous verse")
 
             Spacer()
 
@@ -30,6 +31,7 @@ struct VerseNavigationView: View {
                 .foregroundStyle(hasNext ? theme.accentColor : theme.secondaryTextColor.opacity(0.4))
             }
             .disabled(!hasNext)
+            .accessibilityLabel("Next verse")
         }
         .padding()
     }

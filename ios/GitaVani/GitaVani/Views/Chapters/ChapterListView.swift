@@ -84,12 +84,14 @@ struct ChapterListView: View {
                     Image(systemName: "questionmark.circle")
                         .foregroundStyle(theme.accentColor)
                 }
+                .accessibilityLabel("Help")
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(value: "settings") {
                     Image(systemName: "gearshape")
                         .foregroundStyle(theme.accentColor)
                 }
+                .accessibilityLabel("Settings")
             }
         }
     }
