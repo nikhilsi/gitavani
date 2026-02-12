@@ -3,7 +3,7 @@
 > **Voice of the Gita** — A personal Bhagavad Gita reader app for iOS
 > Created: February 2026
 > Author: Nikhil
-> Status: V2 Complete
+> Status: V2 Complete — v1.0.0 on TestFlight
 
 ---
 

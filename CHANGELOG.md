@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.1] - 2026-02-11
+
+App Store submission and TestFlight distribution.
+
+### Added
+- App Store Connect listing — metadata, screenshots, categories, age rating, review notes pushed via API
+- TestFlight beta distribution — "Family Testers" group with 3 testers
+- iPad default font size increased to 22pt (vs 18pt on iPhone)
+- Help screen updated with V2 features (commentaries, search, favorites, share)
+
+### Changed
+- Screenshots updated to 8 per device (iPhone 6.9", iPad 13") covering all V2 features and 4 themes
+
 ## [1.2.0] - 2026-02-11
 
 V2: Scholar commentaries, favorites, and persistence improvements.

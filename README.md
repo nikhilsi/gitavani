@@ -71,6 +71,10 @@ python3 scripts/validate_gita_data.py
 
 Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device (iOS 17+).
 
+## App Store
+
+GitaVani v1.0.0 is on TestFlight. App Store submission pending tester feedback.
+
 ## Data Source
 
 All verse data sourced from the [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) project by Pt. Prashant Tripathi. Includes translations and commentaries from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, A.C. Bhaktivedanta Swami Prabhupada, and others.

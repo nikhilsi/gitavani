@@ -72,13 +72,13 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 ### What's Next
 - [x] Apple Developer Program signup ($99/year) — enrolled, pending activation
 - [x] Add privacy policy link in app About screen — done (gitavani.app/privacy)
-- [x] App Store screenshots (iPhone 6.9", 6.5", iPad 13") — 8 each, all V2 features + 4 themes
-- [x] App Store metadata (description, keywords, category) — saved in appstore/metadata/
+- [x] App Store screenshots (iPhone 6.9", iPad 13") — 8 each, all V2 features + 4 themes
+- [x] App Store metadata (description, keywords, category) — pushed via API
 - [x] Update website landing page for V2 features
-- [ ] Developer enrollment activation (waiting for Apple email)
-- [ ] Create app in App Store Connect
-- [ ] Upload build via Xcode
-- [ ] TestFlight build for wife's testing
+- [x] Developer enrollment activation — confirmed
+- [x] Create app in App Store Connect — metadata, screenshots, categories, age rating, review notes
+- [x] Upload build via Xcode — v1.0.0 (build 1), archived and uploaded via xcodebuild
+- [x] TestFlight build — distributed to 3 testers (Family Testers group)
 - [x] iPad layout refinements — larger default font size (22pt vs 18pt)
 - [x] Update help screen for V2 features
 

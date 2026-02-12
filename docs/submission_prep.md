@@ -115,19 +115,21 @@ Need to verify all 4 themes meet WCAG 4.5:1 contrast ratio. Dusk (light on dark)
 
 | Item | Status |
 |------|--------|
-| Apple Developer Program ($99/year) | Done — enrolled, pending activation |
+| Apple Developer Program ($99/year) | Done — enrolled and activated |
 | App icon 1024x1024 | Done |
 | Privacy policy URL | Done — gitavani.app/privacy |
 | PrivacyInfo.xcprivacy | Done |
-| Screenshots (iPhone 6.9", 6.5", iPad 13") | Done — 8 per device, all V2 features |
-| App description (4000 chars max) | Done — updated for V2, in appstore/metadata/ |
-| Keywords (100 chars max) | Done — updated for V2, in appstore/metadata/ |
+| Screenshots (iPhone 6.9", iPad 13") | Done — 8 per device, uploaded via API |
+| App description (4000 chars max) | Done — pushed via App Store Connect API |
+| Keywords (100 chars max) | Done — pushed via API |
 | Support URL | Done — gitavani.app/support |
-| Age rating questionnaire | Not done (will be 4+) |
+| Age rating questionnaire | Done — 4+ (all categories None) |
 | About/Credits screen | Done |
 | Accessibility labels | Done |
 | License files (MIT + LGPL attribution) | Done |
-| Build with latest Xcode SDK | Need to verify |
+| Build with latest Xcode SDK | Done — archived and uploaded v1.0.0 |
+| TestFlight distribution | Done — 3 testers in "Family Testers" group |
+| Encryption declaration | Done — no encryption |
 
 ### Screenshot Requirements
 

@@ -2,29 +2,35 @@
 
 **Last Updated**: February 11, 2026
 
-## Phase: App Store Submission
+## Phase: TestFlight Testing & V3 Planning
 
 ### Status
-All features complete (V1 + V2). Docs updated. Waiting for Apple Developer enrollment activation.
+V1.0.0 build uploaded to App Store Connect and distributed via TestFlight. All metadata, screenshots, and review notes submitted. Ready for App Store review once testing is complete.
 
-### Content Updates
-1. ~~**App Store screenshots**~~ — Done (8 per device × 3 devices = 24 total, all V2 features + 4 themes)
-2. ~~**Website landing page**~~ — Done (V2 features added)
-3. ~~**Help screen**~~ — Done (added commentaries, search, favorites, share)
+### TestFlight
+- Build v1.0.0 (build 1) — uploaded and valid
+- Testers: urmila@omspark.com, ss310505@gmail.com, me190507@gmail.com
+- Beta group: "Family Testers"
+- Collect feedback, fix any bugs, then submit for App Store review
 
-### App Store (blocked on enrollment)
-4. **Developer enrollment activation** — waiting for Apple confirmation email
-5. **Create app in App Store Connect** — enter metadata, upload screenshots
-6. **Upload build** — archive and upload via Xcode
-7. **TestFlight** — distribute build for wife's testing
+### Submission Checklist (remaining)
+1. **Gather tester feedback** — bugs, UI issues, feature requests
+2. **Fix any issues** found during testing
+3. **Submit for App Store review** — tap "Add for Review" in App Store Connect
 
-### Completed V2 Features
-- ~~Commentaries UI~~ — Done (17 authors, 3 languages, 1500-char truncation, persistent selections)
-- ~~Commentary encoding fix~~ — Done (BG8.1, BG12.18 U+FFFD removed)
-- ~~Favorites~~ — Done (heart icon on verse detail, favorites list with sort toggle, accessible from home + chapter detail)
-- ~~Search~~ — Done (pull-down .searchable on home + chapter detail, debounced, Sanskrit/transliteration/translations)
-- ~~Share verse~~ — Done (themed image card via iOS share sheet, 3x resolution)
-- ~~Dynamic Type~~ — Done (system text size scales on top of custom slider via @ScaledMetric)
+### V3 Planning: Audio
+- Feature: Sanskrit verse audio recitation for chanting practice
+- Use case: Wife plays audio and reads along to practice pronunciation
+- Audio source: TBD — waiting to learn what audio wife currently uses
+- iOS TTS (Hindi voice) tested — pronunciation passable but not suitable for chanting
+- shlokam.org has verse-by-verse audio but inconsistent voices + "All rights reserved"
+- Archive.org (T.S. Ranganathan) has consistent quality but no pauses between verses
+- Best approach likely: chapter-level audio from a single reciter, split into verses
 
-### Polish
-8. ~~**iPad layout polish**~~ — Done (larger default font size 22pt vs 18pt)
+### Completed
+- ~~All V1 + V2 features~~
+- ~~App Store Connect setup~~ — metadata, screenshots, categories, age rating, review notes
+- ~~Build upload~~ — v1.0.0 archived and uploaded via xcodebuild
+- ~~TestFlight distribution~~ — 3 testers invited
+- ~~Content updates~~ — screenshots, website, help screen
+- ~~iPad polish~~ — larger default font size
