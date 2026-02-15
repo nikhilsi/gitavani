@@ -12,6 +12,7 @@ struct ContentView: View {
     let themeManager: ThemeManager
     let settings: AppSettings
     let readingProgress: ReadingProgress
+    let audioService: AudioService
 
     @State private var navigationPath = NavigationPath()
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
@@ -61,7 +62,8 @@ struct ContentView: View {
                             dataService: dataService,
                             themeManager: themeManager,
                             settings: settings,
-                            readingProgress: readingProgress
+                            readingProgress: readingProgress,
+                            audioService: audioService
                         )
                     }
                 }

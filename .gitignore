@@ -15,3 +15,6 @@ xcuserdata/
 # IDE
 .vscode/
 .idea/
+
+# Secrets
+.env

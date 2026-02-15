@@ -6,6 +6,7 @@ struct VerseDetailView: View {
     let themeManager: ThemeManager
     let settings: AppSettings
     let readingProgress: ReadingProgress
+    let audioService: AudioService
 
     @State private var currentVerseId: String = ""
     @State private var showShareSheet = false
@@ -40,37 +41,9 @@ struct VerseDetailView: View {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
                             // Verse header
-                            HStack {
-                                Text("Chapter \(verse.chapter), Verse \(verse.verse)")
-                                    .font(.subheadline)
-                                    .foregroundStyle(theme.secondaryTextColor)
-
-                                Spacer()
-
-                                Button {
-                                    settings.toggleFavorite(currentVerseId)
-                                } label: {
-                                    Image(systemName: settings.isFavorite(currentVerseId) ? "heart.fill" : "heart")
-                                        .foregroundStyle(settings.isFavorite(currentVerseId) ? .red : theme.accentColor)
-                                }
-                                .accessibilityLabel(settings.isFavorite(currentVerseId) ? "Remove from favorites" : "Add to favorites")
-
-                                Button {
-                                    settings.showTransliteration.toggle()
-                                } label: {
-                                    Image(systemName: settings.showTransliteration ? "character.book.closed.fill" : "character.book.closed")
-                                        .foregroundStyle(theme.accentColor)
-                                }
-                                .accessibilityLabel(settings.showTransliteration ? "Hide transliteration" : "Show transliteration")
-
-                                Button {
-                                    showShareSheet = true
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .foregroundStyle(theme.accentColor)
-                                }
-                                .accessibilityLabel("Share verse")
-                            }
+                            Text("Chapter \(verse.chapter), Verse \(verse.verse)")
+                                .font(.subheadline)
+                                .foregroundStyle(theme.secondaryTextColor)
 
                             // Sanskrit shlok
                             ShlokView(
@@ -80,6 +53,73 @@ struct VerseDetailView: View {
                                 theme: theme,
                                 fontSize: settings.scaledFontSize
                             )
+
+                            // Action bar
+                            HStack(spacing: 0) {
+                                Button {
+                                    audioService.play(verseId: currentVerseId)
+                                } label: {
+                                    VStack(spacing: 4) {
+                                        Image(systemName: audioService.currentVerseId == currentVerseId && audioService.isPlaying ? "speaker.wave.2.fill" : "speaker.wave.2")
+                                            .font(.system(size: 20))
+                                        Text(audioService.currentVerseId == currentVerseId && audioService.isPlaying ? "Pause" : "Play")
+                                            .font(.caption2)
+                                    }
+                                    .foregroundStyle(theme.accentColor)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 52)
+                                    .contentShape(Rectangle())
+                                }
+                                .accessibilityLabel(audioService.currentVerseId == currentVerseId && audioService.isPlaying ? "Pause audio" : "Play audio")
+
+                                Button {
+                                    settings.showTransliteration.toggle()
+                                } label: {
+                                    VStack(spacing: 4) {
+                                        Image(systemName: settings.showTransliteration ? "character.book.closed.fill" : "character.book.closed")
+                                            .font(.system(size: 20))
+                                        Text("Romanize")
+                                            .font(.caption2)
+                                    }
+                                    .foregroundStyle(theme.accentColor)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 52)
+                                    .contentShape(Rectangle())
+                                }
+                                .accessibilityLabel(settings.showTransliteration ? "Hide transliteration" : "Show transliteration")
+
+                                Button {
+                                    settings.toggleFavorite(currentVerseId)
+                                } label: {
+                                    VStack(spacing: 4) {
+                                        Image(systemName: settings.isFavorite(currentVerseId) ? "heart.fill" : "heart")
+                                            .font(.system(size: 20))
+                                        Text(settings.isFavorite(currentVerseId) ? "Saved" : "Save")
+                                            .font(.caption2)
+                                    }
+                                    .foregroundStyle(settings.isFavorite(currentVerseId) ? .red : theme.accentColor)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 52)
+                                    .contentShape(Rectangle())
+                                }
+                                .accessibilityLabel(settings.isFavorite(currentVerseId) ? "Remove from favorites" : "Add to favorites")
+
+                                Button {
+                                    showShareSheet = true
+                                } label: {
+                                    VStack(spacing: 4) {
+                                        Image(systemName: "square.and.arrow.up")
+                                            .font(.system(size: 20))
+                                        Text("Share")
+                                            .font(.caption2)
+                                    }
+                                    .foregroundStyle(theme.accentColor)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 52)
+                                    .contentShape(Rectangle())
+                                }
+                                .accessibilityLabel("Share verse")
+                            }
 
                             // Translation
                             TranslationView(
@@ -158,6 +198,9 @@ struct VerseDetailView: View {
                 readingProgress.update(chapter: v.chapter, verse: v.verse)
             }
         }
+        .onDisappear {
+            audioService.stop()
+        }
         .sheet(isPresented: $showShareSheet) {
             if let verse {
                 let translation = currentTranslation(for: verse)
@@ -206,6 +249,7 @@ struct VerseDetailView: View {
 
     private func goToPrevious() {
         guard let index = currentIndex, index > 0 else { return }
+        audioService.stop()
         withAnimation(.easeInOut(duration: 0.2)) {
             currentVerseId = allVerses[index - 1].id
         }
@@ -213,6 +257,7 @@ struct VerseDetailView: View {
 
     private func goToNext() {
         guard let index = currentIndex, index < allVerses.count - 1 else { return }
+        audioService.stop()
         withAnimation(.easeInOut(duration: 0.2)) {
             currentVerseId = allVerses[index + 1].id
         }
