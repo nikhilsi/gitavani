@@ -1,10 +1,10 @@
 # Current State
 
-**Last Updated**: February 11, 2026
+**Last Updated**: February 14, 2026
 
-## Status: V2 Complete — App Store Submission Pending
+## Status: V1.0.0 Submitted for App Store Review
 
-All V1 + V2 features built and tested. Waiting for Apple Developer enrollment activation.
+All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
 ### What's Done
 
@@ -61,6 +61,14 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 - [x] Dynamic Type — system text size scales on top of custom font slider via @ScaledMetric
 - [x] Share verse — themed image card via iOS share sheet with text fallback
 
+**V3 Audio:**
+- [x] 701 Sanskrit verse audio files bundled (96kbps MP3, 126MB total)
+- [x] Audio source: shlokam.org individual verse recordings
+- [x] AudioService — AVAudioPlayer with play/pause/stop
+- [x] Action bar UI below Sanskrit text — Play, Romanize, Save, Share buttons
+- [x] Auto-stop when verse finishes playing
+- [x] Audio stops on verse navigation (swipe, prev/next) and when leaving screen
+
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
 - [x] Static site hosted on GitHub Pages (nikhilsi/gitavani-site)
@@ -81,6 +89,8 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 - [x] TestFlight build — distributed to 3 testers (Family Testers group)
 - [x] iPad layout refinements — larger default font size (22pt vs 18pt)
 - [x] Update help screen for V2 features
+- [x] V3 audio — 701 verse recordings bundled at 96kbps
+- [x] App Store submission — v1.0.0 (build 3) submitted for review
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment
@@ -128,4 +138,6 @@ All V1 + V2 features built and tested. Waiting for Apple Developer enrollment ac
 | Search | Done |
 | Dynamic Type | Done |
 | Share verse | Done |
+| Sanskrit verse audio | Done |
+| App Store submission | Waiting for Review |
 | iPad layout | Done |

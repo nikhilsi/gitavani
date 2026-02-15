@@ -1,6 +1,6 @@
 # GitaVani — Voice of the Gita
 
-A clean, ad-free iOS app for reading and studying the Bhagavad Gita. Sanskrit shlokas with Hindi and English translations from 12 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
+A clean, ad-free iOS app for reading and studying the Bhagavad Gita. Sanskrit verse audio for all 701 verses, Sanskrit shlokas with Hindi and English translations from 12 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
 
 ## Why
 
@@ -8,6 +8,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ## Features
 
+- Sanskrit verse audio — listen to all 701 verses chanted in Sanskrit
 - All 18 chapters, 701 verses of the Bhagavad Gita
 - Original Sanskrit text in Devanagari
 - Romanized transliteration (on by default, toggleable)
@@ -29,7 +30,6 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ## Roadmap
 
-- **V3**: Sanskrit audio recitation
 - **V4**: Additional Indian languages (Telugu, Tamil, Gujarati, Bengali, etc.)
 
 ## Tech Stack
@@ -73,7 +73,7 @@ Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device (
 
 ## App Store
 
-GitaVani v1.0.0 is on TestFlight. App Store submission pending tester feedback.
+GitaVani v1.0.0 submitted for App Store review.
 
 ## Data Source
 

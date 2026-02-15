@@ -1,5 +1,6 @@
 Initial release.
 
+• Sanskrit verse audio — listen to all 701 verses chanted in Sanskrit
 • All 18 chapters and 701 verses of the Bhagavad Gita
 • Sanskrit text with Roman transliteration
 • Translations from 12 scholars in Hindi and English

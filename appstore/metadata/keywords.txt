@@ -1,1 +1,1 @@
-bhagavad gita,sanskrit,hindu,scripture,verse,translation,hindi,english,commentary,shloka
+bhagavad gita,sanskrit,hindu,scripture,verse,translation,hindi,english,audio,shloka

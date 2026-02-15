@@ -1,36 +1,37 @@
 # Now — Current Priorities
 
-**Last Updated**: February 11, 2026
+**Last Updated**: February 14, 2026
 
-## Phase: TestFlight Testing & V3 Planning
+## Phase: App Store Review
 
 ### Status
-V1.0.0 build uploaded to App Store Connect and distributed via TestFlight. All metadata, screenshots, and review notes submitted. Ready for App Store review once testing is complete.
+V1.0.0 (build 3) submitted for App Store review. Includes all V1 + V2 features plus V3 audio.
 
-### TestFlight
-- Build v1.0.0 (build 1) — uploaded and valid
-- Testers: urmila@omspark.com, ss310505@gmail.com, me190507@gmail.com
-- Beta group: "Family Testers"
-- Collect feedback, fix any bugs, then submit for App Store review
+### Submitted
+- Version 1.0.0 (build 3) — archived, uploaded, and submitted for review
+- All metadata updated: description, review notes, keywords, pricing (Free)
+- Export compliance: no encryption
+- Content rights: confirmed
+- App privacy: no data collected
+- Screenshots: 8 iPhone + 8 iPad (V2 UI)
 
-### Submission Checklist (remaining)
-1. **Gather tester feedback** — bugs, UI issues, feature requests
-2. **Fix any issues** found during testing
-3. **Submit for App Store review** — tap "Add for Review" in App Store Connect
+### What's in 1.0.0
+- All V1 features (reader, themes, navigation, settings, onboarding)
+- All V2 features (commentaries, search, favorites, share, Dynamic Type)
+- V3 audio: 701 Sanskrit verse audio files bundled at 96kbps (126MB)
+- AudioService with play/pause, auto-stop on verse finish and navigation
 
-### V3 Planning: Audio
-- Feature: Sanskrit verse audio recitation for chanting practice
-- Use case: Wife plays audio and reads along to practice pronunciation
-- Audio source: TBD — waiting to learn what audio wife currently uses
-- iOS TTS (Hindi voice) tested — pronunciation passable but not suitable for chanting
-- shlokam.org has verse-by-verse audio but inconsistent voices + "All rights reserved"
-- Archive.org (T.S. Ranganathan) has consistent quality but no pauses between verses
-- Best approach likely: chapter-level audio from a single reciter, split into verses
+### Next
+1. Wait for Apple review (typically 24-48 hours)
+2. If approved — app goes live automatically (release type: After Approval)
+3. If rejected — address reviewer feedback and resubmit
+4. Plan V4: Additional Indian languages
 
 ### Completed
 - ~~All V1 + V2 features~~
-- ~~App Store Connect setup~~ — metadata, screenshots, categories, age rating, review notes
-- ~~Build upload~~ — v1.0.0 archived and uploaded via xcodebuild
-- ~~TestFlight distribution~~ — 3 testers invited
-- ~~Content updates~~ — screenshots, website, help screen
-- ~~iPad polish~~ — larger default font size
+- ~~V3 audio — 701 verse recordings from shlokam.org, re-encoded to 96kbps~~
+- ~~AudioService — play/pause/stop with AVAudioPlayer~~
+- ~~Action bar UI — Play, Romanize, Save, Share buttons below Sanskrit text~~
+- ~~App Store Connect setup — metadata, screenshots, categories, age rating~~
+- ~~TestFlight distribution — 3 testers~~
+- ~~App Store submission — v1.0.0 (build 3) submitted for review~~

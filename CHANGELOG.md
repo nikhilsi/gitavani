@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.3.0] - 2026-02-14
+
+V3: Sanskrit verse audio and App Store submission.
+
+### Added
+- Sanskrit verse audio — 701 individual verse recordings bundled at 96kbps (126MB)
+- AudioService with AVAudioPlayer — play, pause, stop, auto-stop on finish
+- Action bar below Sanskrit text with Play, Romanize, Save, Share buttons
+- Audio stops on verse navigation (swipe, prev/next, back button)
+- Export compliance, content rights, app privacy, and pricing set via API
+- App Store submission — v1.0.0 (build 3) submitted for review
+
+### Changed
+- VerseDetailView header simplified — action buttons moved below transliteration
+- App Store description and review notes updated with audio feature
+- Landing page (gitavani.app) updated with audio feature
+- Keywords updated to include "audio"
+
 ## [1.2.1] - 2026-02-11
 
 App Store submission and TestFlight distribution.
