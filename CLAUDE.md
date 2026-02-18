@@ -190,7 +190,6 @@ All themes defined in `AppTheme.swift`, managed by `ThemeManager.swift`. Theme a
 
 - This app is a **gift for my wife**. Quality and polish matter.
 - She's using a **crappy app with colored backgrounds, hard-to-read fonts, and ads**. We're building the antidote.
-- **I have zero iOS/Swift experience** — explain SwiftUI concepts as we build, don't assume knowledge.
 - The data source API is **static and free** — no API keys, no rate limits.
 - **No external Swift dependencies** for V1. SwiftUI + Foundation + UIKit only.
 - **MIT license** on app code, **LGPL-3.0** on data source. Source code is public on GitHub.
