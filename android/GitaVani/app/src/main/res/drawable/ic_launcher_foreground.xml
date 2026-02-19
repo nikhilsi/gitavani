@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Om symbol stylized as a book/lotus - white on saffron -->
+    <!-- Book shape -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,30 C54,30 36,32 30,40 C24,48 24,60 30,68 C36,76 54,78 54,78 C54,78 72,76 78,68 C84,60 84,48 78,40 C72,32 54,30 54,30 Z"/>
+    <!-- Book spine -->
+    <path
+        android:fillColor="#FF6B00"
+        android:pathData="M54,32 L54,76"
+        android:strokeWidth="2"
+        android:strokeColor="#FF6B00"/>
+    <!-- Page lines left -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF6B00"
+        android:strokeWidth="1.2"
+        android:pathData="M38,44 L50,44 M38,50 L50,50 M38,56 L50,56 M38,62 L50,62"/>
+    <!-- Page lines right -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF6B00"
+        android:strokeWidth="1.2"
+        android:pathData="M58,44 L70,44 M58,50 L70,50 M58,56 L70,56 M58,62 L70,62"/>
+</vector>
