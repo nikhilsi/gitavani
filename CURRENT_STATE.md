@@ -96,7 +96,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
 ## Android App
 
-**Status**: Dev build running on emulator (Phases 1-9 complete)
+**Status**: Dev build tested on emulator — full feature parity with iOS
 
 ### What's Done (Android)
 - [x] Project setup — Kotlin + Jetpack Compose, min API 26, Gradle 8.11.1
@@ -107,23 +107,23 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Chapter list (Home) — book cover header, search icon, resume reading banner
 - [x] Chapter detail — summary card, search, verse list
 - [x] Verse detail — HorizontalPager swipe, Sanskrit, transliteration, translations, commentaries
-- [x] Audio playback — MediaPlayer, 701 MP3s from assets, play/pause/stop
+- [x] Audio playback — MediaPlayer with lifecycle awareness, 701 MP3s from assets, play/pause/stop
 - [x] Search — global (home) and chapter-scoped with 300ms debounce
 - [x] Favorites — heart toggle, favorites screen with Recent/Chapter sort
-- [x] Share — text-based share via Android Intent
+- [x] Share — themed image card (matching iOS) with text fallback via FileProvider
 - [x] Settings — theme picker (2x2 grid), font size slider, language toggle, transliteration switch
-- [x] About screen — version, credits, license, privacy, external links
+- [x] About screen — dynamic version via BuildConfig, credits, license, privacy, external links
 - [x] Help screen — feature guide with Material icons
 - [x] Onboarding — 4-page HorizontalPager with Skip/Get Started
 - [x] Edge-to-edge display with themed status bar
-- [x] Adaptive app icon (book on saffron background)
+- [x] App icon — iOS lotus + open book design at all mipmap densities
+- [x] Code review — MediaPlayer leak fix, lifecycle awareness, try/catch safety, release minification
 
 ### What's Next (Android)
 - [ ] Play Store developer account ($25)
 - [ ] Signed release build (AAB)
 - [ ] Play Asset Delivery for audio (153 MB APK exceeds 150 MB AAB limit)
 - [ ] Play Store listing and internal testing
-- [ ] Share card as image (currently text-only)
 
 ### Android Feature Status
 
@@ -146,7 +146,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Audio playback | Done |
 | Search | Done |
 | Favorites | Done |
-| Share (text) | Done |
+| Share (image card) | Done |
 | Onboarding | Done |
 | Help screen | Done |
 | About screen | Done |

@@ -14,17 +14,27 @@ Native Android version — full feature parity with iOS.
 - Sanskrit text with transliteration toggle
 - Hindi/English translations with author picker (12 scholars)
 - Commentaries from 17 scholars in 3 languages with truncation
-- Audio playback — 701 Sanskrit verse recordings via MediaPlayer
+- Audio playback — 701 Sanskrit verse recordings via MediaPlayer with lifecycle awareness
 - Search — global and chapter-scoped with 300ms debounce
 - Favorites — save/unsave with sort toggle (Recent/Chapter Order)
-- Share verse as text via Android Intent
+- Share verse as themed image card (Sanskrit, transliteration, translation, branding) with text fallback
 - Settings — theme picker, font size slider (14-28pt), language toggle, transliteration switch
 - Onboarding — 4-page swipeable intro with Skip/Get Started
 - Help screen with feature guide
-- About screen with credits, license, privacy, and external links
+- About screen with dynamic version via BuildConfig, credits, license, privacy, and external links
 - Edge-to-edge display with themed status bar
-- Adaptive app icon (book on saffron background)
+- App icon matching iOS (lotus + open book on saffron gradient)
+- FileProvider for secure image sharing
 - Android architecture documentation (docs/android-architecture.md)
+
+### Fixed
+- MediaPlayer leak when prepare()/start() throws — player now released on failure
+- AssetFileDescriptor double-close — replaced with Kotlin use{} block
+- Audio pauses when app goes to background (lifecycle-aware via ProcessLifecycleOwner)
+- startActivity() calls wrapped in try/catch for safety
+- Language toggle buttons now fill equal width (was left-aligned)
+- Icon deprecation warnings (Subject, OpenInNew → AutoMirrored variants)
+- Release build minification enabled (isMinifyEnabled + isShrinkResources)
 
 ## [1.3.0] - 2026-02-14
 
