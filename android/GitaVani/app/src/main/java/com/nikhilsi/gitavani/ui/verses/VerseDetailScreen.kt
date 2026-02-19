@@ -167,20 +167,43 @@ fun VerseDetailScreen(
                 onPlayPause = { audioService.play(verse.id) },
                 onShare = {
                     val lang = if (defaultLanguage == "hindi") com.nikhilsi.gitavani.model.Language.HINDI else com.nikhilsi.gitavani.model.Language.ENGLISH
-                    val translation = verse.translations.firstOrNull { it.language == lang }?.text
-                        ?: verse.translations.firstOrNull()?.text ?: ""
+                    val translation = verse.translations.firstOrNull { it.language == lang }
+                        ?: verse.translations.firstOrNull()
+
+                    // Render themed image card
+                    val bitmap = ShareCardRenderer.render(
+                        verse = verse,
+                        translation = translation,
+                        showTransliteration = showTransliteration,
+                        theme = theme
+                    )
+                    val imageUri = ShareCardRenderer.saveBitmapToCache(context, bitmap)
+
                     val shareText = buildString {
                         appendLine("Bhagavad Gita — Chapter ${verse.chapter}, Verse ${verse.verse}")
                         appendLine()
                         appendLine(verse.slok)
+                        if (translation != null) {
+                            appendLine()
+                            appendLine(translation.text)
+                            appendLine("— ${translation.author}")
+                        }
                         appendLine()
-                        appendLine(translation)
-                        appendLine()
-                        append("— GitaVani")
+                        append("Shared via GitaVani")
                     }
-                    val intent = Intent(Intent.ACTION_SEND).apply {
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_TEXT, shareText)
+
+                    val intent = if (imageUri != null) {
+                        Intent(Intent.ACTION_SEND).apply {
+                            type = "image/png"
+                            putExtra(Intent.EXTRA_STREAM, imageUri)
+                            putExtra(Intent.EXTRA_TEXT, shareText)
+                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        }
+                    } else {
+                        Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_TEXT, shareText)
+                        }
                     }
                     try {
                         context.startActivity(Intent.createChooser(intent, "Share Verse"))
