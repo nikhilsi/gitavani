@@ -20,11 +20,13 @@ Feature complete. Tested on emulator (Pixel 7, API 35). Full feature parity with
 - Code reviewed and hardened (MediaPlayer safety, try/catch, release minification)
 
 ### Next Steps
-1. Create Google Play Developer account ($25 one-time)
-2. Set up signing keys for release build
-3. Play Asset Delivery for audio files (APK is 153 MB, AAB limit is 150 MB)
-4. Internal testing track on Play Console
-5. Play Store listing (screenshots, description, categories)
+1. ~~Create Google Play Developer account ($25 one-time)~~ — Done
+2. ~~Set up signing keys for release build~~ — Done (keystore generated, build.gradle.kts configured)
+3. ~~Play Asset Delivery~~ — Not needed! Release AAB is 134 MB (under 150 MB limit) thanks to R8 minification
+4. Play Console device verification (using Pixel 8a)
+5. Create app listing on Play Console
+6. Internal testing track — upload signed AAB
+7. Play Store listing (screenshots, description, categories)
 
 ### Completed
 - ~~Phase 1: Project setup & data loading~~

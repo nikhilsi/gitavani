@@ -17,6 +17,8 @@ android/GitaVani/build/
 android/GitaVani/app/build/
 android/GitaVani/.gradle/
 android/GitaVani/local.properties
+android/GitaVani/keystore.properties
+android/GitaVani/keystore/
 
 # IDE
 .vscode/

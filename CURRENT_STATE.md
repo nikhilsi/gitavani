@@ -120,9 +120,10 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Code review — MediaPlayer leak fix, lifecycle awareness, try/catch safety, release minification
 
 ### What's Next (Android)
-- [ ] Play Store developer account ($25)
-- [ ] Signed release build (AAB)
-- [ ] Play Asset Delivery for audio (153 MB APK exceeds 150 MB AAB limit)
+- [x] Play Store developer account ($25) — created
+- [x] Signed release build (AAB) — 134 MB, signed with release keystore
+- [x] ~~Play Asset Delivery~~ — not needed, AAB is under 150 MB limit
+- [ ] Play Console device verification (Pixel 8a)
 - [ ] Play Store listing and internal testing
 
 ### Android Feature Status
@@ -152,7 +153,9 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | About screen | Done |
 | App icon | Done |
 | Edge-to-edge | Done |
-| Play Store submission | Not started |
+| Release signing | Done |
+| Release AAB (134 MB) | Done |
+| Play Store submission | In progress |
 
 ---
 
