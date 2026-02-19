@@ -113,10 +113,10 @@ fun SettingsScreen(
                         .fillMaxWidth()
                         .background(theme.cardBackgroundColor, RoundedCornerShape(8.dp))
                 ) {
-                    ToggleButton("English", defaultLanguage == "english", theme) {
+                    ToggleButton("English", defaultLanguage == "english", theme, Modifier.weight(1f)) {
                         settings.setDefaultLanguage("english")
                     }
-                    ToggleButton("Hindi", defaultLanguage == "hindi", theme) {
+                    ToggleButton("Hindi", defaultLanguage == "hindi", theme, Modifier.weight(1f)) {
                         settings.setDefaultLanguage("hindi")
                     }
                 }
@@ -315,17 +315,22 @@ private fun ToggleButton(
     label: String,
     isSelected: Boolean,
     theme: AppTheme,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    Text(
-        text = label,
-        fontSize = 14.sp,
-        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
-        color = if (isSelected) Color.White else theme.secondaryTextColor,
-        modifier = Modifier
+    Box(
+        modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .background(if (isSelected) theme.accentColor else Color.Transparent)
             .clickable(onClick = onClick)
-            .padding(vertical = 8.dp, horizontal = 16.dp)
-    )
+            .padding(vertical = 8.dp, horizontal = 16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = label,
+            fontSize = 14.sp,
+            fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+            color = if (isSelected) Color.White else theme.secondaryTextColor
+        )
+    }
 }
