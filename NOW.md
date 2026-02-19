@@ -1,37 +1,41 @@
 # Now — Current Priorities
 
-**Last Updated**: February 14, 2026
+**Last Updated**: February 19, 2026
 
-## Phase: App Store Review
+## Phase: Android Dev Build Complete
 
-### Status
-V1.0.0 (build 3) submitted for App Store review. Includes all V1 + V2 features plus V3 audio.
+### iOS Status
+V1.0.0 (build 3) submitted for App Store review. Waiting.
 
-### Submitted
-- Version 1.0.0 (build 3) — archived, uploaded, and submitted for review
-- All metadata updated: description, review notes, keywords, pricing (Free)
-- Export compliance: no encryption
-- Content rights: confirmed
-- App privacy: no data collected
-- Screenshots: 8 iPhone + 8 iPad (V2 UI)
+### Android Status
+Dev build running on emulator. Phases 1-9 complete (full feature parity with iOS except image share card and Play Store distribution).
 
-### What's in 1.0.0
-- All V1 features (reader, themes, navigation, settings, onboarding)
-- All V2 features (commentaries, search, favorites, share, Dynamic Type)
-- V3 audio: 701 Sanskrit verse audio files bundled at 96kbps (126MB)
-- AudioService with play/pause, auto-stop on verse finish and navigation
+### Android — What's Built
+- Native Kotlin + Jetpack Compose app
+- All 701 verses, 18 chapters, translations, commentaries
+- 701 audio files bundled (126 MB)
+- 4 themes, settings, search, favorites, share, onboarding, help, about
+- Chapter list → Chapter detail → Verse reading flow
+- HorizontalPager swipe navigation between verses
+- Audio playback via MediaPlayer
 
-### Next
-1. Wait for Apple review (typically 24-48 hours)
-2. If approved — app goes live automatically (release type: After Approval)
-3. If rejected — address reviewer feedback and resubmit
-4. Plan V4: Additional Indian languages
+### Next Steps
+1. Test Android build on emulator (user testing in progress)
+2. Create Google Play Developer account ($25 one-time)
+3. Set up signing keys for release build
+4. Play Asset Delivery for audio files (APK is 153 MB, AAB limit is 150 MB)
+5. Internal testing track on Play Console
+6. Play Store listing (screenshots, description, categories)
+7. Add image share card (currently text-only on Android)
 
 ### Completed
-- ~~All V1 + V2 features~~
-- ~~V3 audio — 701 verse recordings from shlokam.org, re-encoded to 96kbps~~
-- ~~AudioService — play/pause/stop with AVAudioPlayer~~
-- ~~Action bar UI — Play, Romanize, Save, Share buttons below Sanskrit text~~
-- ~~App Store Connect setup — metadata, screenshots, categories, age rating~~
-- ~~TestFlight distribution — 3 testers~~
-- ~~App Store submission — v1.0.0 (build 3) submitted for review~~
+- ~~Phase 1: Project setup & data loading~~
+- ~~Phase 2: Theme system~~
+- ~~Phase 3: Navigation & chapter list~~
+- ~~Phase 4: Chapter detail & verse list~~
+- ~~Phase 5: Verse detail (reading screen)~~
+- ~~Phase 6: Audio playback~~
+- ~~Phase 7: Search, favorites, share~~
+- ~~Phase 8: Onboarding, help, about, settings~~
+- ~~Phase 9: Polish & platform conventions~~
+- ~~Phase 11: Documentation~~

@@ -1,5 +1,31 @@
 # Changelog
 
+## [Android 1.0.0-dev] - 2026-02-19
+
+Native Android version — full feature parity with iOS.
+
+### Added
+- Native Kotlin + Jetpack Compose app (min API 26, target API 35)
+- All 701 verses, 18 chapters with translations and commentaries
+- 4 themes (Sattva, Parchment, Dusk, Lotus) with exact iOS color values
+- Chapter list with book cover header and resume reading banner
+- Chapter detail with expandable summary and verse list
+- Verse reading screen with HorizontalPager swipe navigation
+- Sanskrit text with transliteration toggle
+- Hindi/English translations with author picker (12 scholars)
+- Commentaries from 17 scholars in 3 languages with truncation
+- Audio playback — 701 Sanskrit verse recordings via MediaPlayer
+- Search — global and chapter-scoped with 300ms debounce
+- Favorites — save/unsave with sort toggle (Recent/Chapter Order)
+- Share verse as text via Android Intent
+- Settings — theme picker, font size slider (14-28pt), language toggle, transliteration switch
+- Onboarding — 4-page swipeable intro with Skip/Get Started
+- Help screen with feature guide
+- About screen with credits, license, privacy, and external links
+- Edge-to-edge display with themed status bar
+- Adaptive app icon (book on saffron background)
+- Android architecture documentation (docs/android-architecture.md)
+
 ## [1.3.0] - 2026-02-14
 
 V3: Sanskrit verse audio and App Store submission.

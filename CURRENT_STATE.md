@@ -1,8 +1,8 @@
 # Current State
 
-**Last Updated**: February 14, 2026
+**Last Updated**: February 19, 2026
 
-## Status: V1.0.0 Submitted for App Store Review
+## Status: iOS Submitted for Review / Android Dev Build Ready
 
 All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
@@ -91,6 +91,70 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Update help screen for V2 features
 - [x] V3 audio — 701 verse recordings bundled at 96kbps
 - [x] App Store submission — v1.0.0 (build 3) submitted for review
+
+---
+
+## Android App
+
+**Status**: Dev build running on emulator (Phases 1-9 complete)
+
+### What's Done (Android)
+- [x] Project setup — Kotlin + Jetpack Compose, min API 26, Gradle 8.11.1
+- [x] Data loading — 35.6 MB JSON parsed on Dispatchers.IO with loading spinner
+- [x] Models — all 6 model classes ported with kotlinx.serialization
+- [x] Theme system — 4 themes with exact iOS color values, MaterialTheme wrapper
+- [x] Navigation — Navigation Compose with 7 routes
+- [x] Chapter list (Home) — book cover header, search icon, resume reading banner
+- [x] Chapter detail — summary card, search, verse list
+- [x] Verse detail — HorizontalPager swipe, Sanskrit, transliteration, translations, commentaries
+- [x] Audio playback — MediaPlayer, 701 MP3s from assets, play/pause/stop
+- [x] Search — global (home) and chapter-scoped with 300ms debounce
+- [x] Favorites — heart toggle, favorites screen with Recent/Chapter sort
+- [x] Share — text-based share via Android Intent
+- [x] Settings — theme picker (2x2 grid), font size slider, language toggle, transliteration switch
+- [x] About screen — version, credits, license, privacy, external links
+- [x] Help screen — feature guide with Material icons
+- [x] Onboarding — 4-page HorizontalPager with Skip/Get Started
+- [x] Edge-to-edge display with themed status bar
+- [x] Adaptive app icon (book on saffron background)
+
+### What's Next (Android)
+- [ ] Play Store developer account ($25)
+- [ ] Signed release build (AAB)
+- [ ] Play Asset Delivery for audio (153 MB APK exceeds 150 MB AAB limit)
+- [ ] Play Store listing and internal testing
+- [ ] Share card as image (currently text-only)
+
+### Android Feature Status
+
+| Feature | Status |
+|---------|--------|
+| Data loading | Done |
+| Chapter list (Home) | Done |
+| Chapter detail | Done |
+| Verse detail (Reading) | Done |
+| Sanskrit + transliteration | Done |
+| Hindi/English translations | Done |
+| Author picker | Done |
+| Commentaries (17 scholars) | Done |
+| 4 Themes | Done |
+| Font size control | Done |
+| Bookmark/resume | Done |
+| Swipe navigation | Done |
+| Prev/Next buttons | Done |
+| Settings screen | Done |
+| Audio playback | Done |
+| Search | Done |
+| Favorites | Done |
+| Share (text) | Done |
+| Onboarding | Done |
+| Help screen | Done |
+| About screen | Done |
+| App icon | Done |
+| Edge-to-edge | Done |
+| Play Store submission | Not started |
+
+---
 
 ### Known Issues
 - 2 verses (BG12.3, BG12.18) have only 1 translation each — correct, other scholars did not comment

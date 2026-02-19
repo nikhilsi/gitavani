@@ -107,13 +107,15 @@ Bundled JSON (gita_data.json, 35.6 MB)
 - **CHANGELOG.md** - Version history
 
 **Docs:**
-- **docs/architecture.md** - Full architecture, data model, screen flow, theming
+- **docs/architecture.md** - Full iOS architecture, data model, screen flow, theming
+- **docs/android-architecture.md** - Android architecture, Kotlin/Compose, build commands
 - **docs/submission_prep.md** - App Store submission checklist and code review
 
 **Code:**
 - **scripts/** - Data pipeline (Python)
 - **data/** - Generated JSON data file
 - **ios/GitaVani/** - Xcode project and SwiftUI source
+- **android/GitaVani/** - Android Studio project and Kotlin/Compose source
 
 ---
 
@@ -135,25 +137,37 @@ GitaVani/
 │   └── validate_gita_data.py
 ├── data/
 │   └── gita_data.json
-└── ios/
+├── ios/
+│   └── GitaVani/
+│       ├── GitaVani.xcodeproj
+│       └── GitaVani/
+│           ├── GitaVaniApp.swift
+│           ├── ContentView.swift
+│           ├── Models/
+│           ├── Views/
+│           │   ├── Onboarding/
+│           │   ├── Chapters/
+│           │   ├── Verses/
+│           │   ├── Settings/
+│           │   └── Common/
+│           ├── Services/
+│           ├── State/
+│           ├── Theme/
+│           ├── Resources/
+│           │   └── gita_data.json
+│           └── Assets.xcassets/
+└── android/
     └── GitaVani/
-        ├── GitaVani.xcodeproj
-        └── GitaVani/
-            ├── GitaVaniApp.swift
-            ├── ContentView.swift
-            ├── Models/
-            ├── Views/
-            │   ├── Onboarding/
-            │   ├── Chapters/
-            │   ├── Verses/
-            │   ├── Settings/
-            │   └── Common/
-            ├── Services/
-            ├── State/
-            ├── Theme/
-            ├── Resources/
-            │   └── gita_data.json
-            └── Assets.xcassets/
+        ├── app/src/main/java/com/nikhilsi/gitavani/
+        │   ├── model/          # Data models (kotlinx.serialization)
+        │   ├── data/           # GitaDataService
+        │   ├── audio/          # AudioService (MediaPlayer)
+        │   ├── state/          # AppSettings, ReadingProgress
+        │   ├── theme/          # AppTheme, MaterialTheme wrapper
+        │   ├── ui/             # Compose screens
+        │   └── viewmodel/      # GitaViewModel
+        ├── app/src/main/assets/ # gita_data.json + audio/
+        └── gradle/             # Build config
 ```
 
 ## 📂 Build Order (V1 Complete)
