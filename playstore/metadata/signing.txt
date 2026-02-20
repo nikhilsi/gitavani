@@ -1,0 +1,13 @@
+## Release Signing
+
+Keystore: android/GitaVani/keystore/gitavani-release.jks (gitignored)
+Credentials: android/GitaVani/keystore.properties (gitignored)
+Key alias: gitavani-release
+Algorithm: RSA 2048-bit
+Validity: 10,000 days (expires ~2053)
+DN: CN=Nikhil Singhal, O=GitaVani, C=US
+
+Play App Signing: Enabled (Google manages the app signing key;
+  the upload key is our local keystore above)
+
+Password stored in keystore.properties — back up in password manager.

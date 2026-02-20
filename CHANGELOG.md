@@ -1,8 +1,8 @@
 # Changelog
 
-## [Android 1.0.0-dev] - 2026-02-19
+## [Android 1.0.0] - 2026-02-19
 
-Native Android version — full feature parity with iOS.
+Native Android version — full feature parity with iOS. Internal testing release on Google Play Console.
 
 ### Added
 - Native Kotlin + Jetpack Compose app (min API 26, target API 35)
@@ -26,6 +26,12 @@ Native Android version — full feature parity with iOS.
 - App icon matching iOS (lotus + open book on saffron gradient)
 - FileProvider for secure image sharing
 - Android architecture documentation (docs/android-architecture.md)
+- Release signing — keystore generated (RSA 2048-bit, 10,000-day validity)
+- Signed release AAB — 134 MB (under 150 MB Play Store limit, no Play Asset Delivery needed)
+- Google Play Console setup — app created, store listing, content declarations, screenshots
+- Internal testing release — v1.0.0 uploaded and published to internal track
+- Play Store metadata and screenshots archived in playstore/ folder
+- Play Store submission prep doc (docs/play_store_prep.md)
 
 ### Fixed
 - MediaPlayer leak when prepare()/start() throws — player now released on failure

@@ -75,14 +75,16 @@ Bundled JSON (gita_data.json, 35.6 MB)
 
 ## 🗄️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| App | Swift / SwiftUI |
-| Minimum iOS | 17.0 |
-| Data | Bundled JSON (no database) |
-| State | @Observable + UserDefaults |
-| Data Pipeline | Python 3.12+ (one-time script) |
-| Target | iPhone + iPad (Universal) |
+| Layer | iOS | Android |
+|-------|-----|---------|
+| Language | Swift / SwiftUI | Kotlin / Jetpack Compose |
+| Minimum | iOS 17.0 | API 26 (Android 8.0) |
+| Data | Bundled JSON (no database) | Bundled JSON (no database) |
+| State | @Observable + UserDefaults | StateFlow + SharedPreferences |
+| Navigation | NavigationStack | Navigation Compose |
+| Audio | AVAudioPlayer | MediaPlayer |
+| Target | iPhone + iPad | Phones + Tablets |
+| Data Pipeline | Python 3.12+ (one-time script) | Same |
 
 ---
 
@@ -109,13 +111,18 @@ Bundled JSON (gita_data.json, 35.6 MB)
 **Docs:**
 - **docs/architecture.md** - Full iOS architecture, data model, screen flow, theming
 - **docs/android-architecture.md** - Android architecture, Kotlin/Compose, build commands
-- **docs/submission_prep.md** - App Store submission checklist and code review
+- **docs/submission_prep.md** - App Store (iOS) submission checklist and code review
+- **docs/play_store_prep.md** - Play Store (Android) submission checklist and configuration
 
 **Code:**
 - **scripts/** - Data pipeline (Python)
 - **data/** - Generated JSON data file
 - **ios/GitaVani/** - Xcode project and SwiftUI source
 - **android/GitaVani/** - Android Studio project and Kotlin/Compose source
+
+**Store Assets:**
+- **appstore/** - iOS App Store metadata and screenshots
+- **playstore/** - Google Play Store metadata, screenshots, and graphics
 
 ---
 
@@ -130,7 +137,9 @@ GitaVani/
 ├── CHANGELOG.md
 ├── docs/
 │   ├── architecture.md
-│   └── submission_prep.md
+│   ├── android-architecture.md
+│   ├── submission_prep.md
+│   └── play_store_prep.md
 ├── scripts/
 │   ├── fetch_gita_data.py
 │   ├── parse_gita_data.py
@@ -156,18 +165,24 @@ GitaVani/
 │           ├── Resources/
 │           │   └── gita_data.json
 │           └── Assets.xcassets/
-└── android/
-    └── GitaVani/
-        ├── app/src/main/java/com/nikhilsi/gitavani/
-        │   ├── model/          # Data models (kotlinx.serialization)
-        │   ├── data/           # GitaDataService
-        │   ├── audio/          # AudioService (MediaPlayer)
-        │   ├── state/          # AppSettings, ReadingProgress
-        │   ├── theme/          # AppTheme, MaterialTheme wrapper
-        │   ├── ui/             # Compose screens
-        │   └── viewmodel/      # GitaViewModel
-        ├── app/src/main/assets/ # gita_data.json + audio/
-        └── gradle/             # Build config
+├── android/
+│   └── GitaVani/
+│       ├── app/src/main/java/com/nikhilsi/gitavani/
+│       │   ├── model/          # Data models (kotlinx.serialization)
+│       │   ├── data/           # GitaDataService
+│       │   ├── audio/          # AudioService (MediaPlayer)
+│       │   ├── state/          # AppSettings, ReadingProgress
+│       │   ├── theme/          # AppTheme, MaterialTheme wrapper
+│       │   ├── ui/             # Compose screens
+│       │   └── viewmodel/      # GitaViewModel
+│       ├── app/src/main/assets/ # gita_data.json + audio/
+│       └── gradle/             # Build config
+├── appstore/            # iOS App Store assets
+│   ├── metadata/        # Description, keywords, review notes
+│   └── screenshots/     # iPhone + iPad screenshots
+└── playstore/           # Google Play Store assets
+    ├── metadata/        # Description, store settings, signing info
+    └── screenshots/     # Phone + 7" tablet + 10" tablet screenshots
 ```
 
 ## 📂 Build Order (V1 Complete)
@@ -196,7 +211,8 @@ GitaVani/
 - **Dusk** — Dark mode, gold accents
 - **Lotus** — Saffron tones, devotional
 
-All themes defined in `AppTheme.swift`, managed by `ThemeManager.swift`. Theme applies to all views including navigation bars (via UINavigationBarAppearance). User selection persisted via UserDefaults.
+- **iOS**: Defined in `AppTheme.swift`, managed by `ThemeManager.swift`. Applied via UINavigationBarAppearance. Persisted via UserDefaults.
+- **Android**: Defined in `AppTheme.kt`, wrapped in `Theme.kt` (MaterialTheme). Applied via Compose theming + edge-to-edge status bar. Persisted via SharedPreferences.
 
 ---
 
@@ -205,5 +221,23 @@ All themes defined in `AppTheme.swift`, managed by `ThemeManager.swift`. Theme a
 - This app is a **gift for my wife**. Quality and polish matter.
 - She's using a **crappy app with colored backgrounds, hard-to-read fonts, and ads**. We're building the antidote.
 - The data source API is **static and free** — no API keys, no rate limits.
-- **No external Swift dependencies** for V1. SwiftUI + Foundation + UIKit only.
+- **No external dependencies**. iOS: SwiftUI + Foundation + UIKit only. Android: Jetpack/AndroidX only.
 - **MIT license** on app code, **LGPL-3.0** on data source. Source code is public on GitHub.
+- **Do not optimize without discussing first** — always discuss architecture/approach before making changes.
+
+### Android Build Commands
+```bash
+# Debug build
+cd android/GitaVani && ./gradlew assembleDebug
+
+# Release AAB (signed, for Play Store)
+cd android/GitaVani && ./gradlew bundleRelease
+
+# Install debug APK on connected device/emulator
+~/Library/Android/sdk/platform-tools/adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Android Signing
+- Keystore and credentials are gitignored (`keystore/` and `keystore.properties`)
+- `build.gradle.kts` reads signing config from `keystore.properties`
+- Backup the keystore password in a password manager

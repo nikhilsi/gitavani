@@ -96,7 +96,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
 ## Android App
 
-**Status**: Dev build tested on emulator — full feature parity with iOS
+**Status**: Internal testing release live on Google Play Console — full feature parity with iOS
 
 ### What's Done (Android)
 - [x] Project setup — Kotlin + Jetpack Compose, min API 26, Gradle 8.11.1
@@ -123,8 +123,13 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Play Store developer account ($25) — created
 - [x] Signed release build (AAB) — 134 MB, signed with release keystore
 - [x] ~~Play Asset Delivery~~ — not needed, AAB is under 150 MB limit
-- [ ] Play Console device verification (Pixel 8a)
-- [ ] Play Store listing and internal testing
+- [x] Play Console device verification (Pixel 8a) — done
+- [x] Phone number verification — done
+- [x] Play Store listing (description, screenshots, graphics) — done
+- [x] Internal testing release — v1.0.0 published Feb 19
+- [ ] Identity verification — pending (1-7 days)
+- [ ] Closed testing (12 opted-in testers required for production)
+- [ ] Production release
 
 ### Android Feature Status
 
@@ -155,7 +160,10 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Edge-to-edge | Done |
 | Release signing | Done |
 | Release AAB (134 MB) | Done |
-| Play Store submission | In progress |
+| Play Store listing | Done |
+| Internal testing release | Done |
+| Closed testing (12 testers) | Not started |
+| Production release | Blocked |
 
 ---
 

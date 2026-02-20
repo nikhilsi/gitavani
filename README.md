@@ -1,6 +1,6 @@
 # GitaVani — Voice of the Gita
 
-A clean, ad-free iOS app for reading and studying the Bhagavad Gita. Sanskrit verse audio for all 701 verses, Sanskrit shlokas with Hindi and English translations from 12 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
+A clean, ad-free app for reading and studying the Bhagavad Gita. Available on iOS and Android. Sanskrit verse audio for all 701 verses, Sanskrit shlokas with Hindi and English translations from 12 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
 
 ## Why
 
@@ -18,7 +18,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 - 11,000+ commentaries from 17 scholars in English, Hindi, and Sanskrit
 - Search across all verses (Sanskrit, transliteration, translations)
 - Save favorite verses with sort by recent or chapter order
-- Share verses as themed image cards via iOS share sheet
+- Share verses as beautiful themed image cards
 - 4 visual themes (Sattva, Parchment, Dusk, Lotus)
 - Adjustable font size (14-28pt) with Dynamic Type support
 - Auto-bookmark (resume where you left off)
@@ -26,7 +26,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 - First-launch onboarding walkthrough
 - Help screen for feature discovery
 - Fully offline — all data bundled locally
-- Universal app (iPhone + iPad)
+- Universal app (iPhone + iPad + Android phones + Android tablets)
 
 ## Roadmap
 
@@ -34,10 +34,13 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ## Tech Stack
 
-- **App**: Swift / SwiftUI (iOS 17+)
-- **Data**: Bundled JSON — no backend, no API calls
-- **Data Source**: [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) (LGPL-3.0 via [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database))
-- **Data Pipeline**: Python scripts to fetch, parse, and validate data
+| Platform | Technology |
+|----------|-----------|
+| iOS | Swift / SwiftUI (iOS 17+) |
+| Android | Kotlin / Jetpack Compose (min API 26, Android 8.0+) |
+| Data | Bundled JSON — no backend, no API calls |
+| Data Source | [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) (LGPL-3.0 via [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database)) |
+| Data Pipeline | Python scripts to fetch, parse, and validate data |
 
 ## Project Structure
 
@@ -49,7 +52,10 @@ GitaVani/
 │   ├── parse_gita_data.py      # Parse from local repo clone
 │   └── validate_gita_data.py   # 8-section data validation
 ├── data/                # Generated JSON data (35.6 MB)
-└── ios/GitaVani/        # Xcode project (SwiftUI)
+├── ios/GitaVani/        # Xcode project (SwiftUI)
+├── android/GitaVani/    # Android Studio project (Kotlin + Compose)
+├── appstore/            # iOS App Store metadata & screenshots
+└── playstore/           # Google Play Store metadata & screenshots
 ```
 
 ## Getting Started
@@ -71,9 +77,22 @@ python3 scripts/validate_gita_data.py
 
 Open `ios/GitaVani/GitaVani.xcodeproj` in Xcode and run on simulator or device (iOS 17+).
 
-## App Store
+### Android App
 
-GitaVani v1.0.0 submitted for App Store review.
+Open `android/GitaVani/` in Android Studio and run on emulator or device (API 26+).
+
+```bash
+# Build debug APK
+cd android/GitaVani && ./gradlew assembleDebug
+
+# Build signed release AAB
+cd android/GitaVani && ./gradlew bundleRelease
+```
+
+## App Store / Play Store
+
+- **iOS**: v1.0.0 (build 3) submitted for App Store review
+- **Android**: v1.0.0 internal testing release on Google Play Console
 
 ## Data Source
 

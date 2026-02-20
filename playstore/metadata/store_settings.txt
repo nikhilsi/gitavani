@@ -1,0 +1,15 @@
+App name: GitaVani - Bhagavad Gita
+Package: com.nikhilsi.gitavani
+Default language: English (United States) — en-US
+App type: App (not Game)
+Pricing: Free
+Category: Books & Reference
+Content rating: Everyone
+Target audience: 18+
+Ads: No
+App access: All functionality available without special access
+Data safety: No data collected
+Government app: No
+Financial features: No
+Health app: No
+External marketing: On

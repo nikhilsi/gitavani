@@ -21,12 +21,15 @@ Feature complete. Tested on emulator (Pixel 7, API 35). Full feature parity with
 
 ### Next Steps
 1. ~~Create Google Play Developer account ($25 one-time)~~ — Done
-2. ~~Set up signing keys for release build~~ — Done (keystore generated, build.gradle.kts configured)
-3. ~~Play Asset Delivery~~ — Not needed! Release AAB is 134 MB (under 150 MB limit) thanks to R8 minification
-4. Play Console device verification (using Pixel 8a)
-5. Create app listing on Play Console
-6. Internal testing track — upload signed AAB
-7. Play Store listing (screenshots, description, categories)
+2. ~~Set up signing keys for release build~~ — Done
+3. ~~Play Asset Delivery~~ — Not needed (AAB is 134 MB, under 150 MB limit)
+4. ~~Play Console device verification (Pixel 8a)~~ — Done
+5. ~~Phone number verification~~ — Done
+6. ~~Create app listing on Play Console~~ — Done
+7. ~~Internal testing release~~ — v1.0.0 published Feb 19
+8. Wait for identity verification (1-7 days)
+9. Closed testing — need 12 opted-in testers
+10. Production release
 
 ### Completed
 - ~~Phase 1: Project setup & data loading~~
