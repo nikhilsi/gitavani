@@ -19,19 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-DATA LICENSE NOTICE
-
-The verse data bundled with this application (gita_data.json) is sourced from
-the Vedic Scriptures Bhagavad Gita project by Pt. Prashant Tripathi and is
-used under the GNU Lesser General Public License v3.0 (LGPL-3.0).
-
-Dataset source: https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database
-Project source: https://github.com/vedicscriptures/bhagavad-gita
-
-The original Sanskrit shlokas of the Bhagavad Gita are ancient religious
-text in the public domain.
-
-See LICENSE-LGPL-3.0 for the full LGPL-3.0 license text.
