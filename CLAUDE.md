@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: February 11, 2026
+**Last Updated**: March 7, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -113,6 +113,7 @@ Bundled JSON (gita_data.json, 35.6 MB)
 - **docs/android-architecture.md** - Android architecture, Kotlin/Compose, build commands
 - **docs/submission_prep.md** - App Store (iOS) submission checklist and code review
 - **docs/play_store_prep.md** - Play Store (Android) submission checklist and configuration
+- **docs/android-playbook.md** - Android distribution guide (GitHub Releases, F-Droid, Play Store)
 
 **Code:**
 - **scripts/** - Data pipeline (Python)
@@ -139,7 +140,8 @@ GitaVani/
 │   ├── architecture.md
 │   ├── android-architecture.md
 │   ├── submission_prep.md
-│   └── play_store_prep.md
+│   ├── play_store_prep.md
+│   └── android-playbook.md
 ├── scripts/
 │   ├── fetch_gita_data.py
 │   ├── parse_gita_data.py
@@ -177,6 +179,10 @@ GitaVani/
 │       │   └── viewmodel/      # GitaViewModel
 │       ├── app/src/main/assets/ # gita_data.json + audio/
 │       └── gradle/             # Build config
+├── .github/workflows/   # CI/CD
+│   └── release.yml      # Android release on v* tag push
+├── fastlane/            # F-Droid metadata (auto-picked up)
+│   └── metadata/android/en-US/  # Title, descriptions, screenshots, icon
 ├── appstore/            # iOS App Store assets
 │   ├── metadata/        # Description, keywords, review notes
 │   └── screenshots/     # iPhone + iPad screenshots
@@ -240,4 +246,11 @@ cd android/GitaVani && ./gradlew bundleRelease
 ### Android Signing
 - Keystore and credentials are gitignored (`keystore/` and `keystore.properties`)
 - `build.gradle.kts` reads signing config from `keystore.properties`
+- Signing config is conditional — builds succeed without keystore (required for F-Droid)
 - Backup the keystore password in a password manager
+
+### Android Distribution
+- **GitHub Releases**: Automated via `.github/workflows/release.yml` — push a `v*` tag to build + publish
+- **F-Droid**: Metadata submitted (MR #34390). Future updates auto-detected from version tags
+- **Play Store**: Internal testing live. Needs 12 testers for closed testing before production
+- **Releasing updates**: Bump versionCode/versionName in `build.gradle.kts`, tag, push

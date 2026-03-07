@@ -1,8 +1,8 @@
 # Current State
 
-**Last Updated**: February 19, 2026
+**Last Updated**: March 7, 2026
 
-## Status: iOS Submitted for Review / Android Dev Build Ready
+## Status: iOS Submitted for Review / Android Distributed (GitHub, F-Droid pending, Play Store pending)
 
 All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
@@ -96,7 +96,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 
 ## Android App
 
-**Status**: Internal testing release live on Google Play Console — full feature parity with iOS
+**Status**: Distributed via GitHub Releases + F-Droid (pending review) + Play Store (pending closed testing)
 
 ### What's Done (Android)
 - [x] Project setup — Kotlin + Jetpack Compose, min API 26, Gradle 8.11.1
@@ -119,15 +119,17 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] App icon — iOS lotus + open book design at all mipmap densities
 - [x] Code review — MediaPlayer leak fix, lifecycle awareness, try/catch safety, release minification
 
-### What's Next (Android)
+### Distribution Setup (Android)
+- [x] Release signing — keystore + keystore.properties (gitignored), conditional config for F-Droid
+- [x] GitHub Actions — automated APK + AAB builds on tag push (`.github/workflows/release.yml`)
+- [x] GitHub Releases — v1.0.0 APK available for direct download
+- [x] F-Droid — metadata submitted (MR #34390), Fastlane metadata in repo (`fastlane/metadata/android/`)
 - [x] Play Store developer account ($25) — created
-- [x] Signed release build (AAB) — 134 MB, signed with release keystore
-- [x] ~~Play Asset Delivery~~ — not needed, AAB is under 150 MB limit
-- [x] Play Console device verification (Pixel 8a) — done
-- [x] Phone number verification — done
+- [x] Signed release build (AAB) — 134 MB, under 150 MB limit
+- [x] Play Console device + phone verification — done
 - [x] Play Store listing (description, screenshots, graphics) — done
 - [x] Internal testing release — v1.0.0 published Feb 19
-- [ ] Identity verification — pending (1-7 days)
+- [ ] Identity verification — pending
 - [ ] Closed testing (12 opted-in testers required for production)
 - [ ] Production release
 
@@ -162,6 +164,9 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Release AAB (134 MB) | Done |
 | Play Store listing | Done |
 | Internal testing release | Done |
+| GitHub Actions CI/CD | Done |
+| GitHub Releases (APK) | Done |
+| F-Droid submission | Pending review (MR #34390) |
 | Closed testing (12 testers) | Not started |
 | Production release | Blocked |
 

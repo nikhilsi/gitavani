@@ -1,8 +1,8 @@
 # Changelog
 
-## [Android 1.0.0] - 2026-02-19
+## [Android 1.0.0] - 2026-03-07
 
-Native Android version — full feature parity with iOS. Internal testing release on Google Play Console.
+Native Android version — full feature parity with iOS. Distributed via GitHub Releases, F-Droid (pending review), and Google Play (pending closed testing).
 
 ### Added
 - Native Kotlin + Jetpack Compose app (min API 26, target API 35)
@@ -26,11 +26,14 @@ Native Android version — full feature parity with iOS. Internal testing releas
 - App icon matching iOS (lotus + open book on saffron gradient)
 - FileProvider for secure image sharing
 - Android architecture documentation (docs/android-architecture.md)
-- Release signing — keystore generated (RSA 2048-bit, 10,000-day validity)
-- Signed release AAB — 134 MB (under 150 MB Play Store limit, no Play Asset Delivery needed)
-- Google Play Console setup — app created, store listing, content declarations, screenshots
-- Internal testing release — v1.0.0 uploaded and published to internal track
+- Release signing — keystore with conditional config (F-Droid compatible)
+- Signed release AAB — 134 MB (under 150 MB Play Store limit)
+- GitHub Actions workflow — automated APK + AAB builds on tag push
+- GitHub Releases — direct APK download for sideloading
+- F-Droid submission — metadata YAML + Fastlane structure in repo
+- Google Play Console — store listing, content declarations, screenshots, internal testing
 - Play Store metadata and screenshots archived in playstore/ folder
+- Android distribution playbook (docs/android-playbook.md)
 - Play Store submission prep doc (docs/play_store_prep.md)
 
 ### Fixed

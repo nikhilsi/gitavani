@@ -2,6 +2,7 @@
 
 > Android app submission checklist and configuration reference
 > Created: February 19, 2026
+> Updated: March 7, 2026
 
 ---
 
@@ -147,6 +148,9 @@ Tablet screenshots (same sequence, 4 screens):
 | Release signing (keystore) | Done |
 | Signed AAB uploaded | Done |
 | Internal testing release | Done |
+| GitHub Actions CI/CD | Done |
+| GitHub Releases (APK download) | Done |
+| F-Droid submission (MR #34390) | Pending review |
 | Closed testing (12 testers) | Not started |
 | Production release | Blocked on identity verification + closed test |
 

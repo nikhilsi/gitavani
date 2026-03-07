@@ -1,6 +1,6 @@
 # GitaVani Android — Architecture
 
-**Last Updated**: February 19, 2026
+**Last Updated**: March 7, 2026
 
 ## Overview
 
@@ -151,17 +151,41 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 # Install on emulator
 ~/Library/Android/sdk/platform-tools/adb install -r app/build/outputs/apk/debug/app-debug.apk
 
-# Release build (requires signing)
+# Release APK (requires signing)
 ./gradlew assembleRelease
+
+# Release AAB (for Play Store)
+./gradlew bundleRelease
 ```
 
-## APK Size
+## Release Size
 
 | Component | Size |
 |-----------|------|
 | Code + resources | ~6 MB |
 | gita_data.json | 35.6 MB |
 | Audio (701 MP3s) | 126 MB |
-| **Total APK** | **~153 MB** |
+| **Release AAB** | **134 MB** (under 150 MB Play Store limit) |
 
-For Play Store: will need Play Asset Delivery for audio files (150 MB AAB limit).
+R8 minification (isMinifyEnabled + isShrinkResources) keeps the AAB under 150 MB. No Play Asset Delivery needed.
+
+## Signing
+
+- Keystore: `keystore/gitavani-release.jks` (gitignored)
+- Credentials: `keystore.properties` (gitignored)
+- `build.gradle.kts` reads signing config conditionally — builds succeed without keystore (for F-Droid)
+
+## Distribution
+
+| Channel | How | Auto-update |
+|---------|-----|-------------|
+| GitHub Releases | Push `v*` tag → GitHub Actions builds APK + AAB | Yes (on tag) |
+| F-Droid | Submitted MR #34390 to fdroiddata | Yes (detects new tags) |
+| Google Play | Upload AAB manually in Play Console | Manual |
+
+### Release Process
+1. Bump `versionCode` (integer) and `versionName` in `app/build.gradle.kts`
+2. Commit and tag: `git tag v1.1.0 && git push origin main --tags`
+3. GitHub Actions auto-builds and publishes to GitHub Releases
+4. F-Droid auto-detects the new tag (1-2 week build cycle)
+5. Play Store: manually upload new AAB in Play Console

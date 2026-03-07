@@ -46,6 +46,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 
 ```
 GitaVani/
+├── .github/workflows/   # CI/CD (Android release on tag push)
 ├── docs/                # Architecture documentation
 ├── scripts/             # Data pipeline (Python)
 │   ├── fetch_gita_data.py      # Fetch from API
@@ -54,6 +55,7 @@ GitaVani/
 ├── data/                # Generated JSON data (35.6 MB)
 ├── ios/GitaVani/        # Xcode project (SwiftUI)
 ├── android/GitaVani/    # Android Studio project (Kotlin + Compose)
+├── fastlane/            # F-Droid metadata (auto-picked up by F-Droid)
 ├── appstore/            # iOS App Store metadata & screenshots
 └── playstore/           # Google Play Store metadata & screenshots
 ```
@@ -93,6 +95,7 @@ cd android/GitaVani && ./gradlew bundleRelease
 
 ### Android
 - **Direct APK**: Download from [GitHub Releases](https://github.com/nikhilsi/gitavani/releases) — install directly on any Android 8.0+ device
+- **F-Droid**: Coming soon (submitted, pending review)
 - **Play Store**: Coming soon (in review)
 
 ### iOS
