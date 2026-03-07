@@ -89,10 +89,24 @@ cd android/GitaVani && ./gradlew assembleDebug
 cd android/GitaVani && ./gradlew bundleRelease
 ```
 
-## App Store / Play Store
+## Download
 
-- **iOS**: v1.0.0 (build 3) submitted for App Store review
-- **Android**: v1.0.0 internal testing release on Google Play Console
+### Android
+- **Direct APK**: Download from [GitHub Releases](https://github.com/nikhilsi/gitavani/releases) — install directly on any Android 8.0+ device
+- **Play Store**: Coming soon (in review)
+
+### iOS
+- **App Store**: v1.0.0 submitted for review
+
+## Help Get GitaVani on the Play Store
+
+Google requires **12 testers** to opt in before an app can go to production on the Play Store. If you have an Android phone and want to help:
+
+1. [Join the closed test](https://play.google.com/apps/testing/com.nikhilsi.gitavani)
+2. Install the app from the Play Store link that appears
+3. That's it — you're helping an open-source, ad-free Gita app reach everyone
+
+No personal data collected. Takes 2 minutes. Thank you!
 
 ## Data Source
 
