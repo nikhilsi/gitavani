@@ -30,7 +30,7 @@ Native Android version — full feature parity with iOS. Distributed via GitHub 
 - Signed release AAB — 134 MB (under 150 MB Play Store limit)
 - GitHub Actions workflow — automated APK + AAB builds on tag push
 - GitHub Releases — direct APK download for sideloading
-- F-Droid submission — metadata YAML + Fastlane structure in repo
+- F-Droid submission — metadata YAML + Fastlane structure in repo, [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) submitted (pending review)
 - Google Play Console — store listing, content declarations, screenshots, internal testing
 - Play Store metadata and screenshots archived in playstore/ folder
 - Android distribution playbook (docs/android-playbook.md)

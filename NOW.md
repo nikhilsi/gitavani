@@ -15,7 +15,7 @@ Feature complete. Distributed via GitHub Releases. F-Droid and Play Store pendin
 | Channel | Status | Notes |
 |---------|--------|-------|
 | GitHub Releases | Live | APK + AAB auto-built on tag push via GitHub Actions |
-| F-Droid | Pending review | MR #34390 submitted Mar 7 — expect 2-4 week review |
+| F-Droid | Pending review | [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) submitted Mar 7 — expect 2-4 week review |
 | Google Play Store | Internal testing | Blocked on 12 testers for closed testing + identity verification |
 
 ### What's Done
@@ -25,7 +25,7 @@ Feature complete. Distributed via GitHub Releases. F-Droid and Play Store pendin
 - GitHub Secrets configured (KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD)
 - v1.0.0 tag pushed — triggered automated release build
 - Fastlane metadata structure in repo (`fastlane/metadata/android/en-US/`)
-- F-Droid metadata submitted to fdroiddata (GitLab MR #34390)
+- F-Droid metadata submitted to fdroiddata ([MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390))
 - Play Store listing, screenshots, and internal testing release
 - Android distribution playbook (`docs/android-playbook.md`)
 

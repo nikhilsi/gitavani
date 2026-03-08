@@ -353,15 +353,12 @@ fastlane/metadata/android/en-US/
 
 ```yaml
 Categories:
-  - Reading
+  - News
 License: MIT
 AuthorName: Your Name
 SourceCode: https://github.com/yourname/yourapp
 IssueTracker: https://github.com/yourname/yourapp/issues
-
-Summary: One-line description of your app
-Description: |
-  Multi-line description here.
+Changelog: https://github.com/yourname/yourapp/blob/main/CHANGELOG.md
 
 RepoType: git
 Repo: https://github.com/yourname/yourapp.git
@@ -380,10 +377,28 @@ CurrentVersion: 1.0.0
 CurrentVersionCode: 1
 ```
 
-4. Submit a merge request
+**IMPORTANT — what NOT to put in the YAML:**
+- Do NOT add `Summary` or `Description` fields. F-Droid pulls these from your fastlane metadata (`fastlane/metadata/android/en-US/short_description.txt` and `full_description.txt`). Duplicating them in the YAML will get flagged in review.
+- Use a single, specific category from the [F-Droid categories list](https://f-droid.org/docs/Build_Metadata_Reference/#Categories) (e.g., `News`, `Reading`, `Navigation`, `Science & Education`). Don't use multiple generic categories.
+
+4. Submit a merge request — **use the "App Inclusion" template**:
+   - When creating/editing the MR, select the "App inclusion" description template from the dropdown
+   - It provides a checklist of requirements — check the boxes that apply
+   - Do NOT write a custom MR description with app summary/features — that info comes from fastlane metadata
+   - Example MR description:
+   ```
+   - [x] The app complies with the inclusion criteria
+   - [x] The original app author has been notified (I am the author)
+   - [x] All related fdroiddata and RFP issues have been referenced
+   - [x] Builds with `fdroid build`
+   - [x] Metadata is in upstream repo (fastlane structure)
+   - [x] Releases are tagged
+   ```
 5. Wait 2-4 weeks for review
 6. After merge, app appears in F-Droid within 24-48 hours
 7. Future updates are **automatic** — F-Droid detects new tags
+
+**Note:** Pipeline failures on your fork are expected and can be ignored. The real CI only runs on the main fdroiddata project when reviewers trigger it.
 
 ### Important: Make signing config conditional
 
@@ -526,7 +541,8 @@ base64 -i release.jks | gh secret set KEYSTORE_BASE64
 [ ] Write store metadata
 [ ] Set up GitHub Actions for automated releases
 [ ] Tag and push for GitHub Release
-[ ] Add Fastlane metadata and submit to F-Droid
+[ ] Add Fastlane metadata (title, descriptions, changelog in fastlane/metadata/android/en-US/)
+[ ] Submit F-Droid MR (no Summary/Description in YAML, use App Inclusion template)
 [ ] Create Play Console listing
 [ ] Upload to internal testing → closed testing → production
 ```

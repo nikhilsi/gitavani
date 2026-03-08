@@ -1,6 +1,6 @@
 # Current State
 
-**Last Updated**: March 7, 2026
+**Last Updated**: March 8, 2026
 
 ## Status: iOS Submitted for Review / Android Distributed (GitHub, F-Droid pending, Play Store pending)
 
@@ -123,7 +123,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Release signing — keystore + keystore.properties (gitignored), conditional config for F-Droid
 - [x] GitHub Actions — automated APK + AAB builds on tag push (`.github/workflows/release.yml`)
 - [x] GitHub Releases — v1.0.0 APK available for direct download
-- [x] F-Droid — metadata submitted (MR #34390), Fastlane metadata in repo (`fastlane/metadata/android/`)
+- [x] F-Droid — [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) submitted, pending review. Fastlane metadata in repo (`fastlane/metadata/android/`). Summary/description pulled from fastlane (not YAML).
 - [x] Play Store developer account ($25) — created
 - [x] Signed release build (AAB) — 134 MB, under 150 MB limit
 - [x] Play Console device + phone verification — done
@@ -166,7 +166,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Internal testing release | Done |
 | GitHub Actions CI/CD | Done |
 | GitHub Releases (APK) | Done |
-| F-Droid submission | Pending review (MR #34390) |
+| F-Droid submission | Pending review ([MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390)) |
 | Closed testing (12 testers) | Not started |
 | Production release | Blocked |
 
