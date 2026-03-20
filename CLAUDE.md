@@ -17,6 +17,9 @@
 6. **NOW.md** - What to work on next
 7. **`git log --oneline -10`** - Recent commits
 
+
+- Before beginning implementation, check with your project lead for any cross-session context or coordination notes that may affect this work.
+
 ---
 
 ## 🚨 Critical Rules
