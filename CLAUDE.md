@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: March 7, 2026
+**Last Updated**: November 9, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -16,9 +16,6 @@
 5. **CHANGELOG.md** - Version history & recent changes
 6. **NOW.md** - What to work on next
 7. **`git log --oneline -10`** - Recent commits
-
-
-- Before beginning implementation, check with your project lead for any cross-session context or coordination notes that may affect this work.
 
 ---
 
@@ -254,6 +251,6 @@ cd android/GitaVani && ./gradlew bundleRelease
 
 ### Android Distribution
 - **GitHub Releases**: Automated via `.github/workflows/release.yml` — push a `v*` tag to build + publish
-- **F-Droid**: Metadata submitted (MR #34390). Future updates auto-detected from version tags
+- **F-Droid**: Live since Apr 27, 2026 (MR #34390 merged). New version tags are picked up automatically
 - **Play Store**: Internal testing live. Needs 12 testers for closed testing before production
 - **Releasing updates**: Bump versionCode/versionName in `build.gradle.kts`, tag, push

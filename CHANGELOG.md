@@ -1,5 +1,10 @@
 # Changelog
 
+## [Android 1.0.0 on F-Droid] - 2026-04-27
+
+- F-Droid merged [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) and published v1.0.0
+- F-Droid builds from source and checks for new `v*` tags on its own (`UpdateCheckMode: Tags`)
+
 ## [Android 1.0.0] - 2026-03-07
 
 Native Android version — full feature parity with iOS. Distributed via GitHub Releases, F-Droid (pending review), and Google Play (pending closed testing).
@@ -44,6 +49,10 @@ Native Android version — full feature parity with iOS. Distributed via GitHub 
 - Language toggle buttons now fill equal width (was left-aligned)
 - Icon deprecation warnings (Subject, OpenInNew → AutoMirrored variants)
 - Release build minification enabled (isMinifyEnabled + isShrinkResources)
+
+## [iOS 1.0.0 on the App Store] - 2026-02-18
+
+- Apple approved v1.0.0 and it went live on the App Store (date from the public App Store listing)
 
 ## [1.3.0] - 2026-02-14
 

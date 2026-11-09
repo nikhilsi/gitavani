@@ -1,10 +1,10 @@
 # Current State
 
-**Last Updated**: March 8, 2026
+**Last Updated**: November 9, 2026
 
-## Status: iOS Submitted for Review / Android Distributed (GitHub, F-Droid pending, Play Store pending)
+## Status: iOS Live on the App Store / Android Live on F-Droid and GitHub (Google Play not public yet)
 
-All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
+All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has been live on the App Store since Feb 18, 2026.
 
 ### What's Done
 
@@ -91,12 +91,13 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Update help screen for V2 features
 - [x] V3 audio — 701 verse recordings bundled at 96kbps
 - [x] App Store submission — v1.0.0 (build 3) submitted for review
+- [x] App Store release: v1.0.0 live Feb 18, 2026
 
 ---
 
 ## Android App
 
-**Status**: Distributed via GitHub Releases + F-Droid (pending review) + Play Store (pending closed testing)
+**Status**: Live on GitHub Releases and F-Droid (since Apr 27, 2026). Google Play not public (closed testing not started as of March 2026)
 
 ### What's Done (Android)
 - [x] Project setup — Kotlin + Jetpack Compose, min API 26, Gradle 8.11.1
@@ -123,7 +124,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 - [x] Release signing — keystore + keystore.properties (gitignored), conditional config for F-Droid
 - [x] GitHub Actions — automated APK + AAB builds on tag push (`.github/workflows/release.yml`)
 - [x] GitHub Releases — v1.0.0 APK available for direct download
-- [x] F-Droid — [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) submitted, pending review. Fastlane metadata in repo (`fastlane/metadata/android/`). Summary/description pulled from fastlane (not YAML).
+- [x] F-Droid: [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) merged Apr 27, 2026. v1.0.0 is live on F-Droid. Fastlane metadata in repo (`fastlane/metadata/android/`). Summary/description pulled from fastlane (not YAML).
 - [x] Play Store developer account ($25) — created
 - [x] Signed release build (AAB) — 134 MB, under 150 MB limit
 - [x] Play Console device + phone verification — done
@@ -166,7 +167,7 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Internal testing release | Done |
 | GitHub Actions CI/CD | Done |
 | GitHub Releases (APK) | Done |
-| F-Droid submission | Pending review ([MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390)) |
+| F-Droid | Live (v1.0.0, Apr 27, 2026) |
 | Closed testing (12 testers) | Not started |
 | Production release | Blocked |
 
@@ -219,5 +220,5 @@ All V1 + V2 + V3 (audio) features built, tested, and submitted for Apple review.
 | Dynamic Type | Done |
 | Share verse | Done |
 | Sanskrit verse audio | Done |
-| App Store submission | Waiting for Review |
+| App Store release | Live (v1.0.0, Feb 18, 2026) |
 | iPad layout | Done |

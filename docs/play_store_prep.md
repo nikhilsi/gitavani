@@ -150,7 +150,7 @@ Tablet screenshots (same sequence, 4 screens):
 | Internal testing release | Done |
 | GitHub Actions CI/CD | Done |
 | GitHub Releases (APK download) | Done |
-| F-Droid submission (MR #34390) | Pending review |
+| F-Droid submission (MR #34390) | Live (merged Apr 27, 2026) |
 | Closed testing (12 testers) | Not started |
 | Production release | Blocked on identity verification + closed test |
 

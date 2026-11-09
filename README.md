@@ -95,11 +95,11 @@ cd android/GitaVani && ./gradlew bundleRelease
 
 ### Android
 - **Direct APK**: Download from [GitHub Releases](https://github.com/nikhilsi/gitavani/releases) — install directly on any Android 8.0+ device
-- **F-Droid**: Coming soon (submitted, pending review)
-- **Play Store**: Coming soon (in review)
+- **F-Droid**: [Get it on F-Droid](https://f-droid.org/packages/com.nikhilsi.gitavani/)
+- **Play Store**: Coming soon. Google needs 12 testers first (see below)
 
 ### iOS
-- **App Store**: v1.0.0 submitted for review
+- **App Store**: [Download on the App Store](https://apps.apple.com/us/app/gitavani/id6759077934)
 
 ## Help Get GitaVani on the Play Store
 

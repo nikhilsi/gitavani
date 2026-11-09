@@ -180,7 +180,7 @@ R8 minification (isMinifyEnabled + isShrinkResources) keeps the AAB under 150 MB
 | Channel | How | Auto-update |
 |---------|-----|-------------|
 | GitHub Releases | Push `v*` tag → GitHub Actions builds APK + AAB | Yes (on tag) |
-| F-Droid | Submitted MR #34390 to fdroiddata | Yes (detects new tags) |
+| F-Droid | Live since Apr 27, 2026 (MR #34390 merged) | Yes (detects new tags) |
 | Google Play | Upload AAB manually in Play Console | Manual |
 
 ### Release Process

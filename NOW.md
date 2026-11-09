@@ -1,40 +1,23 @@
-# Now — Current Priorities
+# Now: Current Priorities
 
-**Last Updated**: March 7, 2026
+**Last Updated**: November 9, 2026
 
-## Phase: Android Distribution — Multi-Channel Release
+## Phase: Choosing What to Build Next
 
-### iOS Status
-V1.0.0 (build 3) submitted for App Store review. Waiting.
-
-### Android Status
-Feature complete. Distributed via GitHub Releases. F-Droid and Play Store pending.
-
-### Distribution Channels
+### Where It Stands
 
 | Channel | Status | Notes |
 |---------|--------|-------|
-| GitHub Releases | Live | APK + AAB auto-built on tag push via GitHub Actions |
-| F-Droid | Pending review | [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) submitted Mar 7 — expect 2-4 week review |
-| Google Play Store | Internal testing | Blocked on 12 testers for closed testing + identity verification |
+| iOS App Store | Live | v1.0.0, released Feb 18, 2026 |
+| F-Droid | Live | v1.0.0. [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) merged Apr 27, 2026. Picks up new `v*` tags on its own |
+| GitHub Releases | Live | v1.0.0 APK + AAB, built by GitHub Actions on tag push |
+| Google Play | Not public | Internal testing since Feb 19, 2026. Production needs identity verification and 12 closed-test testers. Play Console not rechecked since March |
 
-### What's Done
-- Native Kotlin + Jetpack Compose app — full feature parity with iOS
-- Release signing with conditional config (works without keystore for F-Droid)
-- GitHub Actions workflow (`.github/workflows/release.yml`) — auto-builds on `v*` tags
-- GitHub Secrets configured (KEYSTORE_BASE64, KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD)
-- v1.0.0 tag pushed — triggered automated release build
-- Fastlane metadata structure in repo (`fastlane/metadata/android/en-US/`)
-- F-Droid metadata submitted to fdroiddata ([MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390))
-- Play Store listing, screenshots, and internal testing release
-- Android distribution playbook (`docs/android-playbook.md`)
+### Active
 
-### Waiting On
-1. **F-Droid review** — 2-4 weeks, may request changes via GitLab
-2. **Play Store identity verification** — pending from Google
-3. **12 testers for closed testing** — recruiting via README callout and community
+- **Next features.** Discussion started Nov 9, 2026. The goal is to give more to the world. Nothing chosen yet.
 
-### Completed Phases
-- ~~Phase 1-10: Android app development~~
-- ~~Phase 11: Documentation~~
-- ~~Phase 12: Distribution setup (GitHub + F-Droid + Play Store)~~
+### Before the Next Release
+
+- **iOS:** EU trader status is unset on the Apple developer account (the same account ships GetClearNews). Apple wants it set before an update can be submitted. Noted Nov 2026; confirm in App Store Connect.
+- **Google Play:** check identity verification in Play Console. Then recruit 12 testers for the closed test (the README has the callout).
