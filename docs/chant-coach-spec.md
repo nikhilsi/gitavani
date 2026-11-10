@@ -2,7 +2,7 @@
 
 **Status:** Reviewed. Revised after the independent review (docs/reviews/chant-coach-spec-review.md) and the Android trial. Nothing built yet.  
 **Written:** November 9, 2026  
-**Phases:** Phase 1 ships word-by-word meanings on iOS and Android. Phase 2 ships Learn.
+**Release:** both phases ship together as version 1.1 (D8). Phase 1 (Word by word) is built and in TestFlight. Phase 2 (Learn) is being built.
 
 ---
 
@@ -38,7 +38,7 @@ Review research on Nov 9, 2026 covered 1,324 written iOS reviews across 57 Gita 
 | D5 | The button says "Learn". The lesson screen is titled "Abhyāsa". The Help screen explains the name with 6.35. | Nov 9, 2026 |
 | D6 | Version 1 checks skipped and wrong words only. No pause check, no pronunciation, no melody. | Nov 9, 2026 (pause check cut after review R2) |
 | D7 | No third-party libraries. Free, no ads, no login. Audio never leaves the phone. | Nov 9, 2026 |
-| D8 | Two phases. Word by word ships first as its own release. | Nov 9, 2026 (review R14) |
+| D8 | Two phases, built in order: Word by word first (review R14), then Learn. Both ship together in one release, 1.1. Nikhil: Word by word alone is too small a release. | Nov 9, 2026 |
 | D9 | "Not checked" is decided on the phone when a lesson opens, by running the reciter's lines through the phone's own recognizer. | Nov 9, 2026 (review R5) |
 | D10 | Expected text and line breaks come from the Devanagari, not the transliteration field. | Nov 9, 2026 (review R7) |
 | D11 | Android ships Learn together with iOS. The Pixel 8a trial matched Apple's results (section 15). | Nov 9, 2026 |
@@ -284,9 +284,12 @@ Each step becomes a task when work starts. Each ends with a check.
 3. Approval line, given Nov 9, 2026: "Build Phase 1 on iOS and Android. Commit and push to main as you go. Test builds to TestFlight and Play internal testing are OK. App Store, Play production and F-Droid releases need my go."
 4. `build_chant_data.py` word parts with every check in 8.2. Done when validation passes and flagged verses are hand-reviewed.
 5. Word by word view on iOS and Android. Done when Nikhil checks 10 verses on each phone.
-6. Release both, on Nikhil's go. EU trader status is already set (non-trader, since Nov 6, 2026), so it doesn't block.
+6. Ships with Phase 2 as 1.1 (D8), on Nikhil's go. EU trader status is already set (non-trader, since Nov 6, 2026), so it doesn't block.
 
 **Phase 2, Learn**
+
+Approval line, given Nov 9, 2026: "Build Learn (Phase 2) on iOS and Android. Commit and push to main as you go. Test builds to TestFlight are OK. App Store, Play and F-Droid releases need my go." Tasks #494 to #500.
+
 7. Line timings (8.4). Done when every line passes the per-line check.
 8. Labelled take set (section 11).
 9. ChantScorer on both platforms with tests. Done when the held-back targets pass.

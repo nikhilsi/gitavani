@@ -2,7 +2,7 @@
 
 ## [1.1.0] - Unreleased (in testing)
 
-Word by word, on iOS and Android. Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md).
+Word by word, on iOS and Android. Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). Learn (Phase 2) is being built for the same release.
 
 ### Added
 - Word by word card on every verse: each word in Devanagari and IAST with its meaning, from the word lists in Swami Sivananda's English commentary. 693 of 701 verses (8,840 word parts). The other 8 say meanings aren't available yet.

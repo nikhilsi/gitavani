@@ -2,7 +2,7 @@
 
 **Last Updated**: November 9, 2026
 
-## Phase: Word by Word (1.1) in Testing, Learn Next
+## Phase: Building Learn for 1.1
 
 ### Where It Stands
 
@@ -15,10 +15,10 @@
 
 ### Active
 
-- **Word by word (version 1.1).** Built on iOS and Android, Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md).
-  - Next: TestFlight and Play internal test builds, then Nikhil checks 10 verses on each phone.
-  - App Store, Play production and F-Droid releases wait for his go.
-- **Learn (Abhyāsa), the chant coach.** Phase 2 of the same spec. Starts after 1.1 ships.
+- **Version 1.1 is Word by word plus Learn, released together** (Nikhil, Nov 9).
+  - Word by word: built on both platforms. iOS 1.1 (5) is in TestFlight (Nikhil's internal group; Family Testers after beta review). Android was checked on the Pixel.
+  - Learn (Abhyāsa): being built, Phase 2 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). CenterEye tasks #494 to #500.
+  - App Store, Play and F-Droid releases wait for Nikhil's go.
 
 ### Before the Next Release
 
