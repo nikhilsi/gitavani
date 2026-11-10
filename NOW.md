@@ -13,9 +13,9 @@
 - Docs, Help, spec and store text drafts are updated. Nothing has been submitted to any store.
 
 **In flight**
-- iOS 1.1 (7), Learn plus the fixes: in Nikhil's internal TestFlight group now. It is "Waiting for Review" for Family Testers, so Urmila gets it once Apple approves.
+- iOS 1.1 (7), Learn plus the fixes: in Nikhil's internal TestFlight group now. It is "Waiting for Review" for Family Testers. Urmila gets it once Apple approves.
 - Build 5 (Word by word only) was taken out of review, not expired. It won't ship.
-- Urmila is updating her iPhone to iOS 27, which Learn needs. ClearNews: she already has 2.1 (6).
+- Urmila is updating her iPhone to iOS 27. Learn needs it. ClearNews: she already has 2.1 (6).
 - Nikhil's tester entry had dropped out of his internal group (cause unknown). Re-added Nov 9.
 - Family Testers in both apps also hold two old, never-accepted invites (Nikhil's kids). Left in place on purpose.
 
