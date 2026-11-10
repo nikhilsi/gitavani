@@ -22,5 +22,5 @@
 
 ### Before the Next Release
 
-- **iOS:** EU trader status is unset on the Apple developer account (the same account ships GetClearNews). Apple wants it set before an update can be submitted. Noted Nov 2026; confirm in App Store Connect.
+- **iOS:** nothing blocking. EU trader status was already set: non-trader, Digital Services Act "Active" since Nov 6, 2026 (checked in App Store Connect by the ClearNews session on Nov 9). An earlier note here said it was unset; that was wrong.
 - **Google Play:** check identity verification in Play Console. Then recruit 12 testers for the closed test (the README has the callout).

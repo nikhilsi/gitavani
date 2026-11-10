@@ -284,7 +284,7 @@ Each step becomes a task when work starts. Each ends with a check.
 3. Approval line, given Nov 9, 2026: "Build Phase 1 on iOS and Android. Commit and push to main as you go. Test builds to TestFlight and Play internal testing are OK. App Store, Play production and F-Droid releases need my go."
 4. `build_chant_data.py` word parts with every check in 8.2. Done when validation passes and flagged verses are hand-reviewed.
 5. Word by word view on iOS and Android. Done when Nikhil checks 10 verses on each phone.
-6. Release both. iOS needs EU trader status set in App Store Connect first, since it blocks any update.
+6. Release both, on Nikhil's go. EU trader status is already set (non-trader, since Nov 6, 2026), so it doesn't block.
 
 **Phase 2, Learn**
 7. Line timings (8.4). Done when every line passes the per-line check.

@@ -74,7 +74,7 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Word by word card under the action bar, closed by default, state remembered
 - [x] Help entry
 - [ ] TestFlight build and Nikhil's check of 10 verses
-- [ ] App Store release (needs Nikhil's go and EU trader status)
+- [ ] App Store release (needs Nikhil's go)
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
