@@ -15,7 +15,9 @@
 
 ### In Flight
 
-- iOS 1.1 (7), Learn plus the review fixes: in Nikhil's internal TestFlight group. "Waiting for Review" for Family Testers. Urmila gets it once Apple approves.
+- App Store version 1.1.0 is ready to submit (Nov 10): build 8, new text, keywords and review notes, ten screenshots per device with Learn and Word by word first, automatic release. It waits only for Nikhil's go.
+- Age rating: Apple's new social media question answered No (Nov 10). The rating stays 4+.
+- iOS 1.1 (7) is in beta review for Family Testers. Urmila gets it once Apple approves.
 - Urmila is updating her iPhone to iOS 27. Learn needs it.
 - Build 5 (Word by word only) was taken out of review, not expired. It won't ship.
 
@@ -26,7 +28,7 @@
 3. Read the store text drafts in `appstore/metadata`, `playstore/metadata` and `fastlane/metadata`.
 4. F-Droid: decide whether Learn needs an anti-feature note. The speech recognizer is Google's on most phones.
 5. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
-6. iOS 1.1 release: build 8 (with the About microphone line) and App Review, on Nikhil's go. Android release on hold (see Decided).
+6. iOS 1.1: submit for App Review on Nikhil's go. It releases automatically when approved. Android release on hold (see Decided).
 
 ### Where It Stands
 

@@ -29,7 +29,8 @@ Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chan
 - Spec for Learn (Abhyāsa), the chant coach, with its independent review in `docs/reviews/`.
 
 ### Changed
-- iOS 1.1 (build 7). Android 1.1.0 (versionCode 2).
+- iOS 1.1 (build 8). Android 1.1.0 (versionCode 2).
+- Learn's text says "device" rather than "phone", since it runs on iPad too.
 - iOS asks for the microphone, Android for RECORD_AUDIO, both only when a lesson opens.
 - iOS debug builds install next to the store app as "GitaVani (test)" (`com.nikhilsi.GitaVani.debug`), as Android debug builds already did.
 - Android adds JUnit 4 for local tests only (`testImplementation`). Nothing new ships in the app.
