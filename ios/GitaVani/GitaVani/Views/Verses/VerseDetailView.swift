@@ -13,6 +13,9 @@ struct VerseDetailView: View {
     @State private var showShareSheet = false
     @State private var showLesson = false
     @State private var deviceCanLearn = false
+    #if DEBUG
+    @State private var debugLessonOpened = false
+    #endif
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -217,13 +220,18 @@ struct VerseDetailView: View {
             }
         }
         .onDisappear {
-            audioService.stop()
+            // Covering this screen with the lesson also counts as disappearing. The lesson runs its own
+            // audio, so leave it alone (the Learn button already stopped the verse).
+            if !showLesson { audioService.stop() }
         }
         .task {
             if #available(iOS 27.0, *) { deviceCanLearn = await ChantListener.deviceCanLearn() }
             #if DEBUG
             // Screenshot aid: "-GVOpenVerse BG4.7 -GVOpenLesson" opens the lesson straight away.
-            if deviceCanLearn, ProcessInfo.processInfo.arguments.contains("-GVOpenLesson") { showLesson = true }
+            if deviceCanLearn, !debugLessonOpened, ProcessInfo.processInfo.arguments.contains("-GVOpenLesson") {
+                debugLessonOpened = true
+                showLesson = true
+            }
             #endif
         }
         .fullScreenCover(isPresented: $showLesson) {

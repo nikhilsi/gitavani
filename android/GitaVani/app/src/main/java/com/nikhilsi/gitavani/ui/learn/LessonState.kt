@@ -1,7 +1,6 @@
 package com.nikhilsi.gitavani.ui.learn
 
 import android.content.Context
-import android.view.accessibility.AccessibilityManager
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +11,8 @@ import com.nikhilsi.gitavani.learn.ChantScorer
 import com.nikhilsi.gitavani.model.VerseWords
 import com.nikhilsi.gitavani.model.WordPart
 import com.nikhilsi.gitavani.state.LearnProgress
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -66,6 +67,10 @@ class LessonState(
         private set
     var message: String? by mutableStateOf(null)
         private set
+    /** From the mic tap until the take is scored. The screen treats this as listening, so nothing
+     *  can change the step under a take that is still starting. */
+    var isRecording by mutableStateOf(false)
+        private set
 
     val listener = ChantListener(context)
 
@@ -102,15 +107,34 @@ class LessonState(
             setup = Setup.NeedsMic
             return
         }
-        setup = when (listener.modelState()) {
+        var state = listener.modelState()
+        if (state == ChantListener.ModelState.DOWNLOADING) {
+            // Android is still fetching the model. Check every few seconds for up to 5 minutes.
+            setup = Setup.Downloading(null)
+            repeat(100) {
+                if (state != ChantListener.ModelState.DOWNLOADING) return@repeat
+                delay(3000)
+                state = listener.modelState()
+            }
+        }
+        setup = when (state) {
             ChantListener.ModelState.INSTALLED -> Setup.Ready
-            ChantListener.ModelState.DOWNLOADING -> Setup.Downloading(null)
+            ChantListener.ModelState.DOWNLOADING ->
+                Setup.Failed("Android is still downloading the Hindi speech model. Try again in a few minutes.")
             ChantListener.ModelState.NEEDS_DOWNLOAD -> Setup.NeedsModel
             ChantListener.ModelState.UNSUPPORTED -> Setup.Failed("Learn isn't available on this phone.")
             ChantListener.ModelState.NOT_ANSWERING ->
                 Setup.Failed("The phone's speech recognition isn't answering. Try again in a minute, or restart the phone.")
         }
         if (setup == Setup.Ready) startCalibration()
+    }
+
+    /** Back from Settings or another app: the microphone may have been turned on meanwhile. */
+    fun resumed() {
+        if ((setup == Setup.MicDenied || setup == Setup.NeedsMic) && ChantListener.micAllowed(context)) {
+            setup = Setup.Checking
+            scope.launch { continueSetup() }
+        }
     }
 
     /** Called with the answer to the system's microphone prompt. */
@@ -280,12 +304,19 @@ class LessonState(
 
     /** The mic button: start a take, or end the one in progress. */
     fun micTapped() {
-        if (listener.phase.value != ChantListener.Phase.IDLE) {
+        if (isRecording) {
             listener.stop()
             return
         }
+        isRecording = true
         stopReciter()
-        scope.launch { record() }
+        scope.launch {
+            try {
+                record()
+            } finally {
+                isRecording = false
+            }
+        }
     }
 
     private suspend fun record() {
@@ -294,8 +325,6 @@ class LessonState(
         message = null
         val (line, skip) = stepScoring()
         val fromMemory = step is Step.Memory
-        // TalkBack announces the button first. Give it a moment so the take doesn't record it (spec 6.7).
-        if (context.getSystemService(AccessibilityManager::class.java)?.isTouchExplorationEnabled == true) delay(1000)
         try {
             val take = listener.take(line, skip, stopsOnSilence = !fromMemory)
             if (take == null) {
@@ -325,4 +354,22 @@ class LessonState(
         listener.stopPlayback()
         stopReciter()
     }
+}
+
+/** Keeps a lesson alive across rotation and other configuration changes. Closed when the screen leaves. */
+@RequiresApi(33)
+class LessonHolder(
+    context: Context,
+    verseId: String,
+    words: VerseWords,
+    audio: AudioService,
+    progress: LearnProgress,
+) : ViewModel() {
+    val lesson = LessonState(context, verseId, words, audio, progress, viewModelScope)
+
+    init {
+        lesson.open()
+    }
+
+    override fun onCleared() = lesson.close()
 }

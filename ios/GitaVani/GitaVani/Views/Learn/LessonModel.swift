@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 /// The lesson's state and steps (docs/chant-coach-spec.md, sections 6.2 to 6.6).
 /// Listen, then each line, then Join (when the verse has more than one line), then From memory:
@@ -38,6 +38,10 @@ final class LessonModel {
     private(set) var lastTake: ChantListener.Take?
     private(set) var message: String?
     private(set) var listener: ChantListener?
+    /// From the mic tap until the take is scored. The screen treats this as listening, so nothing
+    /// can change the step under a take that is still starting.
+    private(set) var isRecording = false
+    private var closed = false
 
     /// Parts the phone can't hear even from the reciter, per line (spec D9).
     private var notChecked: [Int: Set<Int>] = [:]
@@ -59,7 +63,9 @@ final class LessonModel {
 
     func open() async {
         audio.setLessonMode(true)
-        guard let locale = await ChantListener.supportedLocale() else {
+        let locale = await ChantListener.supportedLocale()
+        guard !closed else { return }
+        guard let locale else {
             setup = .failed("Learn isn't available on this device.")
             return
         }
@@ -68,6 +74,7 @@ final class LessonModel {
     }
 
     func close() {
+        closed = true
         calibration?.cancel()
         listener?.close()
         audio.stop()
@@ -80,7 +87,9 @@ final class LessonModel {
             setup = ChantListener.micDenied ? .micDenied : .needsMic
             return
         }
-        if await !listener.modelInstalled() {
+        let installed = await listener.modelInstalled()
+        guard !closed else { return }
+        if !installed {
             setup = .needsModel
             return
         }
@@ -98,6 +107,7 @@ final class LessonModel {
         setup = .downloading(0)
         do {
             try await listener.installModel { [weak self] fraction in self?.setup = .downloading(fraction) }
+            guard !closed else { return }
             await continueSetup()
         } catch {
             setup = .failed("The download didn't finish. Check your connection and try again.")
@@ -112,7 +122,7 @@ final class LessonModel {
     // MARK: - Calibration (spec D9)
 
     private func startCalibration() {
-        guard let listener, let url = Bundle.main.url(forResource: verseId, withExtension: "mp3") else { return }
+        guard !closed, let listener, let url = Bundle.main.url(forResource: verseId, withExtension: "mp3") else { return }
         calibration = Task {
             for i in practiceLines {
                 let line = words.lines[i]
@@ -241,12 +251,16 @@ final class LessonModel {
     /// The mic button: start a take, or end the one in progress.
     func micTapped() {
         guard let listener else { return }
-        if listener.phase != .idle {
+        if isRecording {
             listener.stop()
             return
         }
+        isRecording = true
         stopReciter()
-        Task { await record(with: listener) }
+        Task {
+            await record(with: listener)
+            isRecording = false
+        }
     }
 
     private func record(with listener: ChantListener) async {
@@ -255,8 +269,6 @@ final class LessonModel {
         message = nil
         let scoring = stepScoring
         let fromMemory = if case .memory = step { true } else { false }
-        // VoiceOver announces the button first. Give it a moment so the take doesn't record it (spec 6.7).
-        if UIAccessibility.isVoiceOverRunning { try? await Task.sleep(for: .seconds(1)) }
         do {
             guard let take = try await listener.take(line: scoring.line, notChecked: scoring.notChecked,
                                                      stopsOnSilence: !fromMemory) else {

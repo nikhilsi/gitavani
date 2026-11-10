@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -89,7 +90,10 @@ fun GitaNavGraph(
                 audioService = viewModel.audioService,
                 learnProgress = viewModel.learnProgress,
                 theme = theme,
-                onLearnClick = { navController.navigate(Routes.learn(it)) },
+                onLearnClick = {
+                    // Ignore a second tap while the first one is still navigating.
+                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) navController.navigate(Routes.learn(it))
+                },
                 onSettingsClick = { navController.navigate(Routes.SETTINGS) },
                 onBack = {
                     viewModel.audioService.stop()
@@ -113,7 +117,10 @@ fun GitaNavGraph(
                     learnProgress = viewModel.learnProgress,
                     theme = theme,
                     fontSize = fontSize,
-                    onClose = { navController.popBackStack() }
+                    onClose = {
+                        // Close then Done, or a double tap, must not also pop the verse screen.
+                        if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) navController.popBackStack()
+                    }
                 )
             }
         }

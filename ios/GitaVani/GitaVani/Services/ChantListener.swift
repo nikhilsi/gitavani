@@ -1,5 +1,6 @@
 import AVFoundation
 import Speech
+import UIKit
 
 /// Learn's listening (docs/chant-coach-spec.md, sections 6.2, 6.3 and 7.1).
 ///
@@ -142,6 +143,8 @@ final class ChantListener {
             phase = .idle
             scoring = nil
         }
+        // VoiceOver announces the mic button first. Give it a moment so the take doesn't record it (spec 6.7).
+        if UIAccessibility.isVoiceOverRunning { try? await Task.sleep(for: .seconds(1)) }
 
         let session = try await RecognizerSession(locale: locale, keepsAudio: true) { text in
             Task { @MainActor in self.heard(text) }

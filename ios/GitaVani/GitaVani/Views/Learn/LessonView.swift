@@ -207,7 +207,9 @@ struct LessonView: View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(Array(model.stepParts.enumerated()), id: \.offset) { index, item in
                 // A take where nothing was heard gets the tip only, not a row of Slipped marks.
-                let mark = model.result?.tipKind == .nothingHeard ? nil : model.result?.marks[index]
+                let mark = model.result.flatMap { r in
+                    r.tipKind != .nothingHeard && r.marks.indices.contains(index) ? r.marks[index] : nil
+                }
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                     markSymbol(mark)
                     WordPartRow(part: item.part, theme: theme, fontSize: fontSize)
@@ -259,10 +261,13 @@ struct LessonView: View {
         case .slipped: return "Listen again to \(word)."
         case .unfinished: return oneLine ? "That take didn't finish. Try the whole line." : "That take didn't finish. Try the whole verse."
         case .allRight:
+            // Every part was Not checked (calibration): nothing was actually judged.
+            if !result.marks.contains(.right) {
+                return "None of these words can be checked on this phone yet."
+            }
             switch model.step {
             case .line(let n) where n + 1 < model.practiceLines.count: return "All words right. Next line when you're ready."
             case .memory(hints: true): return "All words right. Next, without the letters."
-            case .memory(hints: false): return "None of these words can be checked on this phone yet. This take can't mark the verse Learned."
             default: return "All words right. Next step when you're ready."
             }
         }
@@ -317,7 +322,7 @@ struct LessonView: View {
         .task { await model.playVerse() }      // the lesson opens with the reciter chanting the verse
     }
 
-    private var listening: Bool { (model.listener?.phase ?? .idle) != .idle }
+    private var listening: Bool { model.isRecording || (model.listener?.phase ?? .idle) != .idle }
 
     private var practiceControls: some View {
         VStack(spacing: 14) {

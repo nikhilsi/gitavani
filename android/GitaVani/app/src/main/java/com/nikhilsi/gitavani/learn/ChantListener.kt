@@ -27,9 +27,12 @@ import android.speech.RecognitionSupport
 import android.speech.RecognitionSupportCallback
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.view.accessibility.AccessibilityManager
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import java.io.OutputStream
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.coroutines.resume
@@ -328,6 +331,8 @@ class ChantListener(private val context: Context) {
 
         try {
             return coroutineScope {
+                // TalkBack announces the mic button first. Give it a moment so the take doesn't record it (spec 6.7).
+                if (context.getSystemService(AccessibilityManager::class.java)?.isTouchExplorationEnabled == true) delay(1000)
                 var heard: String? = null
                 var failure: Exception? = null
                 val session = launch {
@@ -387,30 +392,42 @@ class ChantListener(private val context: Context) {
         if (_phase.value == Phase.STARTING || _phase.value == Phase.LISTENING) stopRequest = false
     }
 
-    /** Reads the mic into the pipe until [stop] or [over] is set. Runs on an IO thread. */
+    /**
+     * Records the mic and writes it to the pipe until [stop] or [over] is set. Runs on the session's
+     * feeding thread. The mic is read on a thread of its own, so a recognizer that stops reading
+     * (a blocked write) can't keep the microphone open: the mic is released when the take ends.
+     */
     private fun record(out: OutputStream, recorded: PcmBuffer, stop: AtomicBoolean, over: AtomicBoolean) {
         val chunk = SAMPLE_RATE / 10
-        val size = maxOf(AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT), chunk * 4)
-        val rec = try {
-            // VOICE_RECOGNITION: the source Android tunes for speech recognizers.
-            AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION, SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, size)
-        } catch (e: SecurityException) {
-            return
-        }
-        try {
-            if (rec.state != AudioRecord.STATE_INITIALIZED) return
-            rec.startRecording()
-            val buf = ShortArray(chunk)
-            while (!stop.get() && !over.get()) {
-                val n = rec.read(buf, 0, chunk)
-                if (n <= 0) break
-                recorded.append(buf, n)
-                out.write(toBytes(buf, 0, n))
+        val queue = LinkedBlockingQueue<ShortArray>(300)        // 30 s of audio waiting for the pipe
+        val reader = Thread {
+            val size = maxOf(AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT), chunk * 4)
+            val rec = try {
+                // VOICE_RECOGNITION: the source Android tunes for speech recognizers.
+                AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION, SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT, size)
+            } catch (e: SecurityException) {
+                return@Thread
             }
-        } finally {
-            runCatching { rec.stop() }
-            rec.release()
+            try {
+                if (rec.state != AudioRecord.STATE_INITIALIZED) return@Thread
+                rec.startRecording()
+                val buf = ShortArray(chunk)
+                while (!stop.get() && !over.get()) {
+                    val n = rec.read(buf, 0, chunk)
+                    if (n <= 0) break
+                    recorded.append(buf, n)
+                    queue.offer(buf.copyOf(n))
+                }
+            } finally {
+                runCatching { rec.stop() }
+                rec.release()
+            }
+        }.apply { isDaemon = true; start() }
+        while (!over.get()) {
+            val next = queue.poll(100, TimeUnit.MILLISECONDS)
+            if (next != null) out.write(toBytes(next, 0, next.size))
+            else if (!reader.isAlive) break
         }
     }
 

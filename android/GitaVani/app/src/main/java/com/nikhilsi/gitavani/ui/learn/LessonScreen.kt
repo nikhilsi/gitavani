@@ -69,6 +69,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nikhilsi.gitavani.audio.AudioService
 import com.nikhilsi.gitavani.learn.ChantListener
 import com.nikhilsi.gitavani.learn.ChantScorer
@@ -93,19 +94,24 @@ fun LessonScreen(
     onClose: () -> Unit,
 ) {
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val lesson = remember(verseId) { LessonState(context, verseId, words, audioService, learnProgress, scope) }
+    // Kept in a ViewModel tied to this screen, so rotating the phone doesn't restart the lesson.
+    val holder: LessonHolder = viewModel(key = "lesson-$verseId") {
+        LessonHolder(context.applicationContext, verseId, words, audioService, learnProgress)
+    }
+    val lesson = holder.lesson
     val micPrompt = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { lesson.micAnswered(it) }
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    DisposableEffect(lesson) {
-        lesson.open()
-        val observer = LifecycleEventObserver { _, event -> if (event == Lifecycle.Event.ON_STOP) lesson.appLeftForeground() }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-            lesson.close()
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_STOP -> lesson.appLeftForeground()
+                Lifecycle.Event.ON_RESUME -> lesson.resumed()
+                else -> Unit
+            }
         }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
     Scaffold(
@@ -186,7 +192,7 @@ private fun Notice(theme: AppTheme, fontSize: Float, icon: ImageVector, text: St
 @Composable
 private fun Lesson(lesson: LessonState, theme: AppTheme, fontSize: Float, onClose: () -> Unit) {
     val phase by lesson.listener.phase.collectAsState()
-    val listening = phase != ChantListener.Phase.IDLE
+    val listening = lesson.isRecording || phase != ChantListener.Phase.IDLE
     val step = lesson.step
 
     // Header
@@ -372,9 +378,10 @@ private fun tipText(lesson: LessonState): String? {
         ChantScorer.TipKind.UNFINISHED ->
             if (step is Step.Line) "That take didn't finish. Try the whole line." else "That take didn't finish. Try the whole verse."
         ChantScorer.TipKind.ALL_RIGHT -> when {
+            // Every part was Not checked (calibration): nothing was actually judged.
+            ChantScorer.Mark.RIGHT !in result.marks -> "None of these words can be checked on this phone yet."
             step is Step.Line && step.n + 1 < lesson.practiceLines.size -> "All words right. Next line when you're ready."
             step == Step.Memory(hints = true) -> "All words right. Next, without the letters."
-            step == Step.Memory(hints = false) -> "None of these words can be checked on this phone yet. This take can't mark the verse Learned."
             else -> "All words right. Next step when you're ready."
         }
     }
