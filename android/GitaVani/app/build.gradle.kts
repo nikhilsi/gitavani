@@ -85,4 +85,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     debugImplementation(libs.androidx.ui.tooling)
+
+    // Local JVM tests only (app/src/test); never packaged into the app.
+    testImplementation(libs.junit)
 }
