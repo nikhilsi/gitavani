@@ -1,0 +1,35 @@
+{
+  "BG1.27": {
+    "merge_with": ["BG1.27", "BG1.28"],
+    "reason": "Sivananda's 1.27 list includes the line 'कृपया परयाविष्टो विषीदन्निदमब्रवीत्', which the data places at the start of 1.28. The two lists are placed across both verses."
+  },
+  "BG1.28": {
+    "merge_with": ["BG1.27", "BG1.28"],
+    "reason": "See BG1.27."
+  },
+  "BG11.44": {
+    "reason": "Sivananda's list skips 'iva putrasya sakhā iva sakhyuḥ'. Those five plain words were added by hand (Nov 9, 2026); the rest is his list.",
+    "parts": [
+      ["तस्मात्", "therefore"],
+      ["प्रणम्य", "saluting"],
+      ["प्रणिधाय", "having bent"],
+      ["कायम्", "body"],
+      ["प्रसादये", "crave forgiveness"],
+      ["त्वाम्", "Thee"],
+      ["अहम्", "I"],
+      ["ईशम्", "the Lord"],
+      ["ईड्यम्", "adorable"],
+      ["पिता", "father"],
+      ["इव", "like"],
+      ["पुत्रस्य", "of a son"],
+      ["सखा", "a friend"],
+      ["इव", "like"],
+      ["सख्युः", "of a friend"],
+      ["प्रियः", "beloved"],
+      ["प्रियायाः", "to the beloved"],
+      ["अर्हसि", "(Thou) shouldst"],
+      ["देव", "O God"],
+      ["सोढुम्", "to bear"]
+    ]
+  }
+}

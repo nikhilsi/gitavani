@@ -685,6 +685,62 @@ def main():
     pass_fail("Data Size Analysis", True, None)  # Informational
 
     # =========================================================================
+    # 9. WORD BY WORD DATA (chant_data.json)
+    # =========================================================================
+    section("9. WORD BY WORD DATA (chant_data.json)")
+    issues = []
+    chant_file = os.path.join(os.path.dirname(DATA_FILE), "chant_data.json")
+    root = os.path.join(os.path.dirname(DATA_FILE), "..")
+    copies = [os.path.join(root, "ios", "GitaVani", "GitaVani", "Resources", "chant_data.json"),
+              os.path.join(root, "android", "GitaVani", "app", "src", "main", "assets", "chant_data.json")]
+    if not os.path.exists(chant_file):
+        issues.append("data/chant_data.json missing: run scripts/build_chant_data.py")
+    else:
+        with open(chant_file, encoding="utf-8") as f:
+            chant_raw = f.read()
+        chant = json.loads(chant_raw).get("verses", {})
+        verse_ids = {v.get("id") for v in verses}
+        missing = sorted(verse_ids - set(chant))
+        if missing:
+            issues.append(f"{len(missing)} verses missing from chant_data.json: {missing[:5]}")
+        available = [vid for vid, cv in chant.items() if cv.get("available")]
+        part_count = 0
+        for vid, cv in chant.items():
+            lines = cv.get("lines", [])
+            if not lines:
+                issues.append(f"{vid}: no lines")
+            for i, line in enumerate(lines):
+                if not line.get("deva") or not line.get("roman"):
+                    issues.append(f"{vid} line {i + 1}: missing text")
+                parts = line.get("parts", [])
+                part_count += len(parts)
+                if cv.get("available") and not line.get("speaker") and not parts:
+                    issues.append(f"{vid} line {i + 1}: available verse with an empty line")
+                if not cv.get("available") and parts:
+                    issues.append(f"{vid} line {i + 1}: unavailable verse still has parts")
+                for p in parts:
+                    meaning = p.get("meaning", "")
+                    if not p.get("deva") or not p.get("roman") or not meaning:
+                        issues.append(f"{vid}: part with an empty field")
+                    elif re.search(r"[ऀ-ॿ]", meaning) or "?" in meaning or len(meaning) > 200:
+                        issues.append(f"{vid}: suspicious meaning {meaning[:40]!r}")
+        print(f"\n  Verses available: {len(available)} of {len(chant)}")
+        print(f"  Word parts: {part_count:,}")
+        print(f"  File size: {len(chant_raw.encode('utf-8')):,} bytes ({len(chant_raw.encode('utf-8'))/1024:.0f} KB)")
+        unavailable = sorted(set(chant) - set(available), key=lambda x: [int(n) for n in x[2:].split(".")])
+        print(f"  Unavailable: {', '.join(v[2:] for v in unavailable) or 'none'}")
+        if len(chant_raw.encode("utf-8")) > 1024 * 1024:
+            issues.append("chant_data.json is over 1 MB")
+        for path in copies:
+            if not os.path.exists(path):
+                issues.append(f"app copy missing: {os.path.relpath(path, root)}")
+            else:
+                with open(path, encoding="utf-8") as f:
+                    if f.read() != chant_raw:
+                        issues.append(f"app copy out of date: {os.path.relpath(path, root)}")
+    pass_fail("Word By Word Data", len(issues) == 0, issues[:20])
+
+    # =========================================================================
     # FINAL SUMMARY
     # =========================================================================
     print(f"\n{'='*80}")
