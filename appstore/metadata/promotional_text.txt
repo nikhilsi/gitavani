@@ -1,1 +1,1 @@
-New: Word by word. Every Sanskrit word of a verse now appears in Devanagari and Roman letters with its English meaning.
+New: Learn to chant. GitaVani listens on your phone as you chant a verse and shows which words you got right. Plus Word by word meanings.

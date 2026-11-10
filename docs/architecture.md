@@ -178,7 +178,17 @@ All translators included. User can switch per-verse via author picker.
 - A verse is `available` only if its list passes every check (header names the verse, coverage, alignment, every line gets parts). 693 of 701 as of Nov 9, 2026.
 - Hand review: `scripts/data/chant_overrides.json` and `scripts/data/sivananda_gloss_fixes.json`.
 - Loaded at launch by GitaDataService next to `gita_data.json`. Optional: if missing, the reader works and the card is hidden.
-- Phase 2 (Learn) adds audio timings and spans. See `docs/chant-coach-spec.md`.
+- Learn fields: each line's sound `key` and `audio` span (seconds in the verse MP3), each part's stretch `k` of the key, and a per-verse `learn` flag. `learn` is true when the verse has parts and every line passed the per-line check in `scripts/build_line_timings.py --verify` (680 verses as of Nov 9, 2026).
+
+### 2.11 Learn (Abhyāsa)
+
+The chant coach. Full design: `docs/chant-coach-spec.md`.
+
+- **Listening:** `Services/ChantListener.swift` (iOS 27+). AVAudioEngine records the mic. iOS 27's `AnalyzerInputConverter` feeds `SpeechAnalyzer` with `SpeechTranscriber` (hi-IN). Each take and each calibration line gets a fresh `RecognizerSession`. Audio stays in memory for "Hear my try" and is never saved.
+- **Scoring:** `Services/ChantScorer.swift`, a port of `scripts/chant_scorer.py`. Shared cases in `scripts/data/scorer_fixtures.json`. Tests: `cd ios/ChantScorerTests && swift test`.
+- **Lesson:** `Views/Learn/LessonModel.swift` (steps, calibration, takes) and `LessonView.swift`. Opened full screen from the Learn button on the verse screen, shown only when `ChantListener.deviceCanLearn()` and the verse's `learn` flag are true.
+- **Audio session:** `AudioService.setLessonMode(true)` switches to `.playAndRecord` with speaker and A2DP output for the lesson. Closing the lesson restores `.playback`.
+- **Debug aids:** launch with `-GVOpenVerse BG4.7 -GVOpenLesson` to open a lesson. `-GVListenerSelfTest` runs `Services/ListenerSelfTest.swift` on a phone. Debug builds install as "GitaVani (test)" (`com.nikhilsi.GitaVani.debug`).
 
 ## 3. Data Model (Swift)
 
@@ -485,6 +495,8 @@ Using `@Observable` classes with `UserDefaults` persistence:
 | `favoriteVerseIds` | [String] (JSON) | [] | Saved favorite verse IDs |
 | `hasSeenOnboarding` | Bool | false | First-launch onboarding flag |
 | `showWordByWord` | Bool | false | Word by word card open or closed |
+| `learnProgress` | {String: String} (JSON) | {} | Learn status per verse: "learning" or "learned" (LearnProgress) |
+| `learnSeenNotCheckedNote` | Bool | false | The lesson's "Not checked" note has been shown |
 
 ### 6.2 Transient State (in-memory only)
 

@@ -13,6 +13,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 - Original Sanskrit text in Devanagari
 - Romanized transliteration (on by default, toggleable)
 - Word by word: each word of a verse in Devanagari and Roman letters with its meaning, from Swami Sivananda's commentary
+- Learn (Abhyāsa): practice chanting a verse line by line. The phone listens on the device and marks each word, with one tip. Needs iOS 27 or Android 13, plus a one-time download of the platform's Hindi speech model.
 - Hindi translations from 3 authors
 - English translations from 9 authors
 - Per-verse author picker — switch translators on any verse
@@ -26,7 +27,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 - Swipe and button navigation between verses (cross-chapter)
 - First-launch onboarding walkthrough
 - Help screen for feature discovery
-- Fully offline — all data bundled locally
+- Offline reading and audio, with all data bundled. Learn listens on the device and never sends audio anywhere.
 - Universal app (iPhone + iPad + Android phones + Android tablets)
 
 ## Roadmap

@@ -27,4 +27,6 @@
   - Apple's new age-rating question about social media must be answered first: App Information > Age Ratings > Edit. GitaVani's answer is No (sharing only opens the system share sheet). Left blank, adding the version to a submission fails with a 409.
   - Any new screenshots must finish processing before submitting.
   - Store text to paste is in `appstore/metadata/`.
+- **F-Droid:** Learn uses Android's on-device speech recognizer. On most phones that's Google's Android System Intelligence, which isn't free software. Check whether F-Droid wants an anti-feature note before tagging 1.1.0. On phones without an on-device recognizer, the Learn button doesn't show.
+- **Privacy page (gitavani.app/privacy):** add one paragraph about the microphone before release (spec section 9). Publishing the site needs Nikhil's go.
 - **Google Play:** check identity verification in Play Console. Then recruit 12 testers for the closed test (the README has the callout).

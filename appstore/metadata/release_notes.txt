@@ -1,3 +1,7 @@
+Learn to chant
+
+Tap Learn on a verse to practice chanting it. The reciter chants a line. You chant it back. GitaVani listens on your iPhone and marks each word you got right or slipped on, with one tip for your next try. Then you chant the whole verse from memory. Learn needs iOS 27 and a one-time download of Apple's Hindi speech model. Audio stays on your phone.
+
 Word by word
 
 Open any verse and tap Word by word. It sits under the Play and Save buttons. You'll see each Sanskrit word in Devanagari and Roman letters with its meaning. The meanings come from Swami Sivananda's commentary and cover 693 of the 701 verses.

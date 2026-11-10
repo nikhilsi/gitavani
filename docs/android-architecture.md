@@ -129,6 +129,18 @@ UI renders with current theme, font size, language
 | `about` | Credits, license, privacy |
 | `help` | Feature guide |
 | `favorites` | Saved verses with sort |
+| `learn/{verseId}` | Learn lesson (Abhyāsa), Android 13+ |
+
+## Learn (Abhyāsa)
+
+The chant coach. Full design: `docs/chant-coach-spec.md`.
+
+- **Listening:** `learn/ChantListener.kt`. AudioRecord (VOICE_RECOGNITION, 16 kHz mono) feeds the on-device `SpeechRecognizer` (hi-IN) through a pipe, from a plain thread. One recognizer serves the whole lesson (the on-device service allows one session at a time). A watchdog ends a session after 5 s with no sign of life. The language check gives up after 10 s. Calibration decodes the verse MP3 with MediaCodec and resamples to 16 kHz.
+- **Scoring:** `learn/ChantScorer.kt`, a port of `scripts/chant_scorer.py`, plus `devaToIast` because the recognizer writes Devanagari. Tests: `./gradlew testDebugUnitTest` (JUnit 4, test-only).
+- **Lesson:** `ui/learn/LessonState.kt` (steps, calibration, takes) and `LessonScreen.kt`. Learn button shown when `deviceCanLearn()` and the verse's `learn` flag are true.
+- **Progress:** `state/LearnProgress.kt`, key `learnProgress` in `gitavani_progress` prefs.
+- **Permission:** RECORD_AUDIO, asked when a lesson opens.
+- **Debug aids:** `adb shell am start -n com.nikhilsi.gitavani.debug/com.nikhilsi.gitavani.MainActivity --es openVerse BG4.7 --ez openLesson true` opens a lesson. `src/debug/.../ListenerSelfTestActivity.kt` checks the listener on a phone.
 
 ## Theme System
 
@@ -157,6 +169,9 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 # Release AAB (for Play Store)
 ./gradlew bundleRelease
+
+# Unit tests (Learn scorer against scripts/data/scorer_fixtures.json)
+./gradlew testDebugUnitTest
 ```
 
 ## Release Size
