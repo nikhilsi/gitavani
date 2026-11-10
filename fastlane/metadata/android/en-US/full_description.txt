@@ -1,11 +1,11 @@
 GitaVani is a clean, ad-free reader for the Bhagavad Gita. It has all 701 verses in Sanskrit. Each one comes with translations and commentaries. You can also listen to it chanted.
 
-New in 1.1: Learn to chant a verse, with GitaVani listening on your phone. Also new: Word by word meanings.
+New in 1.1: Learn to chant a verse. GitaVani listens on your phone and shows which words you got right. Also new: Word by word meanings.
 
 FEATURES
 
 • Sanskrit audio for all 701 verses. Follow along with the text while you listen.
-• Learn (new): practice chanting any of 680 verses. The reciter chants a line. You chant it back. GitaVani listens on your phone and marks each word, with one tip for your next try. Finish by chanting the verse from memory. Needs Android 13 and a one-time download of Google's Hindi speech model.
+• Learn (new): practice chanting any of 680 verses. The reciter chants a line. You chant it back. GitaVani listens on your phone and marks each word. You also get one tip for your next try. Finish by chanting the verse from memory. Needs Android 13 and a one-time download of Google's Hindi speech model.
 • Word by word (new): each word of a verse in Devanagari and Roman letters, next to its meaning. The meanings come from Swami Sivananda and cover 693 of the 701 verses.
 • Devanagari text with optional Roman transliteration
 • Translations in Hindi and English from 11 scholars. Swami Sivananda and Sri Shankaracharya are among them. Pick a different translator on any verse.

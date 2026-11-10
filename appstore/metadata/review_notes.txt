@@ -2,10 +2,10 @@ GitaVani is an offline Bhagavad Gita reader. All 701 verses and their Sanskrit a
 
 New in 1.1:
 
-Learn (iOS 27 and later) teaches a verse one line at a time. It plays the reciter's line, then listens while the user chants it back. It uses the microphone and Apple's on-device speech recognition (SpeechAnalyzer with SpeechTranscriber, Hindi). Audio is processed on the device and kept in memory only for "Hear my try". Nothing is saved or sent anywhere. The first lesson may ask iOS to download Apple's Hindi speech model.
+Learn (iOS 27 and later) teaches a verse one line at a time. It plays the reciter's line. Then it listens while the user chants it back. It uses the microphone and Apple's on-device speech recognition (SpeechAnalyzer with SpeechTranscriber, Hindi). Audio is processed on the device and kept in memory only for "Hear my try". Nothing is saved or sent anywhere. The first lesson may ask iOS to download Apple's Hindi speech model.
 
-To try it: open Chapter 4, Verse 7 and tap Learn. Allow the microphone. Tap Start Learning, then tap the mic and chant the line. Next Line moves on without chanting.
+To try it: open Chapter 4, Verse 7 and tap Learn. Allow the microphone. Tap Start Learning. Then tap the mic and chant the line. Next Line moves on without chanting.
 
 Word by word is a card on each verse, below the Play and Save buttons. It shows each word with its meaning. The meanings are bundled too.
 
-Other features: tap any chapter, then any verse. Play chants the verse, Romanize shows Roman letters, Save adds it to favorites and Share makes an image card. Swipe left or right to move between verses. Pull down on the home screen to search.
+Other features: tap any chapter. Then tap any verse. Play chants the verse, Romanize shows Roman letters, Save adds it to favorites and Share makes an image card. Swipe left or right to move between verses. Pull down on the home screen to search.

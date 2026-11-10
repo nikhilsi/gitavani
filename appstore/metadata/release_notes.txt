@@ -1,6 +1,8 @@
 Learn to chant
 
-Tap Learn on a verse to practice chanting it. The reciter chants a line. You chant it back. GitaVani listens on your iPhone and marks each word you got right or slipped on, with one tip for your next try. Then you chant the whole verse from memory. Learn needs iOS 27 and a one-time download of Apple's Hindi speech model. Audio stays on your phone.
+Ever wanted to chant a verse and not been sure you were saying it right? GitaVani can help with that now. Pick a verse and tap Learn. The reciter chants one line at a time and you chant it back. GitaVani listens and shows which words you got right and which ones need another try. Keep going until you can chant the whole verse from memory.
+
+Everything happens on your iPhone. Nothing you say is saved or sent anywhere. Learn needs iOS 27 and a one-time download of Apple's Hindi speech model.
 
 Word by word
 

@@ -66,7 +66,7 @@ struct AboutView: View {
                 // Privacy
                 aboutSection(
                     title: "Privacy",
-                    text: "GitaVani collects no personal data. All data is stored locally on your device. No analytics, no tracking, no network calls. Your reading is entirely private."
+                    text: "GitaVani collects no personal data. All data is stored locally on your device. No analytics, no tracking, no network calls. Your reading is entirely private. Learn uses the microphone while you chant. Speech recognition runs on your device. The audio is never saved or sent."
                 )
 
                 linkRow(title: "Privacy Policy", url: "https://gitavani.app/privacy")

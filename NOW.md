@@ -9,6 +9,9 @@
 - Learn passed Nikhil's check on iOS (Nov 10, verse 1.1). A clean take from memory marked the verse Learned. A take with a word left out was caught and not marked Learned.
 - Nikhil is not testing Android himself (Nov 10). Android stands on the session's Pixel 8a checks.
 - Family Testers in both apps keep two old, never-accepted invites (Nikhil's kids). Leave them.
+- 1.1 on iOS first (Nov 10): store text, build 8, App Review. Android (the v1.1.0 tag, GitHub Releases, F-Droid, Play) waits until Nikhil finishes exploring Android with the ClearNews session.
+- iOS 1.1 releases automatically when Apple approves it (Nikhil, Nov 10). It doesn't wait for Urmila's family test.
+- Store text for 1.1: Nikhil approved the warmer What's New and promotional text (Nov 10).
 
 ### In Flight
 
@@ -23,7 +26,7 @@
 3. Read the store text drafts in `appstore/metadata`, `playstore/metadata` and `fastlane/metadata`.
 4. F-Droid: decide whether Learn needs an anti-feature note. The speech recognizer is Google's on most phones.
 5. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
-6. Release 1.1 on all channels: only on Nikhil's go.
+6. iOS 1.1 release: build 8 (with the About microphone line) and App Review, on Nikhil's go. Android release on hold (see Decided).
 
 ### Where It Stands
 

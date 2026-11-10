@@ -1,3 +1,3 @@
-New: Learn (needs iOS 27). Open Chapter 4, Verse 7 and tap Learn. Allow the microphone. Listen, then chant each line after the reciter and look at the marks and the tip. Then chant from memory. A clean take should mark the verse Learned. Try one take with a word left out. It should be caught.
+New: Learn (needs iOS 27). Open Chapter 4, Verse 7 and tap Learn. Allow the microphone. Listen first. Then chant each line after the reciter and look at the marks and the tip. Then chant from memory. A clean take should mark the verse Learned. Try one take with a word left out. It should be caught.
 
 Also check Word by word below the Play and Save buttons.

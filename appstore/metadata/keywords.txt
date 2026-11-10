@@ -1,1 +1,1 @@
-geeta,shloka,sanskrit,hindu,scripture,verse,meaning,translation,hindi,english,audio,chant
+geeta,shloka,sanskrit,hindu,scripture,verse,meaning,translation,hindi,english,audio,chant,learn
