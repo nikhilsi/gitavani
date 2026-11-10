@@ -2,9 +2,17 @@
 
 ## [1.1.0] - Unreleased (in testing)
 
-Word by word, on iOS and Android. Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). Learn (Phase 2) is being built for the same release.
+Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chant-coach-spec.md)). Learn is built and in device testing.
 
-### Added
+### Added (Learn)
+- Learn (Abhyāsa): practice chanting a verse one line at a time. The reciter chants a line. You chant it back. The phone marks each word Right, Slipped or Not checked, with one tip. Then all lines together, then from memory (first letters, then nothing). A clean take from memory marks the verse Learned. Progress shows on the Learn button.
+- Listening is on the device: Apple's SpeechAnalyzer (hi-IN) on iOS 27 and later, Android's on-device recognizer (hi-IN) on Android 13 and later. Audio never leaves the phone. The reciter's lines go through the same recognizer when a lesson opens. Words the phone can't hear even from the reciter are Not checked.
+- Line timings for every verse: `scripts/build_line_timings.py` writes `scripts/data/line_timings.json`. Its `--verify` option checks each line with Apple's recognizer. 1,549 of 1,572 lines pass. Learn is offered on the 680 verses whose lines all pass and that have word parts.
+- The scorer: Python reference `scripts/chant_scorer.py`, shared cases in `scripts/data/scorer_fixtures.json`, plus Swift and Kotlin ports tested against them (`swift test` in `ios/ChantScorerTests`, `./gradlew testDebugUnitTest`).
+- Debug-only listener self-tests for real phones. Through the live streaming path, the 14 trial recordings got the same marks as the Nov 9 file trial on the iPhone.
+- Help entry for Learn, including the meaning of Abhyāsa (6.35).
+
+### Added (Word by word)
 - Word by word card on every verse: each word in Devanagari and IAST with its meaning, from the word lists in Swami Sivananda's English commentary. 693 of 701 verses (8,840 word parts). The other 8 say meanings aren't available yet.
 - `scripts/build_chant_data.py` builds `data/chant_data.json`. A verse is shown only if its list passes every check. Hand review lives in `scripts/data/` (2 overrides, 144 word repairs).
 - `validate_gita_data.py` section 9 checks the new file and its app copies.
@@ -12,7 +20,10 @@ Word by word, on iOS and Android. Phase 1 of [docs/chant-coach-spec.md](docs/cha
 - Spec for Learn (Abhyāsa), the chant coach, with its independent review in `docs/reviews/`.
 
 ### Changed
-- iOS 1.1 (build 4). Android 1.1.0 (versionCode 2).
+- iOS 1.1 (build 5). Android 1.1.0 (versionCode 2).
+- iOS asks for the microphone, Android for RECORD_AUDIO, both only when a lesson opens.
+- iOS debug builds install next to the store app as "GitaVani (test)" (`com.nikhilsi.GitaVani.debug`), as Android debug builds already did.
+- Android adds JUnit 4 for local tests only (`testImplementation`). Nothing new ships in the app.
 
 ## [Android 1.0.0 on F-Droid] - 2026-04-27
 

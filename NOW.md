@@ -17,7 +17,7 @@
 
 - **Version 1.1 is Word by word plus Learn, released together** (Nikhil, Nov 9).
   - Word by word: built on both platforms. iOS 1.1 (5) is in TestFlight (Nikhil's internal group; Family Testers after beta review). Android was checked on the Pixel.
-  - Learn (Abhyāsa): being built, Phase 2 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). CenterEye tasks #494 to #500.
+  - Learn (Abhyāsa): built on both platforms, in device testing. Phase 2 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). CenterEye tasks #494 to #500. Left: lesson check on the iPhone, the labelled take set (needs recordings from Nikhil and family), Nikhil's 4.7 test on each phone, privacy page, store text.
   - App Store, Play and F-Droid releases wait for Nikhil's go.
 
 ### Before the Next Release

@@ -1,6 +1,6 @@
 # Learn (Abhyāsa): Chant Coach Spec
 
-**Status:** Reviewed. Revised after the independent review (docs/reviews/chant-coach-spec-review.md) and the Android trial. Nothing built yet.  
+**Status:** Reviewed. Revised after the independent review (docs/reviews/chant-coach-spec-review.md) and the Android trial. Phase 1 is built. Phase 2 is being built.  
 **Written:** November 9, 2026  
 **Release:** both phases ship together as version 1.1 (D8). Phase 1 (Word by word) is built and in TestFlight. Phase 2 (Learn) is being built.
 
@@ -81,7 +81,7 @@ iOS 17 and later, Android 8 and later. No permission prompts, nothing new to dow
 ### 6.1 Entry
 
 - A fifth button, **Learn**, in the verse screen's action bar, after Play, Romanize, Save and Share.
-- Shown only when the device can do it: on iOS 27 and later, `SpeechTranscriber.isAvailable` is true and hi-IN resolves through `supportedLocale(equivalentTo:)`. On Android 12 and later, the on-device recognizer reports hi-IN as supported.
+- Shown only when the device can do it and the verse's line timings passed the per-line check (8.4): on iOS 27 and later, `SpeechTranscriber.isAvailable` is true and hi-IN resolves through `supportedLocale(equivalentTo:)`. On Android 13 and later, the phone has an on-device recognizer. (Android 13, not 12: feeding audio through a pipe, segmented sessions and the language check all need API 33.) Whether hi-IN is installed is checked when the lesson opens (6.2).
 - Tapping it opens the lesson full screen. Verse swiping is off inside. A Close button returns to the verse.
 
 ### 6.2 First Use and Every Lesson Open
@@ -95,13 +95,13 @@ iOS 17 and later, Android 8 and later. No permission prompts, nothing new to dow
 1. **Listen.** The reciter chants the whole verse. Meanwhile, the phone runs each reciter line through its own recognizer and marks the parts it can't hear as Not checked (D9).
 2. **Line by line.** For each line:
    - The reciter's line plays.
-   - The line shows in Devanagari and Roman letters. Under it, a row of word parts, each with its meaning.
+   - The line shows in Devanagari and Roman letters. Under it, its word parts, one per row as in Word by word, each with its meaning and, after a take, its mark.
    - The learner taps the mic and chants. Recording stops on a second tap, 1.5 s after the last expected word is heard, or after 4 s of silence.
    - Each part in the row gets a mark: Right, Slipped or Not checked. The verse line itself stays unmarked (review R11).
    - One tip shows.
    - Buttons: Hear reciter, Hear my try, Try again, Next line. Next line is always available.
 3. **Join.** Both lines together, same marks.
-4. **From memory.** The text fades to the first letter of each word, then hides. Recording never stops on silence here, only on a tap or after the last expected word. If every checkable part is Right, the verse is marked Learned.
+4. **From memory**, in two takes. First only the first letter of each word shows, then nothing. The word parts show only after a take. Shown earlier, they would give the verse away. Recording never stops on silence here, only on a tap or after the last expected word. If every checkable part is Right in the take with nothing shown, the verse is marked Learned.
 
 The lesson shows "n of m words checked" so a verse with many Not checked parts doesn't look tested when it isn't (review R13).
 
@@ -136,6 +136,7 @@ One tip per try, in this order:
 | VoiceOver speaking while recording | Recording starts after VoiceOver finishes its announcement. Recommend headphones in Help. |
 | iPad | The parts row wraps. Same flow. |
 | Device or OS can't do it | No Learn button. Nothing else changes. |
+| The phone's recognizer stops answering | The take ends, keeping what was heard. If nothing was heard, a calm message asks to try again. A language check that doesn't answer in 10 s says so. (Seen on the Pixel 8a, Nov 9: once the recognizer never reported the end of a session, then stopped answering until Android System Intelligence restarted.) |
 
 ---
 
@@ -167,6 +168,8 @@ Learned on the Pixel 8a trial (section 15):
 - Use `createOnDeviceSpeechRecognizer` (Android 12+). Check hi-IN with `checkRecognitionSupport` and fetch it with `triggerModelDownload` (Android 13+). Android shows its own approval prompt.
 - Keep one recognizer for the whole lesson. Opening a second session right after the support check failed with a dead connection.
 - Use a segmented session so the recognizer doesn't stop at the first pause.
+- The app records the mic itself (AudioRecord, VOICE_RECOGNITION source, 16 kHz) and feeds the recognizer through a pipe. The take stays in memory for "Hear my try". Calibration lines go through the same pipe (MP3 decoded and resampled to 16 kHz).
+- Feed the pipe from a plain thread and watch for signs of life (audio taken in, any callback). After 5 s with none, end the session (section 6.7).
 - Output is Devanagari. A small Devanagari to Roman converter (also used in section 8) feeds the scorer.
 
 ### 7.3 Scoring
@@ -266,7 +269,9 @@ Lines come from the Devanagari, which marks quarter-verse breaks in long meters 
 - **Targets on the held-back half:**
   - Correct takes: under 2% of checked parts marked Slipped.
   - Planted mistakes: at least 90% caught, with the tip naming the right word.
-- **Unit tests** for ChantScorer on both platforms. The iOS project gets its first XCTest target.
+- **Unit tests** for ChantScorer on both platforms. Both check the shared cases in `scripts/data/scorer_fixtures.json`, made from the Python reference by `scripts/build_scorer_fixtures.py`.
+  - iOS: `cd ios/ChantScorerTests && swift test`. A small Swift package compiles the app's own ChantScorer.swift through a symlink. The Xcode project stays as it is.
+  - Android: `cd android/GitaVani && ./gradlew testDebugUnitTest`. JUnit 4 (`testImplementation` only), as the Android testing guide recommends for local tests. It never ships in the app.
 - **Devices.** iPhone 15 Pro and iPad on iOS 27. Pixel 8a, plus one non-Pixel Android phone if one is available.
 - **Accessibility.** Marks in all four themes, Dynamic Type, VoiceOver.
 

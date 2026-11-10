@@ -73,8 +73,21 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] chant_data.json built from Swami Sivananda's word lists: 693 of 701 verses, 8,840 word parts
 - [x] Word by word card under the action bar, closed by default, state remembered
 - [x] Help entry
-- [ ] TestFlight build and Nikhil's check of 10 verses
+- [x] TestFlight build 1.1 (5)
+- [ ] Nikhil's check of 10 verses
 - [ ] App Store release (needs Nikhil's go)
+
+**Learn (1.1, in device testing):**
+- [x] Line timings for every verse, checked line by line: 1,549 of 1,572 lines pass; Learn on 680 verses
+- [x] Scorer in Python, Swift and Kotlin, with shared test cases
+- [x] iOS listener (SpeechAnalyzer, iOS 27+): streaming path matches the file trial on all 14 recordings
+- [x] Android listener (on-device recognizer, Android 13+): pipe path checked on the Pixel 8a, with a watchdog for a recognizer that stops answering
+- [x] Lesson screens on both platforms: Listen, each line, all lines, from memory; progress on the Learn button
+- [x] Help entry
+- [ ] Lesson checked on the iPhone
+- [ ] Labelled take set and threshold check (spec section 11)
+- [ ] Nikhil chants 4.7 from memory on each phone (spec step 11)
+- [ ] Privacy page paragraph, store text, App Review note
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
@@ -164,6 +177,7 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 | Favorites | Done |
 | Share (image card) | Done |
 | Word by word | Done (1.1.0, in testing) |
+| Learn | Built (1.1.0, in device testing) |
 | Onboarding | Done |
 | Help screen | Done |
 | About screen | Done |
@@ -229,5 +243,6 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 | Share verse | Done |
 | Sanskrit verse audio | Done |
 | Word by word | Done (1.1, in testing) |
+| Learn | Built (1.1, in device testing) |
 | App Store release | Live (v1.0.0, Feb 18, 2026) |
 | iPad layout | Done |
