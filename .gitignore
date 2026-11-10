@@ -26,3 +26,8 @@ android/GitaVani/keystore/
 
 # Secrets
 .env
+
+# Learn dev tools
+scripts/chant_tools/.build/
+ios/ChantScorerTests/.build/
+ios/ChantScorerTests/.swiftpm/

@@ -709,10 +709,27 @@ def main():
             lines = cv.get("lines", [])
             if not lines:
                 issues.append(f"{vid}: no lines")
+            previous_end = 0.0
             for i, line in enumerate(lines):
                 if not line.get("deva") or not line.get("roman"):
                     issues.append(f"{vid} line {i + 1}: missing text")
                 parts = line.get("parts", [])
+                # Learn: each part owns one stretch of the line's sound key, with no gaps or overlaps.
+                key = line.get("key", "")
+                if parts:
+                    stretches = [p.get("k") for p in parts]
+                    if not key or any(not k or len(k) != 2 for k in stretches):
+                        issues.append(f"{vid} line {i + 1}: missing sound key or part stretches")
+                    elif stretches[0][0] != 0 or stretches[-1][1] != len(key) or any(
+                            a[1] != b[0] or a[0] > a[1] for a, b in zip(stretches, stretches[1:])):
+                        issues.append(f"{vid} line {i + 1}: part stretches don't cover the line key in order")
+                # Learn: line timings, when present, are in order inside the recording.
+                audio = line.get("audio")
+                if audio is not None:
+                    if len(audio) != 2 or not (previous_end - 0.01 <= audio[0] < audio[1]):
+                        issues.append(f"{vid} line {i + 1}: bad audio timing {audio}")
+                    else:
+                        previous_end = audio[1]
                 part_count += len(parts)
                 if cv.get("available") and not line.get("speaker") and not parts:
                     issues.append(f"{vid} line {i + 1}: available verse with an empty line")
@@ -733,8 +750,8 @@ def main():
         print(f"  File size: {len(chant_raw.encode('utf-8')):,} bytes ({len(chant_raw.encode('utf-8'))/1024:.0f} KB)")
         unavailable = sorted(set(chant) - set(available), key=lambda x: [int(n) for n in x[2:].split(".")])
         print(f"  Unavailable: {', '.join(v[2:] for v in unavailable) or 'none'}")
-        if len(chant_raw.encode("utf-8")) > 1024 * 1024:
-            issues.append("chant_data.json is over 1 MB")
+        if len(chant_raw.encode("utf-8")) > 2 * 1024 * 1024:
+            issues.append("chant_data.json is over 2 MB")
         for path in copies:
             if not os.path.exists(path):
                 issues.append(f"app copy missing: {os.path.relpath(path, root)}")

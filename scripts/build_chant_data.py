@@ -37,6 +37,7 @@ SRC = os.path.join(ROOT, "data", "gita_data.json")
 OUT = os.path.join(ROOT, "data", "chant_data.json")
 OVERRIDES = os.path.join(ROOT, "scripts", "data", "chant_overrides.json")
 GLOSS_FIXES = os.path.join(ROOT, "scripts", "data", "sivananda_gloss_fixes.json")
+TIMINGS = os.path.join(ROOT, "scripts", "data", "line_timings.json")   # from build_line_timings.py
 APP_COPIES = [
     os.path.join(ROOT, "ios", "GitaVani", "GitaVani", "Resources", "chant_data.json"),
     os.path.join(ROOT, "android", "GitaVani", "app", "src", "main", "assets", "chant_data.json"),
@@ -51,10 +52,11 @@ MAX_COST_RATIO = 0.30       # alignment cost per verse letter
 # Devanagari to IAST
 # ---------------------------------------------------------------------------
 
+# ऑ ॉ and ऍ ॅ are Hindi letters for English sounds. Sanskrit never uses them. Android's recognizer does.
 VOWELS = {"अ": "a", "आ": "ā", "इ": "i", "ई": "ī", "उ": "u", "ऊ": "ū", "ऋ": "ṛ", "ॠ": "ṝ",
-          "ऌ": "ḷ", "ए": "e", "ऐ": "ai", "ओ": "o", "औ": "au"}
+          "ऌ": "ḷ", "ए": "e", "ऐ": "ai", "ओ": "o", "औ": "au", "ऑ": "o", "ऍ": "e"}
 SIGNS = {"ा": "ā", "ि": "i", "ी": "ī", "ु": "u", "ू": "ū", "ृ": "ṛ", "ॄ": "ṝ", "ॢ": "ḷ",
-         "े": "e", "ै": "ai", "ो": "o", "ौ": "au"}
+         "े": "e", "ै": "ai", "ो": "o", "ौ": "au", "ॉ": "o", "ॅ": "e"}
 CONSONANTS = {"क": "k", "ख": "kh", "ग": "g", "घ": "gh", "ङ": "ṅ", "च": "c", "छ": "ch", "ज": "j",
               "झ": "jh", "ञ": "ñ", "ट": "ṭ", "ठ": "ṭh", "ड": "ḍ", "ढ": "ḍh", "ण": "ṇ", "त": "t",
               "थ": "th", "द": "d", "ध": "dh", "न": "n", "प": "p", "फ": "ph", "ब": "b", "भ": "bh",
@@ -107,11 +109,15 @@ def deva_to_iast(text):
 IAST_FOLD = [("ṛ", "ri"), ("ṝ", "ri"), ("ḷ", "li"), ("ṃ", "m"), ("ḥ", "h"), ("ṅ", "n"), ("ñ", "n"),
              ("ṇ", "n"), ("ṭ", "t"), ("ḍ", "d"), ("ś", "sh"), ("ṣ", "sh"), ("ā", "a"), ("ī", "i"),
              ("ū", "u")]
-SOUND_FOLD = [("ksh", "ks"), ("sh", "s"), ("th", "t"), ("dh", "d"), ("bh", "b"), ("ph", "p"),
-              ("kh", "k"), ("gh", "g"), ("jh", "j"), ("ch", "c"), ("ri", "r"), ("ru", "r")]
+SOUND_FOLD = [("x", "ks"), ("ksh", "ks"), ("sh", "s"), ("th", "t"), ("dh", "d"), ("bh", "b"), ("ph", "p"),
+              ("kh", "k"), ("gh", "g"), ("jh", "j"), ("ch", "c"), ("f", "p"), ("w", "v"), ("ee", "i"),
+              ("oo", "u"), ("ri", "r"), ("ru", "r")]
 
 
 def sound_key(iast):
+    """Coarse sound key shared by the build and the Learn scorer on both phones.
+    Works on IAST and on the recognizer's Hindi-style Roman letters ("mafale", "shrajamyaham").
+    The Swift and Kotlin scorers must fold exactly the same way (scripts/chant_scorer.py is the reference)."""
     s = iast.lower()
     for a, b in IAST_FOLD:
         s = s.replace(a, b)
@@ -390,11 +396,51 @@ def build():
                 line["parts"] = []
             report.append(([vid], None, "override: " + ov.get("reason", "hand review")))
 
+    timings = load_json(TIMINGS, {})
     for vid in out:
         if not out[vid]["available"]:
             for line in out[vid]["lines"]:
                 line["parts"] = []
+        for line in out[vid]["lines"]:
+            # Learn scores against the line's sound key; each part owns one stretch of it.
+            line["key"] = sound_key(line["roman"])
+            if line["parts"]:
+                spans = part_spans(line["key"], [sound_key(p["roman"]) for p in line["parts"]])
+                for p, k in zip(line["parts"], spans):
+                    p["k"] = k
+        t = timings.get(vid)
+        out[vid]["learn"] = False
+        if t and len(t["lines"]) == len(out[vid]["lines"]):
+            for line, span in zip(out[vid]["lines"], t["lines"]):
+                line["audio"] = span
+            out[vid]["skip"] = t["skip"]
+            # Learn needs word parts to check against and line timings that passed verification.
+            out[vid]["learn"] = bool(out[vid]["available"] and t.get("verified"))
+        elif t:
+            print("  warning: %s has %d timed lines for %d lines" % (vid, len(t["lines"]), len(out[vid]["lines"])))
     return out, report, verses
+
+
+def part_spans(line_key, part_keys):
+    """Split a line's sound key into consecutive stretches, one per part, with no gaps or overlaps.
+    Letters the parts don't match (sandhi joins) are shared out between neighbouring parts.
+    A part that matches nothing gets an empty stretch; Learn shows it as Not checked."""
+    owner = [i for i, k in enumerate(part_keys) for _ in k]
+    _, pairs = align(line_key, "".join(part_keys))
+    lo, hi = [None] * len(part_keys), [None] * len(part_keys)
+    for ei, gi in pairs:
+        if ei is not None and gi is not None:
+            p = owner[gi]
+            lo[p] = ei if lo[p] is None else min(lo[p], ei)
+            hi[p] = ei if hi[p] is None else max(hi[p], ei)
+    bounds = [0]
+    for i in range(len(part_keys) - 1):
+        left = hi[i] + 1 if hi[i] is not None else bounds[-1]
+        nxt = next((lo[j] for j in range(i + 1, len(part_keys)) if lo[j] is not None), len(line_key))
+        cut = (left + nxt) // 2 if nxt > left else left
+        bounds.append(min(max(cut, bounds[-1]), len(line_key)))
+    bounds.append(len(line_key))
+    return [[bounds[i], bounds[i + 1]] for i in range(len(part_keys))]
 
 
 def suggest_gloss_fixes():
