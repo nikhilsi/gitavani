@@ -299,7 +299,7 @@ Approval line, given Nov 9, 2026: "Build Learn (Phase 2) on iOS and Android. Com
 8. Labelled take set (section 11).
 9. ChantScorer on both platforms with tests. Done when the held-back targets pass.
 10. ChantListener on both platforms. Done when a recording fed through the live streaming path gives the same marks as the file trial.
-11. Lesson UI. Done when Nikhil chants 4.7 from memory on each phone and gets Learned, and a take with a planted mistake does not get Learned.
+11. Lesson UI. Done when Nikhil chants 4.7 from memory on each phone and gets Learned, and a take with a planted mistake does not get Learned. Result, Nov 10: passed on iOS with verse 1.1 (Nikhil chose a simpler verse). Nikhil chose not to test Android. Android stands on the session's Pixel 8a checks.
 12. Progress mark. Done when Learned survives an app restart.
 13. Docs and pages: Help (including the 6.35 note), About, privacy page, README, architecture docs, CURRENT_STATE, CHANGELOG. Soften the "works without internet, always" line to match D4.
 14. Family test round, then release.

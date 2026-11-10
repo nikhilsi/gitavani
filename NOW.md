@@ -1,32 +1,29 @@
 # Now: Current Priorities
 
-**Last Updated**: November 9, 2026
+**Last Updated**: November 10, 2026
 
-## Phase: Building Learn for 1.1
+## Phase: Finishing 1.1 (Word by word and Learn)
 
-### Morning Brief (end of Nov 9, 2026)
+### Decided
 
-**Done today**
-- Learn is built on iOS and Android and pushed to main. Learn is offered on 680 verses.
-- Device checks: the iPhone streaming path gives the same marks as the earlier file trial (14 of 14 recordings). A full take works on the Pixel. Nikhil tried 1.1 on the iPhone (build 6) and it looked right.
-- An independent code review found 9 bugs. All are fixed (crash on Next mid-take, reciter cut off at lesson start, Android mic left open, rotation restart, double taps).
-- Docs, Help, spec and store text drafts are updated. Nothing has been submitted to any store.
+- Learn passed Nikhil's check on iOS (Nov 10, verse 1.1). A clean take from memory marked the verse Learned. A take with a word left out was caught and not marked Learned.
+- Nikhil is not testing Android himself (Nov 10). Android stands on the session's Pixel 8a checks.
+- Family Testers in both apps keep two old, never-accepted invites (Nikhil's kids). Leave them.
 
-**In flight**
-- iOS 1.1 (7), Learn plus the fixes: in Nikhil's internal TestFlight group now. It is "Waiting for Review" for Family Testers. Urmila gets it once Apple approves.
+### In Flight
+
+- iOS 1.1 (7), Learn plus the review fixes: in Nikhil's internal TestFlight group. "Waiting for Review" for Family Testers. Urmila gets it once Apple approves.
+- Urmila is updating her iPhone to iOS 27. Learn needs it.
 - Build 5 (Word by word only) was taken out of review, not expired. It won't ship.
-- Urmila is updating her iPhone to iOS 27. Learn needs it. ClearNews: she already has 2.1 (6).
-- Nikhil's tester entry had dropped out of his internal group (cause unknown). Re-added Nov 9.
-- Family Testers in both apps also hold two old, never-accepted invites (Nikhil's kids). Left in place on purpose.
 
-**To do (talk through in the morning)**
-1. Nikhil's step-11 test on each phone: chant 4.7 from memory and get Learned. A take with a word left out must not get Learned. Restart: Learned stays.
-2. Labelled take set (spec section 11): recordings from Nikhil (and Urmila if willing) to check the thresholds.
-3. Privacy page paragraph (draft in the Nov 9 chat). Publishing the site needs Nikhil's go.
-4. Read the store text drafts in `appstore/metadata`, `playstore/metadata` and `fastlane/metadata`.
-5. F-Droid: decide whether Learn needs an anti-feature note (the speech recognizer is Google's on most phones).
-6. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
-7. Release 1.1 on all channels: only on Nikhil's go.
+### Next
+
+1. Labelled take set (spec section 11): recordings from Nikhil (and Urmila if willing) to check the scoring thresholds.
+2. Privacy page paragraph (draft in the Nov 9 chat). Publishing the site needs Nikhil's go.
+3. Read the store text drafts in `appstore/metadata`, `playstore/metadata` and `fastlane/metadata`.
+4. F-Droid: decide whether Learn needs an anti-feature note. The speech recognizer is Google's on most phones.
+5. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
+6. Release 1.1 on all channels: only on Nikhil's go.
 
 ### Where It Stands
 

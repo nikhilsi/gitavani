@@ -1,6 +1,6 @@
 # Current State
 
-**Last Updated**: November 9, 2026
+**Last Updated**: November 10, 2026
 
 ## Status: iOS Live on the App Store / Android Live on F-Droid and GitHub (Google Play not public yet)
 
@@ -88,7 +88,7 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Independent code review: 9 bugs found and fixed (build 7)
 - [x] TestFlight 1.1 (7): internal group; waiting for beta review for Family Testers
 - [ ] Labelled take set and threshold check (spec section 11)
-- [ ] Nikhil chants 4.7 from memory on each phone (spec step 11)
+- [x] Nikhil's check on iOS (Nov 10, verse 1.1): a clean take from memory marked Learned; a planted mistake was caught. Android: not tested by Nikhil (his call); it stands on the Pixel 8a checks
 - [ ] Privacy page paragraph, store text, App Review note
 
 **Website (gitavani.app):**
