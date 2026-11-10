@@ -1,6 +1,6 @@
 # GitaVani — Voice of the Gita
 
-A clean, ad-free app for reading and studying the Bhagavad Gita. Available on iOS and Android. Sanskrit verse audio for all 701 verses, Sanskrit shlokas with Hindi and English translations from 12 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
+A clean, ad-free app for reading and studying the Bhagavad Gita. Available on iOS and Android. Sanskrit verse audio for all 701 verses, Sanskrit shlokas with Hindi and English translations from 11 scholars, commentaries from 17 scholars in 3 languages, search, favorites, and beautiful sharing.
 
 ## Why
 
@@ -117,7 +117,7 @@ No personal data collected. Takes 2 minutes. Thank you!
 
 ## Data Source
 
-All verse data sourced from the [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) project by Pt. Prashant Tripathi. Includes translations and commentaries from 12 scholars including Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya, A.C. Bhaktivedanta Swami Prabhupada, and others.
+All verse data sourced from the [Vedic Scriptures Bhagavad Gita](https://github.com/vedicscriptures/bhagavad-gita) project by Pt. Prashant Tripathi. Includes translations from 11 scholars and commentaries from 17. Swami Sivananda, Swami Ramsukhdas, Sri Shankaracharya and A.C. Bhaktivedanta Swami Prabhupada are among them.
 
 Also available on [Kaggle](https://www.kaggle.com/datasets/ptprashanttripathi/bhagavad-gita-api-database) under LGPL-3.0.
 

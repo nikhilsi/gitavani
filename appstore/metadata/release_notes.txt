@@ -1,14 +1,3 @@
-Initial release.
+Word by word
 
-• Sanskrit verse audio — listen to all 701 verses chanted in Sanskrit
-• All 18 chapters and 701 verses of the Bhagavad Gita
-• Sanskrit text with Roman transliteration
-• Translations from 12 scholars in Hindi and English
-• 11,000+ commentaries from 17 scholars in English, Hindi, and Sanskrit
-• Search verses by keyword
-• Save and browse favorite verses
-• Share verses as themed image cards
-• 4 reading themes including dark mode
-• Swipe navigation, bookmarking, adjustable font size
-• Dynamic Type support for accessibility
-• Completely offline — no ads, no tracking
+Open any verse and tap Word by word. It sits under the Play and Save buttons. You'll see each Sanskrit word in Devanagari and Roman letters with its meaning. The meanings come from Swami Sivananda's commentary and cover 693 of the 701 verses.

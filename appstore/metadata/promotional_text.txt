@@ -1,0 +1,1 @@
+New: Word by word. Every Sanskrit word of a verse now appears in Devanagari and Roman letters with its English meaning.
