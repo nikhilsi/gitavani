@@ -722,8 +722,12 @@ def main():
                     meaning = p.get("meaning", "")
                     if not p.get("deva") or not p.get("roman") or not meaning:
                         issues.append(f"{vid}: part with an empty field")
-                    elif re.search(r"[ऀ-ॿ]", meaning) or "?" in meaning or len(meaning) > 200:
+                    elif re.search(r"[ऀ-ॿ]", meaning) or "?" in meaning or "--" in meaning or len(meaning) > 200:
                         issues.append(f"{vid}: suspicious meaning {meaning[:40]!r}")
+                    elif not re.fullmatch(r"[a-zA-Zāīūṛṝḷḹṅñṭḍṇśṣṃḥ' ]+", p["roman"]):
+                        issues.append(f"{vid}: Roman form has non-IAST characters {p['roman']!r}")
+                    elif re.search("्[ा-ौ]", p["deva"]) or re.match("[ा-ौ]", p["deva"]):
+                        issues.append(f"{vid}: broken Devanagari {p['deva']!r}")
         print(f"\n  Verses available: {len(available)} of {len(chant)}")
         print(f"  Word parts: {part_count:,}")
         print(f"  File size: {len(chant_raw.encode('utf-8')):,} bytes ({len(chant_raw.encode('utf-8'))/1024:.0f} KB)")

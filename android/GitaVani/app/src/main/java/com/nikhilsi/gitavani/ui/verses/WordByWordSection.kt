@@ -5,11 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -20,8 +21,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -54,8 +58,11 @@ fun WordByWordSection(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .heightIn(min = 48.dp)
                 .clickable(onClick = onToggle)
                 .semantics {
+                    role = Role.Button
+                    stateDescription = if (expanded) "Expanded" else "Collapsed"
                     contentDescription =
                         if (expanded) "Hide word by word meanings" else "Show word by word meanings"
                 },
@@ -110,20 +117,29 @@ fun WordByWordSection(
     }
 }
 
-/** One word: Devanagari and Roman letters on the first line, its meaning below. */
+/**
+ * One word: Devanagari and Roman letters on one line when they fit (the Roman form wraps
+ * below when they don't), with its meaning below.
+ */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun WordPartRow(part: WordPart, theme: AppTheme, fontSize: Float) {
     Column(
         modifier = Modifier.semantics(mergeDescendants = true) {}
     ) {
-        Row(verticalAlignment = Alignment.Bottom) {
-            Text(part.deva, fontSize = fontSize.sp, color = theme.primaryTextColor)
-            Spacer(Modifier.width(8.dp))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(
+                part.deva,
+                fontSize = fontSize.sp,
+                color = theme.primaryTextColor,
+                modifier = Modifier.alignByBaseline()
+            )
             Text(
                 part.roman,
                 fontSize = (fontSize - 3).sp,
                 fontStyle = FontStyle.Italic,
-                color = theme.secondaryTextColor
+                color = theme.secondaryTextColor,
+                modifier = Modifier.alignByBaseline()
             )
         }
         Text(

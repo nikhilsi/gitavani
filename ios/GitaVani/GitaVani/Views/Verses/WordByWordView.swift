@@ -27,6 +27,7 @@ struct WordByWordView: View {
                     Image(systemName: settings.showWordByWord ? "chevron.up" : "chevron.down")
                         .foregroundStyle(theme.accentColor)
                 }
+                .frame(minHeight: 44)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -64,22 +65,37 @@ struct WordByWordView: View {
     }
 }
 
-/// One word: Devanagari and Roman letters on the first line, its meaning below.
+/// One word: Devanagari and Roman letters on one line when they fit (stacked when they don't),
+/// with its meaning below.
 struct WordPartRow: View {
     let part: WordPart
     let theme: AppTheme
     let fontSize: Double
 
+    private var deva: some View {
+        Text(part.deva)
+            .font(.system(size: fontSize))
+            .foregroundStyle(theme.primaryTextColor)
+    }
+
+    private var roman: some View {
+        Text(part.roman)
+            .font(.system(size: fontSize - 3))
+            .italic()
+            .foregroundStyle(theme.secondaryTextColor)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Text(part.deva)
-                    .font(.system(size: fontSize))
-                    .foregroundStyle(theme.primaryTextColor)
-                Text(part.roman)
-                    .font(.system(size: fontSize - 3))
-                    .italic()
-                    .foregroundStyle(theme.secondaryTextColor)
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    deva
+                    roman
+                }
+                VStack(alignment: .leading, spacing: 0) {
+                    deva
+                    roman
+                }
             }
             Text(part.meaning)
                 .font(.system(size: fontSize - 2))

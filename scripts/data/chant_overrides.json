@@ -1,4 +1,8 @@
 {
+  "BG1.12": {
+    "reason": "Sivananda's list writes संजयन्; the verse has सञ्जनयन्.",
+    "deva_fixes": [["संजयन्", "सञ्जनयन्"]]
+  },
   "BG1.27": {
     "merge_with": ["BG1.27", "BG1.28"],
     "reason": "Sivananda's 1.27 list includes the line 'कृपया परयाविष्टो विषीदन्निदमब्रवीत्', which the data places at the start of 1.28. The two lists are placed across both verses."
@@ -6,6 +10,35 @@
   "BG1.28": {
     "merge_with": ["BG1.27", "BG1.28"],
     "reason": "See BG1.27."
+  },
+  "BG2.1": {
+    "reason": "Typo in the source: मघुसूदनः for मधुसूदनः.",
+    "deva_fixes": [["मघुसूदनः", "मधुसूदनः"]]
+  },
+  "BG3.18": {
+    "reason": "Typos in the source: कश्चन् for कश्चन, and 'of hi' for 'of him'.",
+    "deva_fixes": [["कश्चन्", "कश्चन"]],
+    "meaning_fixes": [["तस्य", "of hi", "of him"]]
+  },
+  "BG4.4": {
+    "reason": "Typo in the source: इत for इति.",
+    "deva_fixes": [["इत", "इति"]]
+  },
+  "BG4.13": {
+    "reason": "Typo in the source: 'be Me' for 'by Me'.",
+    "meaning_fixes": [["मया", "be Me", "by Me"]]
+  },
+  "BG6.9": {
+    "reason": "Typo in the source: सुह्यन्... for सुहृन्... (the verse has सुहृन्मित्रार्युदासीनमध्यस्थद्वेष्यबन्धुषु).",
+    "deva_fixes": [["सुह्यन्मित्रार्युदासीनमध्यस्थद्वेष्यबन्धुषु", "सुहृन्मित्रार्युदासीनमध्यस्थद्वेष्यबन्धुषु"]]
+  },
+  "BG8.12": {
+    "reason": "Typo in the source: ट for च ('and').",
+    "deva_fixes": [["ट", "च"]]
+  },
+  "BG11.26": {
+    "reason": "Typo in the source: 'Karana' for 'Karna'.",
+    "meaning_fixes": [["सूतपुत्रः", "Karana", "Karna"]]
   },
   "BG11.44": {
     "reason": "Sivananda's list skips 'iva putrasya sakhā iva sakhyuḥ'. Those five plain words were added by hand (Nov 9, 2026); the rest is his list.",
@@ -31,5 +64,56 @@
       ["देव", "O God"],
       ["सोढुम्", "to bear"]
     ]
+  },
+  "BG12.9": {
+    "reason": "Typo in the source: 'them' for 'then'.",
+    "meaning_fixes": [["ततः", "them", "then"]]
+  },
+  "BG13.9": {
+    "reason": "Sivananda's gloss leaves out death (मृत्यु), which is in the compound.",
+    "meaning_fixes": [["जन्ममृत्युजराव्याधिदुःखदोषानुदर्शनम्", "perception of evil in birth, old age, sickness and pain", "perception of evil in birth, death, old age, sickness and pain"]]
+  },
+  "BG13.28": {
+    "reason": "Typo in the source: विनश्यस्तु for विनश्यत्सु.",
+    "deva_fixes": [["विनश्यस्तु", "विनश्यत्सु"]]
+  },
+  "BG16.14": {
+    "reason": "The source repeats 'भोगी सिद्धः अहम्' twice in a row. The repeat is dropped. अहम् appears twice on purpose: the verse has ईश्वरोऽहमहं.",
+    "parts": [
+      ["असौ", "that"],
+      ["मया", "by me"],
+      ["हतः", "slain"],
+      ["शत्रुः", "enemy"],
+      ["हनिष्ये", "(I) shall slay"],
+      ["च", "and"],
+      ["अपरान्", "others"],
+      ["अपि", "also"],
+      ["ईश्वरः", "Lord"],
+      ["अहम्", "I"],
+      ["अहम्", "I"],
+      ["भोगी", "the enjoyer"],
+      ["सिद्धः", "perfect"],
+      ["अहम्", "I"],
+      ["बलवान्", "powerful"],
+      ["सुखी", "happy"]
+    ]
+  },
+  "BG17.24": {
+    "reason": "The source drops ओम् from the list, so 'Om' was glued onto तस्मात्. ओम् = Om added back.",
+    "parts": [
+      ["तस्मात्", "therefore"],
+      ["ओम्", "Om"],
+      ["इति", "thus"],
+      ["उदाहृत्य", "uttering"],
+      ["यज्ञदानतपःक्रियाः", "the acts of sacrifice, gift and austerity"],
+      ["प्रवर्तन्ते", "begin"],
+      ["विधानोक्ताः", "as enjoined in the scriptures"],
+      ["सततम्", "always"],
+      ["ब्रह्मवादिनाम्", "of the students of Brahman"]
+    ]
+  },
+  "BG18.1": {
+    "reason": "Sivananda's list writes केशिनिषूदन्; the verse has the vocative केशिनिषूदन.",
+    "deva_fixes": [["केशिनिषूदन्", "केशिनिषूदन"]]
   }
 }

@@ -165,8 +165,9 @@ def verse_lines(slok):
     lines = []
     for raw in slok.split("\n"):
         text = re.sub(r"\|\|[^|]*\|\|", "", raw)       # ||२-४७||
-        text = re.sub(r"\(or [^)]*\)", "", text)        # alternate readings: "(or वियुक्तैस्तु)"
+        text = re.sub(r"\((?:or|var)\s*[^)]*\)", "", text)   # alternate readings: "(or वियुक्तैस्तु)", "(var अशेषाणि)"
         text = re.sub(r"[|।॥]", "", text).strip()
+        text = fix_deva(text)
         if not text:
             continue
         words = text.split()
@@ -180,6 +181,20 @@ def verse_lines(slok):
 # ---------------------------------------------------------------------------
 
 DEVA_RUN = r"[ऀ-ॿ‌‍]+(?:\s+[ऀ-ॿ‌‍]+)*"
+
+VOWEL_SIGN_TO_VOWEL = {"ा": "आ", "ि": "इ", "ी": "ई", "ु": "उ", "ू": "ऊ", "ृ": "ऋ", "े": "ए", "ै": "ऐ",
+                       "ो": "ओ", "ौ": "औ"}
+
+
+def fix_deva(text):
+    """Repair Devanagari spelling slips in the source.
+    - a vowel sign typed before its consonant: अश्िवनौ -> अश्विनौ (11.6, 11.22)
+    - a word that starts with a vowel sign: ुच्यते -> उच्यते (18.23)
+    - श्रृ for शृ, the Hindi spelling (श्रृणु -> शृणु)
+    - ृ plus nukta for ॄ (पितृ़न् -> पितॄन्)"""
+    text = re.sub("्([ा-ौ])([क-ह])", "्\\2\\1", text)
+    text = re.sub(r"(^|\s)([ा-ौ])", lambda m: m.group(1) + VOWEL_SIGN_TO_VOWEL.get(m.group(2), ""), text)
+    return text.replace("श्रृ", "शृ").replace("ृ़", "ॄ")
 
 
 def sivananda_text(verse):
@@ -203,9 +218,10 @@ def parse_list(text):
     # "?" was a comma in the original, both between parts and inside meanings.
     parts = []
     for mm in re.finditer(r"(" + DEVA_RUN + r")([^ऀ-ॿ]*)", body):
-        parts.append({"deva": mm.group(1).strip(), "meaning": mm.group(2).replace("?", ",")})
+        parts.append({"deva": fix_deva(mm.group(1).strip()), "meaning": mm.group(2).replace("?", ",")})
     for p in parts:
         g = re.sub(r"\s+", " ", p["meaning"]).strip()
+        g = re.sub(r"\s*-{2,}\s*", ", ", g)       # "nectar -- the remnants"
         g = re.sub(r"(,\s*)+,", ",", g).strip(" ,;")
         g = re.split(r"\.(?=[A-Z][a-z])", g)[0]    # prose glued on: "sorrow.Thus in the Upanishads..."
         g = re.sub(r"\.?\s*No\s*$", "", g)        # "...battle.No " before "No Commentary"
@@ -214,23 +230,23 @@ def parse_list(text):
         p["roman"] = deva_to_iast(p["deva"])
     parts = [p for p in parts if p["meaning"] and sound_key(p["roman"])]
     verses = [first] if first == last else [first, last]
-    return verses, drop_repeated_runs(parts)
+    return verses, parts
 
 
-def drop_repeated_runs(parts):
-    """Drop a run of 2 to 4 parts repeated right after itself (16.14 repeats 'भोगी सिद्धः अहम्').
-    A single repeated word stays: 'अहम् अहम्' is in 16.14 itself."""
-    key = [(p["deva"], p["meaning"]) for p in parts]
-    i = 0
-    while i < len(key):
-        for k in (4, 3, 2):
-            if i + 2 * k <= len(key) and key[i:i + k] == key[i + k:i + 2 * k]:
-                del key[i + k:i + 2 * k]
-                del parts[i + k:i + 2 * k]
-                break
-        else:
-            i += 1
-    return parts
+def apply_verse_fixes(parts, ov, vid):
+    """Hand fixes for one verse from chant_overrides.json. Warns when a fix no longer matches."""
+    for old, new in ov.get("deva_fixes", []):
+        hits = [p for p in parts if p["deva"] == old]
+        for p in hits:
+            p["deva"], p["roman"] = new, deva_to_iast(new)
+        if not hits:
+            print("  warning: %s deva fix %s did not match" % (vid, old))
+    for deva, old, new in ov.get("meaning_fixes", []):
+        hits = [p for p in parts if p["deva"] == deva and p["meaning"] == old]
+        for p in hits:
+            p["meaning"] = new
+        if not hits:
+            print("  warning: %s meaning fix %s / %s did not match" % (vid, deva, old))
 
 
 def apply_gloss_fixes(parts, fixes):
@@ -333,6 +349,7 @@ def build():
                     reason = "list header says %s" % ", ".join(i[2:] for i in ids)
                 else:
                     apply_gloss_fixes(parts, fixes)
+                    apply_verse_fixes(parts, ov, vid)
                     lines_by_verse = [(i, out[i]["lines"]) for i in ids]
                     placement, mx = place_parts(lines_by_verse, parts)
                     problems = []

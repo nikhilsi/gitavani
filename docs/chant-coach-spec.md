@@ -59,8 +59,8 @@ Review research on Nov 9, 2026 covered 1,324 written iOS reviews across 57 Gita 
 ### 5.1 What the Reader Sees
 
 - A **Word by word** section under the Sanskrit card on the verse screen. Closed by default. Its open or closed state is remembered, like the other reading settings.
-- Each verse line shows as a row of word parts. Each part shows its Devanagari, its Roman form and its meaning.
-- Speaker lines ("śrībhagavān uvāca", 60 verses) show their parts too.
+- Each verse line shows as a group of word parts, one under another, with a divider between lines. Each part shows its Devanagari and Roman form on one line (stacked when they don't fit) and its meaning below.
+- Speaker lines ("śrībhagavān uvāca", 60 verses) have no parts. Sivananda's lists skip them, and the Sanskrit card above already shows them.
 - Credit line at the bottom: "Word meanings: Swami Sivananda."
 - Verses without a clean list show "Word meanings aren't available for this verse yet."
 
@@ -221,7 +221,7 @@ Known limits in version 1:
 - **Checks that must pass:**
   - The list's header number matches the verse (18.45 carries 5.10's list today).
   - Alignment cost under a cap, and at least one letter per part.
-  - Spans in order, no gaps, no overlaps.
+  - Spans in order, no gaps, no overlaps. (Phase 2. Phase 1 places parts on lines without spans.)
   - The list covers only this verse (1.21 also carries 1.22).
 - **Cleanup map** for damaged glosses: missing "qu" ("eanimity" for equanimity), lost hyphens and apostrophes ("mightyarmed", "dont").
 - **Hand review** of every verse a check flags. Fix by hand or mark the verse "not available yet".

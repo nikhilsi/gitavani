@@ -42,11 +42,16 @@ class GitaDataService {
 
             // Word by word meanings are optional: the reader works without them.
             if let wordsURL = Bundle.main.url(forResource: "chant_data", withExtension: "json"),
-               let wordsData = try? Data(contentsOf: wordsURL),
-               let decodedWords = try? await Task.detached(operation: {
-                   try JSONDecoder().decode(ChantData.self, from: wordsData)
-               }).value {
-                wordsByVerse = decodedWords.verses
+               let wordsData = try? Data(contentsOf: wordsURL) {
+                do {
+                    wordsByVerse = try await Task.detached(operation: {
+                        try JSONDecoder().decode(ChantData.self, from: wordsData)
+                    }).value.verses
+                } catch {
+                    #if DEBUG
+                    print("GitaDataService: word by word data not loaded: \(error)")
+                    #endif
+                }
             }
 
             isLoaded = true
