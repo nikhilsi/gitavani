@@ -67,8 +67,8 @@ class LessonState(
         private set
     var message: String? by mutableStateOf(null)
         private set
-    /** From the mic tap until the take is scored. The screen treats this as listening, so nothing
-     *  can change the step under a take that is still starting. */
+    /** From the mic tap until the take is scored. The screen treats this as listening.
+     *  Nothing can change the step under a take that is still starting. */
     var isRecording by mutableStateOf(false)
         private set
 

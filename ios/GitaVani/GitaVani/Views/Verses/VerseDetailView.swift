@@ -221,7 +221,7 @@ struct VerseDetailView: View {
         }
         .onDisappear {
             // Covering this screen with the lesson also counts as disappearing. The lesson runs its own
-            // audio, so leave it alone (the Learn button already stopped the verse).
+            // audio. Leave it alone (the Learn button already stopped the verse).
             if !showLesson { audioService.stop() }
         }
         .task {

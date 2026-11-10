@@ -94,7 +94,7 @@ fun LessonScreen(
     onClose: () -> Unit,
 ) {
     val context = LocalContext.current
-    // Kept in a ViewModel tied to this screen, so rotating the phone doesn't restart the lesson.
+    // Kept in a ViewModel tied to this screen. Rotating the phone doesn't restart the lesson.
     val holder: LessonHolder = viewModel(key = "lesson-$verseId") {
         LessonHolder(context.applicationContext, verseId, words, audioService, learnProgress)
     }

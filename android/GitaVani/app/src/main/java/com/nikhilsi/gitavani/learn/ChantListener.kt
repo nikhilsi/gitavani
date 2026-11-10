@@ -394,8 +394,8 @@ class ChantListener(private val context: Context) {
 
     /**
      * Records the mic and writes it to the pipe until [stop] or [over] is set. Runs on the session's
-     * feeding thread. The mic is read on a thread of its own, so a recognizer that stops reading
-     * (a blocked write) can't keep the microphone open: the mic is released when the take ends.
+     * feeding thread. The mic is read on a thread of its own. A recognizer that stops reading
+     * (a blocked write) then can't keep the microphone open. The mic is released when the take ends.
      */
     private fun record(out: OutputStream, recorded: PcmBuffer, stop: AtomicBoolean, over: AtomicBoolean) {
         val chunk = SAMPLE_RATE / 10

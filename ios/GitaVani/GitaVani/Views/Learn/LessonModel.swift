@@ -38,8 +38,8 @@ final class LessonModel {
     private(set) var lastTake: ChantListener.Take?
     private(set) var message: String?
     private(set) var listener: ChantListener?
-    /// From the mic tap until the take is scored. The screen treats this as listening, so nothing
-    /// can change the step under a take that is still starting.
+    /// From the mic tap until the take is scored. The screen treats this as listening.
+    /// Nothing can change the step under a take that is still starting.
     private(set) var isRecording = false
     private var closed = false
 
