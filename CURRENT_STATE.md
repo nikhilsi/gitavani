@@ -4,7 +4,7 @@
 
 ## Status: iOS Live on the App Store / Android Live on F-Droid and GitHub (Google Play not public yet)
 
-All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has been live on the App Store since Feb 18, 2026.
+All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has been live on the App Store since Feb 18, 2026. iOS 1.1.0 (Word by word and Learn) was submitted for App Review on Nov 10, 2026.
 
 ### What's Done
 
@@ -69,15 +69,15 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Auto-stop when verse finishes playing
 - [x] Audio stops on verse navigation (swipe, prev/next) and when leaving screen
 
-**Word by Word (1.1, in testing):**
+**Word by Word (1.1, in App Review on iOS):**
 - [x] chant_data.json built from Swami Sivananda's word lists: 693 of 701 verses, 8,840 word parts
 - [x] Word by word card under the action bar, closed by default, state remembered
 - [x] Help entry
 - [x] TestFlight build 1.1 (5)
 - [ ] Nikhil's check of 10 verses
-- [ ] App Store release (needs Nikhil's go)
+- [ ] App Store release: 1.1.0 (build 8) in App Review since Nov 10. It releases automatically when approved.
 
-**Learn (1.1, in device testing):**
+**Learn (1.1, in App Review on iOS):**
 - [x] Line timings for every verse, checked line by line: 1,549 of 1,572 lines pass; Learn on 680 verses
 - [x] Scorer in Python, Swift and Kotlin, with shared test cases
 - [x] iOS listener (SpeechAnalyzer, iOS 27+): streaming path matches the file trial on all 14 recordings
@@ -86,7 +86,9 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Help entry
 - [x] Lesson checked on the iPhone: opens and calibrates (my check), Nikhil tried 1.1 (build 6)
 - [x] Independent code review: 9 bugs found and fixed (build 7)
-- [x] TestFlight 1.1 (7): internal group; waiting for beta review for Family Testers
+- [x] Nikhil's iOS check passed (Nov 10, verse 1.1)
+- [x] TestFlight 1.1 (7) approved for Family Testers (Nov 10). 1.1 (8) in the internal group
+- [ ] App Store release: in App Review with Word by word (build 8, Nov 10)
 - [ ] Labelled take set and threshold check (spec section 11)
 - [x] Nikhil's check on iOS (Nov 10, verse 1.1): a clean take from memory marked Learned; a planted mistake was caught. Android: not tested by Nikhil (his call); it stands on the Pixel 8a checks
 - [ ] Privacy page paragraph, store text, App Review note
@@ -244,7 +246,7 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 | Dynamic Type | Done |
 | Share verse | Done |
 | Sanskrit verse audio | Done |
-| Word by word | Done (1.1, in testing) |
-| Learn | Built (1.1, in device testing) |
-| App Store release | Live (v1.0.0, Feb 18, 2026) |
+| Word by word | Done (1.1, in App Review) |
+| Learn | Done (1.1, in App Review) |
+| App Store release | Live (v1.0.0, Feb 18, 2026). 1.1.0 in App Review since Nov 10, 2026 |
 | iPad layout | Done |

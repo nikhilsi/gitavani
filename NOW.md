@@ -12,29 +12,28 @@
 - 1.1 on iOS first (Nov 10): store text, build 8, App Review. Android (the v1.1.0 tag, GitHub Releases, F-Droid, Play) waits until Nikhil finishes exploring Android with the ClearNews session.
 - iOS 1.1 releases automatically when Apple approves it (Nikhil, Nov 10). It doesn't wait for Urmila's family test.
 - Store text for 1.1: Nikhil approved the warmer What's New and promotional text (Nov 10).
+- F-Droid: no anti-feature note for Learn (Nov 10).
 
 ### In Flight
 
-- App Store version 1.1.0 is ready to submit (Nov 10): build 8, new text, keywords and review notes, ten screenshots per device with Learn and Word by word first, automatic release. It waits only for Nikhil's go.
+- **iOS 1.1.0 is in App Review** (submitted Nov 10, 12:42 PM): build 8, new text, keywords and review notes, ten screenshots per device with Learn and Word by word first. It releases automatically when Apple approves it. Apple says review can take up to 48 hours.
 - Age rating: Apple's new social media question answered No (Nov 10). The rating stays 4+.
-- iOS 1.1 (7) is in beta review for Family Testers. Urmila gets it once Apple approves.
-- Urmila is updating her iPhone to iOS 27. Learn needs it.
+- TestFlight: Apple approved 1.1 (7) for Family Testers (Nov 10). Build 8, the one in App Review, is in the internal group.
+- Urmila's iPhone now runs iOS 27. Learn needs it.
 - Build 5 (Word by word only) was taken out of review, not expired. It won't ship.
 
 ### Next
 
 1. Labelled take set (spec section 11): recordings from Nikhil (and Urmila if willing) to check the scoring thresholds.
-2. Privacy page paragraph (draft in the Nov 9 chat). Publishing the site needs Nikhil's go.
-3. Read the store text drafts in `appstore/metadata`, `playstore/metadata` and `fastlane/metadata`.
-4. F-Droid: decide whether Learn needs an anti-feature note. The speech recognizer is Google's on most phones.
-5. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
-6. iOS 1.1: submit for App Review on Nikhil's go. It releases automatically when approved. Android release on hold (see Decided).
+2. Android 1.1 release when Nikhil is ready (see Decided). Read the Android store text in `playstore/metadata` and `fastlane/metadata` first.
+3. gitavani.app loads Google Analytics. Check the privacy page's wording against it.
+4. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
 
 ### Where It Stands
 
 | Channel | Status | Notes |
 |---------|--------|-------|
-| iOS App Store | Live | v1.0.0, released Feb 18, 2026 |
+| iOS App Store | Live | v1.0.0, released Feb 18, 2026. 1.1.0 in App Review since Nov 10, 2026 |
 | F-Droid | Live | v1.0.0. [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) merged Apr 27, 2026. Picks up new `v*` tags on its own |
 | GitHub Releases | Live | v1.0.0 APK + AAB, built by GitHub Actions on tag push |
 | Google Play | Not public | Internal testing since Feb 19, 2026. Production needs identity verification and 12 closed-test testers. Play Console not rechecked since March |
@@ -43,17 +42,17 @@
 
 - **Version 1.1 is Word by word plus Learn, released together** (Nikhil, Nov 9).
   - Word by word: built on both platforms. Android was checked on the Pixel.
-  - Learn (Abhyāsa): built on both platforms, in device testing. Phase 2 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). CenterEye tasks #494 to #500. What's left is in the Morning Brief above.
-  - TestFlight: iOS 1.1 (7) has both features. Internal group now, Family Testers after beta review.
-  - App Store, Play and F-Droid releases wait for Nikhil's go.
+  - Learn (Abhyāsa): built on both platforms, in device testing. Phase 2 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md). CenterEye tasks #494 to #500. What's left is under Next.
+  - TestFlight: 1.1 (7) for Family Testers. 1.1 (8) in the internal group.
+  - iOS 1.1.0 is in App Review. Play and F-Droid wait for Nikhil's go.
 
 ### Before the Next Release
 
 - **iOS:** nothing blocking. EU trader status was already set: non-trader, Digital Services Act "Active" since Nov 6, 2026 (checked in App Store Connect by the ClearNews session on Nov 9). An earlier note here said it was unset; that was wrong.
 - **iOS submission checklist** (from ClearNews's 2.1 submission, Nov 9):
   - Apple's new age-rating question about social media must be answered first: App Information > Age Ratings > Edit. GitaVani's answer is No (sharing only opens the system share sheet). Left blank, adding the version to a submission fails with a 409.
-  - Any new screenshots must finish processing before submitting.
+  - Any new screenshots must finish processing before submitting. The web page can keep showing them as processing after Apple has finished (Nov 10: six looked stuck while Apple's records said done). Try "Add for Review" again before uploading anything twice.
   - Store text to paste is in `appstore/metadata/`.
-- **F-Droid:** Learn uses Android's on-device speech recognizer. On most phones that's Google's Android System Intelligence. It isn't free software. Check whether F-Droid wants an anti-feature note before tagging 1.1.0. On phones without an on-device recognizer, the Learn button doesn't show.
-- **Privacy page (gitavani.app/privacy):** add one paragraph about the microphone before release (spec section 9). Publishing the site needs Nikhil's go.
+- **F-Droid:** Learn uses Android's on-device speech recognizer. On most phones that's Google's Android System Intelligence. It isn't free software. Decided Nov 10: no anti-feature note. On phones without an on-device recognizer, the Learn button doesn't show.
+- **Privacy page (gitavani.app/privacy):** done. The Microphone (Learn) paragraph is live (Nov 10).
 - **Google Play:** check identity verification in Play Console. Then recruit 12 testers for the closed test (the README has the callout).
