@@ -11,6 +11,7 @@ class GitaDataService {
     private var verseById: [String: Verse] = [:]
     private var versesByChapter: [Int: [Verse]] = [:]
     private var chapterByNumber: [Int: Chapter] = [:]
+    private var wordsByVerse: [String: VerseWords] = [:]
 
     init() {
         Task { await loadData() }
@@ -39,6 +40,15 @@ class GitaDataService {
             versesByChapter = Dictionary(grouping: verses, by: { $0.chapter })
             chapterByNumber = Dictionary(uniqueKeysWithValues: chapters.map { ($0.chapterNumber, $0) })
 
+            // Word by word meanings are optional: the reader works without them.
+            if let wordsURL = Bundle.main.url(forResource: "chant_data", withExtension: "json"),
+               let wordsData = try? Data(contentsOf: wordsURL),
+               let decodedWords = try? await Task.detached(operation: {
+                   try JSONDecoder().decode(ChantData.self, from: wordsData)
+               }).value {
+                wordsByVerse = decodedWords.verses
+            }
+
             isLoaded = true
             #if DEBUG
             print("GitaDataService: Loaded \(chapters.count) chapters, \(verses.count) verses")
@@ -61,5 +71,9 @@ class GitaDataService {
 
     func chapter(number: Int) -> Chapter? {
         chapterByNumber[number]
+    }
+
+    func words(forVerse verseId: String) -> VerseWords? {
+        wordsByVerse[verseId]
     }
 }

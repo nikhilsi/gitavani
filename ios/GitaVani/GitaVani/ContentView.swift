@@ -102,5 +102,14 @@ struct ContentView: View {
         .onChange(of: dynamicTypeBase) { _, newValue in
             settings.dynamicTypeScale = newValue / 16.0
         }
+        #if DEBUG
+        .onChange(of: dataService.isLoaded) { _, loaded in
+            // Screenshot aid for debug builds: launch with "-GVOpenVerse BG2.47" to open a verse.
+            let args = ProcessInfo.processInfo.arguments
+            if loaded, let i = args.firstIndex(of: "-GVOpenVerse"), i + 1 < args.count {
+                navigationPath.append(args[i + 1])
+            }
+        }
+        #endif
     }
 }

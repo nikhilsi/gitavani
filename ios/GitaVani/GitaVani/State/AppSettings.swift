@@ -14,6 +14,11 @@ class AppSettings {
         didSet { UserDefaults.standard.set(showTransliteration, forKey: "showTransliteration") }
     }
 
+    /// Whether the Word by word section on the reading screen is open.
+    var showWordByWord: Bool {
+        didSet { UserDefaults.standard.set(showWordByWord, forKey: "showWordByWord") }
+    }
+
     var preferredHindiAuthor: String {
         didSet { UserDefaults.standard.set(preferredHindiAuthor, forKey: "preferredHindiAuthor") }
     }
@@ -70,6 +75,7 @@ class AppSettings {
         fontSize = defaults.object(forKey: "fontSize") as? Double ?? defaultFontSize
         defaultLanguage = defaults.string(forKey: "defaultLanguage") ?? "english"
         showTransliteration = defaults.object(forKey: "showTransliteration") as? Bool ?? true
+        showWordByWord = defaults.object(forKey: "showWordByWord") as? Bool ?? false
         preferredHindiAuthor = defaults.string(forKey: "preferredHindiAuthor") ?? ""
         preferredEnglishAuthor = defaults.string(forKey: "preferredEnglishAuthor") ?? ""
         preferredCommentaryLanguage = defaults.string(forKey: "preferredCommentaryLanguage") ?? ""

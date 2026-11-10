@@ -121,6 +121,17 @@ struct VerseDetailView: View {
                                 .accessibilityLabel("Share verse")
                             }
 
+                            // Word by word meanings
+                            if let words = dataService.words(forVerse: currentVerseId) {
+                                WordByWordView(
+                                    words: words,
+                                    theme: theme,
+                                    fontSize: settings.scaledFontSize,
+                                    settings: settings
+                                )
+                                .id("words-\(currentVerseId)")
+                            }
+
                             // Translation
                             TranslationView(
                                 translations: verse.translations,

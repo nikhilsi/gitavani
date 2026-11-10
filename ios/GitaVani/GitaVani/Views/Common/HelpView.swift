@@ -26,6 +26,11 @@ struct HelpView: View {
             description: "Tap the book icon on the reading screen to show Sanskrit verses in Roman script. You can also toggle this in Settings."
         ),
         HelpItem(
+            icon: "list.bullet.rectangle",
+            title: "Word by Word",
+            description: "Tap Word by word on the reading screen to see each word of the verse in Devanagari and Roman letters, with its meaning. Meanings are from Swami Sivananda."
+        ),
+        HelpItem(
             icon: "text.book.closed.fill",
             title: "Commentaries",
             description: "Scroll below the translation on any verse to find commentaries from 17 scholars in English, Hindi, and Sanskrit. Use the language and author tabs to switch between them."
