@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0] - Unreleased (in testing)
+
+Word by word, on iOS and Android. Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md).
+
+### Added
+- Word by word card on every verse: each word in Devanagari and IAST with its meaning, from the word lists in Swami Sivananda's English commentary. 693 of 701 verses (8,840 word parts). The other 8 say meanings aren't available yet.
+- `scripts/build_chant_data.py` builds `data/chant_data.json`. A verse is shown only if its list passes every check. Hand review lives in `scripts/data/` (2 overrides, 144 word repairs).
+- `validate_gita_data.py` section 9 checks the new file and its app copies.
+- Help entry for Word by word on both platforms.
+- Spec for Learn (Abhyāsa), the chant coach, with its independent review in `docs/reviews/`.
+
+### Changed
+- iOS 1.1 (build 4). Android 1.1.0 (versionCode 2).
+
 ## [Android 1.0.0 on F-Droid] - 2026-04-27
 
 - F-Droid merged [MR #34390](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34390) and published v1.0.0

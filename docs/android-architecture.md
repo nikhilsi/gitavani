@@ -73,6 +73,7 @@ android/GitaVani/
 │   │       └── GitaViewModel.kt         # AndroidViewModel: data, settings, audio
 │   ├── assets/
 │   │   ├── gita_data.json               # 35.6 MB bundled JSON
+│   │   ├── chant_data.json              # Word by word meanings (~1 MB, built by scripts/build_chant_data.py)
 │   │   └── audio/                       # 701 MP3 files (126 MB)
 │   └── res/
 │       ├── values/strings.xml, themes.xml
@@ -164,6 +165,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 |-----------|------|
 | Code + resources | ~6 MB |
 | gita_data.json | 35.6 MB |
+| chant_data.json | ~1 MB |
 | Audio (701 MP3s) | 126 MB |
 | **Release AAB** | **134 MB** (under 150 MB Play Store limit) |
 

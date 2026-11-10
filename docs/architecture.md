@@ -171,6 +171,15 @@ All translators included. User can switch per-verse via author picker.
 
 ---
 
+### 2.10 Word by Word Data (chant_data.json)
+
+- Built by `scripts/build_chant_data.py` from the word list that opens Swami Sivananda's English commentary in `gita_data.json`. Written to `data/chant_data.json` and copied to `Resources/` (and to the Android assets).
+- Shape: `{ "source": ..., "verses": { "BG2.47": { "available": true, "lines": [ { "deva", "roman", "speaker", "parts": [ { "deva", "roman", "meaning" } ] } ] } } }`.
+- A verse is `available` only if its list passes every check (header names the verse, coverage, alignment, every line gets parts). 693 of 701 as of Nov 9, 2026.
+- Hand review: `scripts/data/chant_overrides.json` and `scripts/data/sivananda_gloss_fixes.json`.
+- Loaded at launch by GitaDataService next to `gita_data.json`. Optional: if missing, the reader works and the card is hidden.
+- Phase 2 (Learn) adds audio timings and spans. See `docs/chant-coach-spec.md`.
+
 ## 3. Data Model (Swift)
 
 ### 3.1 Chapter
@@ -405,6 +414,7 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   │   ├── VerseDetailView.swift    (Main reading screen — swipe + nav buttons)
 │   │   ├── ShlokView.swift          (Sanskrit text + transliteration toggle)
 │   │   ├── TranslationView.swift    (Language toggle + author picker + text)
+│   │   ├── WordByWordView.swift     (Collapsible word-by-word meanings card)
 │   │   ├── CommentaryView.swift     (Commentary language/author picker + truncation)
 │   │   ├── ShareCardView.swift      (Themed card rendered to image for sharing)
 │   │   └── VerseNavigationView.swift (Prev/Next buttons)
@@ -429,7 +439,8 @@ GitaVaniApp.swift                    (App entry point — creates shared service
 │   ├── Translation.swift            (includes Commentary)
 │   ├── Chapter.swift
 │   ├── Verse.swift
-│   └── GitaData.swift               (includes GitaMetadata)
+│   ├── GitaData.swift               (includes GitaMetadata)
+│   └── ChantData.swift              (Word by word: VerseWords, WordLine, WordPart)
 │
 ├── Services/
 │   └── GitaDataService.swift        (Async load + dictionary lookups)
@@ -473,6 +484,7 @@ Using `@Observable` classes with `UserDefaults` persistence:
 | `preferredSanskritCommentaryAuthor` | String | "" | Preferred Sanskrit commentator |
 | `favoriteVerseIds` | [String] (JSON) | [] | Saved favorite verse IDs |
 | `hasSeenOnboarding` | Bool | false | First-launch onboarding flag |
+| `showWordByWord` | Bool | false | Word by word card open or closed |
 
 ### 6.2 Transient State (in-memory only)
 

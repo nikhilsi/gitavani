@@ -12,6 +12,7 @@ Every Gita app out there is plagued with gaudy backgrounds, unreadable fonts, an
 - All 18 chapters, 701 verses of the Bhagavad Gita
 - Original Sanskrit text in Devanagari
 - Romanized transliteration (on by default, toggleable)
+- Word by word: each word of a verse in Devanagari and Roman letters with its meaning, from Swami Sivananda's commentary
 - Hindi translations from 3 authors
 - English translations from 9 authors
 - Per-verse author picker — switch translators on any verse
@@ -70,6 +71,9 @@ python3 scripts/fetch_gita_data.py
 
 # Or parse from local repo clone (instant)
 python3 scripts/parse_gita_data.py
+
+# Build word-by-word data (writes data/chant_data.json and copies it into both apps)
+python3 scripts/build_chant_data.py
 
 # Validate the output
 python3 scripts/validate_gita_data.py

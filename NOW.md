@@ -2,7 +2,7 @@
 
 **Last Updated**: November 9, 2026
 
-## Phase: Choosing What to Build Next
+## Phase: Word by Word (1.1) in Testing, Learn Next
 
 ### Where It Stands
 
@@ -15,7 +15,10 @@
 
 ### Active
 
-- **Next features.** Discussion started Nov 9, 2026. The goal is to give more to the world. Nothing chosen yet.
+- **Word by word (version 1.1).** Built on iOS and Android, Phase 1 of [docs/chant-coach-spec.md](docs/chant-coach-spec.md).
+  - Next: TestFlight and Play internal test builds, then Nikhil checks 10 verses on each phone.
+  - App Store, Play production and F-Droid releases wait for his go.
+- **Learn (Abhyāsa), the chant coach.** Phase 2 of the same spec. Starts after 1.1 ships.
 
 ### Before the Next Release
 

@@ -69,6 +69,13 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Auto-stop when verse finishes playing
 - [x] Audio stops on verse navigation (swipe, prev/next) and when leaving screen
 
+**Word by Word (1.1, in testing):**
+- [x] chant_data.json built from Swami Sivananda's word lists: 693 of 701 verses, 8,840 word parts
+- [x] Word by word card under the action bar, closed by default, state remembered
+- [x] Help entry
+- [ ] TestFlight build and Nikhil's check of 10 verses
+- [ ] App Store release (needs Nikhil's go and EU trader status)
+
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)
 - [x] Static site hosted on GitHub Pages (nikhilsi/gitavani-site)
@@ -156,6 +163,7 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 | Search | Done |
 | Favorites | Done |
 | Share (image card) | Done |
+| Word by word | Done (1.1.0, in testing) |
 | Onboarding | Done |
 | Help screen | Done |
 | About screen | Done |
@@ -220,5 +228,6 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 | Dynamic Type | Done |
 | Share verse | Done |
 | Sanskrit verse audio | Done |
+| Word by word | Done (1.1, in testing) |
 | App Store release | Live (v1.0.0, Feb 18, 2026) |
 | iPad layout | Done |
