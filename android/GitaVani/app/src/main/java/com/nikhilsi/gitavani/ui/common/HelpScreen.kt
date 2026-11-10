@@ -67,7 +67,7 @@ private val helpItems = listOf(
     HelpItem(
         Icons.Outlined.School,
         "Learn to Chant",
-        "Tap Learn on a verse to practice chanting it, one line at a time. The reciter chants a line, then you chant it back. The phone listens on the device and marks each word Right or Slipped, with one tip for the next try. The lesson ends when you chant the whole verse from memory. Headphones help. Audio stays on your phone. Learn needs Android 13 and a one-time download from Google. The lesson is called Abhyāsa, practice, after verse 6.35: the restless mind is steadied by practice and letting go."
+        "Tap Learn on a verse to practice chanting it, one line at a time. The reciter chants a line, then you chant it back. GitaVani listens on the device and marks each word Right or Slipped, with one tip for the next try. The lesson ends when you chant the whole verse from memory. Headphones help. Audio stays on your device. Learn needs Android 13 and a one-time download from Google. The lesson is called Abhyāsa, practice, after verse 6.35: the restless mind is steadied by practice and letting go."
     ),
     HelpItem(
         Icons.AutoMirrored.Filled.Subject,

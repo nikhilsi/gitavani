@@ -144,7 +144,7 @@ fun LessonScreen(
                     Setup.Ready -> Lesson(lesson, theme, fontSize, onClose)
                     Setup.Checking -> Box40 { CircularProgressIndicator(color = theme.accentColor) }
                     Setup.NeedsMic -> Notice(theme, fontSize, Icons.Default.Mic,
-                        "GitaVani listens while you chant so it can show where you slipped. Audio stays on your phone.",
+                        "GitaVani listens while you chant so it can show where you slipped. Audio stays on your device.",
                         "Allow microphone") { micPrompt.launch(Manifest.permission.RECORD_AUDIO) }
                     Setup.MicDenied -> Notice(theme, fontSize, Icons.Default.Mic,
                         "The microphone is off for GitaVani. Turn it on in the app's settings to use Learn.",
@@ -153,7 +153,7 @@ fun LessonScreen(
                             Uri.fromParts("package", context.packageName, null)))
                     }
                     Setup.NeedsModel -> Notice(theme, fontSize, Icons.Default.Mic,
-                        "Learn needs a download from Google: the Hindi speech model. It stays on your phone. Learn works offline after this.",
+                        "Learn needs a download from Google: the Hindi speech model. It stays on your device. Learn works offline after this.",
                         "Download") { lesson.downloadModel() }
                     is Setup.Downloading -> Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         if (setup.percent != null) {
@@ -350,7 +350,7 @@ private fun PartsList(lesson: LessonState, theme: AppTheme, fontSize: Float) {
         }
         if (lesson.showNotCheckedNote && marks?.contains(ChantScorer.Mark.NOT_CHECKED) == true) {
             lesson.notCheckedNoteShown = true
-            Text("Not checked: the phone can't hear this word reliably yet.", fontSize = (fontSize - 4).sp, color = theme.secondaryTextColor)
+            Text("Not checked: this device can't hear this word reliably yet.", fontSize = (fontSize - 4).sp, color = theme.secondaryTextColor)
         }
     }
 }
@@ -379,7 +379,7 @@ private fun tipText(lesson: LessonState): String? {
             if (step is Step.Line) "That take didn't finish. Try the whole line." else "That take didn't finish. Try the whole verse."
         ChantScorer.TipKind.ALL_RIGHT -> when {
             // Every part was Not checked (calibration): nothing was actually judged.
-            ChantScorer.Mark.RIGHT !in result.marks -> "None of these words can be checked on this phone yet."
+            ChantScorer.Mark.RIGHT !in result.marks -> "None of these words can be checked on this device yet."
             step is Step.Line && step.n + 1 < lesson.practiceLines.size -> "All words right. Next line when you're ready."
             step == Step.Memory(hints = true) -> "All words right. Next, without the letters."
             else -> "All words right. Next step when you're ready."

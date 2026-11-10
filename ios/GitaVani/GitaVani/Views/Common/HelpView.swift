@@ -33,7 +33,7 @@ struct HelpView: View {
         HelpItem(
             icon: "graduationcap",
             title: "Learn to Chant",
-            description: "Tap Learn on a verse to practice chanting it, one line at a time. The reciter chants a line, then you chant it back. The phone listens on the device and marks each word Right or Slipped, with one tip for the next try. The lesson ends when you chant the whole verse from memory. Headphones help. Audio stays on your phone. Learn needs iOS 27 and a one-time download from Apple. The lesson is called Abhyāsa, practice, after verse 6.35: the restless mind is steadied by practice and letting go."
+            description: "Tap Learn on a verse to practice chanting it, one line at a time. The reciter chants a line, then you chant it back. GitaVani listens on the device and marks each word Right or Slipped, with one tip for the next try. The lesson ends when you chant the whole verse from memory. Headphones help. Audio stays on your device. Learn needs iOS 27 and a one-time download from Apple. The lesson is called Abhyāsa, practice, after verse 6.35: the restless mind is steadied by practice and letting go."
         ),
         HelpItem(
             icon: "text.book.closed.fill",

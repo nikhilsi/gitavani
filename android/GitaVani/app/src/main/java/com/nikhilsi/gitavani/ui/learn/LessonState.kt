@@ -122,9 +122,9 @@ class LessonState(
             ChantListener.ModelState.DOWNLOADING ->
                 Setup.Failed("Android is still downloading the Hindi speech model. Try again in a few minutes.")
             ChantListener.ModelState.NEEDS_DOWNLOAD -> Setup.NeedsModel
-            ChantListener.ModelState.UNSUPPORTED -> Setup.Failed("Learn isn't available on this phone.")
+            ChantListener.ModelState.UNSUPPORTED -> Setup.Failed("Learn isn't available on this device.")
             ChantListener.ModelState.NOT_ANSWERING ->
-                Setup.Failed("The phone's speech recognition isn't answering. Try again in a minute, or restart the phone.")
+                Setup.Failed("This device's speech recognition isn't answering. Try again in a minute, or restart the device.")
         }
         if (setup == Setup.Ready) startCalibration()
     }

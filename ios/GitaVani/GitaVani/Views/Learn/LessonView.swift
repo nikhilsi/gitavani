@@ -56,7 +56,7 @@ struct LessonView: View {
             ProgressView().frame(maxWidth: .infinity).padding(.top, 40)
         case .needsMic:
             notice(icon: "mic",
-                   text: "GitaVani listens while you chant so it can show where you slipped. Audio stays on your phone.",
+                   text: "GitaVani listens while you chant so it can show where you slipped. Audio stays on your device.",
                    button: "Allow Microphone") { Task { await model.allowMic() } }
         case .micDenied:
             notice(icon: "mic.slash",
@@ -66,7 +66,7 @@ struct LessonView: View {
             }
         case .needsModel:
             notice(icon: "arrow.down.circle",
-                   text: "Learn needs a download from Apple: the Hindi speech model. It stays on your phone. Learn works offline after this.",
+                   text: "Learn needs a download from Apple: the Hindi speech model. It stays on your device. Learn works offline after this.",
                    button: "Download") { Task { await model.downloadModel() } }
         case .downloading(let fraction):
             VStack(spacing: 12) {
@@ -218,7 +218,7 @@ struct LessonView: View {
                 .accessibilityLabel("\(item.part.roman), \(item.part.meaning)\(mark.map { ", " + markName($0) } ?? "")")
             }
             if !seenNotCheckedNote, model.result?.marks.contains(.notChecked) == true {
-                Text("Not checked: the phone can't hear this word reliably yet.")
+                Text("Not checked: this device can't hear this word reliably yet.")
                     .font(.system(size: fontSize - 4))
                     .foregroundStyle(theme.secondaryTextColor)
                     .onDisappear { seenNotCheckedNote = true }
@@ -263,7 +263,7 @@ struct LessonView: View {
         case .allRight:
             // Every part was Not checked (calibration): nothing was actually judged.
             if !result.marks.contains(.right) {
-                return "None of these words can be checked on this phone yet."
+                return "None of these words can be checked on this device yet."
             }
             switch model.step {
             case .line(let n) where n + 1 < model.practiceLines.count: return "All words right. Next line when you're ready."

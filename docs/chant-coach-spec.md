@@ -86,7 +86,7 @@ iOS 17 and later, Android 8 and later. No permission prompts, nothing new to dow
 
 ### 6.2 First Use and Every Lesson Open
 
-1. **Microphone permission**, with a plain reason: "GitaVani listens while you chant so it can show where you slipped. Audio stays on your phone."
+1. **Microphone permission**, with a plain reason: "GitaVani listens while you chant so it can show where you slipped. Audio stays on your device."
 2. **Speech model check, at every lesson open.** The system can remove an unused model. If it's missing: "Learn needs a download from Apple" (or "from Google"), with a button and progress. Android shows its own approval prompt.
 3. **If something fails** (permission denied, no connection, download error): a calm message saying what to do. The rest of the app is unaffected.
 
@@ -109,7 +109,7 @@ The lesson shows "n of m words checked" so a verse with many Not checked parts d
 
 - **Right:** the theme's accent color and a check mark.
 - **Slipped:** a warm color, contrast-checked in all four themes, and a dot.
-- **Not checked:** the secondary text color and a hollow circle. A one-line note explains it the first time: "Not checked: the phone can't hear this word reliably yet."
+- **Not checked:** the secondary text color and a hollow circle. A one-line note explains it the first time: "Not checked: this device can't hear this word reliably yet."
 - Color is never the only signal. Each mark has a symbol and a VoiceOver label.
 
 ### 6.5 Tips
