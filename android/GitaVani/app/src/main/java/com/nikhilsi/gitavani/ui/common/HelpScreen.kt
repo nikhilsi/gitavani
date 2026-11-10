@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ListAlt
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Favorite
@@ -56,6 +57,11 @@ private val helpItems = listOf(
         Icons.AutoMirrored.Filled.MenuBook,
         "Transliteration",
         "Tap the book icon on the reading screen to show Sanskrit verses in Roman script. You can also toggle this in Settings."
+    ),
+    HelpItem(
+        Icons.AutoMirrored.Filled.ListAlt,
+        "Word by Word",
+        "Tap Word by word on the reading screen to see each word of the verse in Devanagari and Roman letters, with its meaning. Meanings are from Swami Sivananda."
     ),
     HelpItem(
         Icons.AutoMirrored.Filled.Subject,

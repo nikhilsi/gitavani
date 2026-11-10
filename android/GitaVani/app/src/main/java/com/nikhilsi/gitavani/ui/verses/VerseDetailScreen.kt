@@ -40,6 +40,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.nikhilsi.gitavani.audio.AudioService
 import com.nikhilsi.gitavani.data.GitaDataService
 import com.nikhilsi.gitavani.model.Verse
+import com.nikhilsi.gitavani.model.VerseWords
 import com.nikhilsi.gitavani.state.AppSettings
 import com.nikhilsi.gitavani.state.ReadingProgress
 import com.nikhilsi.gitavani.theme.AppTheme
@@ -63,6 +64,7 @@ fun VerseDetailScreen(
     val fontSize by settings.fontSize.collectAsState()
     val defaultLanguage by settings.defaultLanguage.collectAsState()
     val showTransliteration by settings.showTransliteration.collectAsState()
+    val showWordByWord by settings.showWordByWord.collectAsState()
     val favoriteIds by settings.favoriteVerseIds.collectAsState()
     val isPlaying by audioService.isPlaying.collectAsState()
     val currentAudioVerseId by audioService.currentVerseId.collectAsState()
@@ -160,6 +162,9 @@ fun VerseDetailScreen(
                 showTransliteration = showTransliteration,
                 isFavorite = favoriteIds.contains(verse.id),
                 settings = settings,
+                words = dataService.words(verse.id),
+                showWordByWord = showWordByWord,
+                onToggleWordByWord = { settings.setShowWordByWord(!showWordByWord) },
                 onToggleTransliteration = {
                     settings.setShowTransliteration(!showTransliteration)
                 },
@@ -224,6 +229,9 @@ private fun VerseContent(
     isFavorite: Boolean,
     isPlaying: Boolean,
     settings: AppSettings,
+    words: VerseWords?,
+    showWordByWord: Boolean,
+    onToggleWordByWord: () -> Unit,
     onToggleTransliteration: () -> Unit,
     onToggleFavorite: () -> Unit,
     onPlayPause: () -> Unit,
@@ -256,6 +264,17 @@ private fun VerseContent(
             onToggleFavorite = onToggleFavorite,
             onShare = onShare
         )
+
+        // Word by word meanings
+        if (words != null) {
+            WordByWordSection(
+                words = words,
+                expanded = showWordByWord,
+                onToggle = onToggleWordByWord,
+                theme = theme,
+                fontSize = fontSize
+            )
+        }
 
         // Translation
         TranslationSection(

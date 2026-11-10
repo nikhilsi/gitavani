@@ -30,6 +30,12 @@ class AppSettings(context: Context) {
     )
     val showTransliteration: StateFlow<Boolean> = _showTransliteration.asStateFlow()
 
+    /** Whether the Word by word section on the reading screen is open. */
+    private val _showWordByWord = MutableStateFlow(
+        prefs.getBoolean("showWordByWord", false)
+    )
+    val showWordByWord: StateFlow<Boolean> = _showWordByWord.asStateFlow()
+
     private val _selectedTheme = MutableStateFlow(
         prefs.getString("selectedTheme", "sattva") ?: "sattva"
     )
@@ -97,6 +103,11 @@ class AppSettings(context: Context) {
     fun setShowTransliteration(show: Boolean) {
         _showTransliteration.value = show
         prefs.edit().putBoolean("showTransliteration", show).apply()
+    }
+
+    fun setShowWordByWord(show: Boolean) {
+        _showWordByWord.value = show
+        prefs.edit().putBoolean("showWordByWord", show).apply()
     }
 
     fun setSelectedTheme(theme: String) {
