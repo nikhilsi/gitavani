@@ -19,6 +19,7 @@ android {
 
     defaultConfig {
         applicationId = "com.nikhilsi.gitavani"
+        manifestPlaceholders["appLabel"] = "@string/app_name"
         minSdk = 26
         targetSdk = 35
         versionCode = 2
@@ -35,6 +36,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Debug builds install next to the store copy instead of replacing it.
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+            manifestPlaceholders["appLabel"] = "GitaVani (test)"
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
