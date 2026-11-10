@@ -123,7 +123,7 @@ fun WordByWordSection(
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun WordPartRow(part: WordPart, theme: AppTheme, fontSize: Float) {
+internal fun WordPartRow(part: WordPart, theme: AppTheme, fontSize: Float) {
     Column(
         modifier = Modifier.semantics(mergeDescendants = true) {}
     ) {

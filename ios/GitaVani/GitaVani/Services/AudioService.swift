@@ -66,10 +66,57 @@ class AudioService: NSObject, AVAudioPlayerDelegate {
     }
 
     func stop() {
+        lineWatch?.cancel()
+        lineWatch = nil
         player?.stop()
         player = nil
         isPlaying = false
         currentVerseId = nil
+    }
+
+    // MARK: - Learn
+
+    private var lineWatch: Task<Void, Never>?
+
+    /// Plays one stretch of a verse's recording (a line in Learn) and returns when it ends or is stopped.
+    func play(verseId: String, from start: Double, to end: Double) async {
+        stop()
+        guard let url = Bundle.main.url(forResource: verseId, withExtension: "mp3"),
+              let player = try? AVAudioPlayer(contentsOf: url) else { return }
+        player.delegate = self
+        player.currentTime = start
+        guard player.play() else { return }
+        self.player = player
+        currentVerseId = verseId
+        isPlaying = true
+        let watch = Task { [weak self] in
+            while !Task.isCancelled, player.isPlaying, player.currentTime < end {
+                try? await Task.sleep(for: .milliseconds(30))
+            }
+            guard !Task.isCancelled, let self, self.player === player else { return }
+            self.stop()
+        }
+        lineWatch = watch
+        await watch.value
+    }
+
+    /// The lesson records the learner. That needs play-and-record. Playback stays on the speaker or
+    /// AirPods (A2DP) while the phone's own mic records (spec 7.1). Off restores the reading app's session.
+    func setLessonMode(_ on: Bool) {
+        stop()
+        let session = AVAudioSession.sharedInstance()
+        do {
+            if on {
+                try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetoothA2DP])
+            } else {
+                try session.setCategory(.playback, mode: .default)
+            }
+            try session.setActive(true)
+        } catch {
+            #if DEBUG
+            print("AudioService: Failed to switch lesson mode: \(error)")
+            #endif
+        }
     }
 
     // MARK: - AVAudioPlayerDelegate

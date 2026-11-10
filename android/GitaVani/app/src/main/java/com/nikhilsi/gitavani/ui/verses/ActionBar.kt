@@ -9,7 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -21,6 +23,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.nikhilsi.gitavani.state.LearnProgress
 import com.nikhilsi.gitavani.theme.AppTheme
 
 @Composable
@@ -33,7 +36,9 @@ fun ActionBar(
     onToggleTransliteration: () -> Unit,
     onToggleFavorite: () -> Unit,
     onShare: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    learnStatus: LearnProgress.Status? = null,
+    onLearn: (() -> Unit)? = null
 ) {
     Row(modifier = modifier.fillMaxWidth()) {
         @Suppress("DEPRECATION")
@@ -75,6 +80,22 @@ fun ActionBar(
             onClick = onShare,
             modifier = Modifier.weight(1f)
         )
+        // Learn (spec 6.1, 6.6): shown only when the phone and the verse support it. The label shows progress.
+        if (onLearn != null) {
+            val label = when (learnStatus) {
+                LearnProgress.Status.LEARNED -> "Learned"
+                LearnProgress.Status.LEARNING -> "Learning"
+                null -> "Learn"
+            }
+            ActionBarButton(
+                icon = { Icon(if (learnStatus == LearnProgress.Status.LEARNED) Icons.Filled.School else Icons.Outlined.School, null, tint = theme.accentColor) },
+                label = label,
+                color = theme.accentColor,
+                contentDesc = "Learn to chant this verse, ${if (learnStatus == null) "new" else label.lowercase()}",
+                onClick = onLearn,
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
 

@@ -7,9 +7,12 @@ struct VerseDetailView: View {
     let settings: AppSettings
     let readingProgress: ReadingProgress
     let audioService: AudioService
+    let learnProgress: LearnProgress
 
     @State private var currentVerseId: String = ""
     @State private var showShareSheet = false
+    @State private var showLesson = false
+    @State private var deviceCanLearn = false
 
     var theme: AppTheme { themeManager.currentTheme }
 
@@ -119,6 +122,10 @@ struct VerseDetailView: View {
                                     .contentShape(Rectangle())
                                 }
                                 .accessibilityLabel("Share verse")
+
+                                if deviceCanLearn, dataService.words(forVerse: currentVerseId)?.learn == true {
+                                    learnButton
+                                }
                             }
 
                             // Word by word meanings
@@ -212,6 +219,23 @@ struct VerseDetailView: View {
         .onDisappear {
             audioService.stop()
         }
+        .task {
+            if #available(iOS 27.0, *) { deviceCanLearn = await ChantListener.deviceCanLearn() }
+            #if DEBUG
+            // Screenshot aid: "-GVOpenVerse BG4.7 -GVOpenLesson" opens the lesson straight away.
+            if deviceCanLearn, ProcessInfo.processInfo.arguments.contains("-GVOpenLesson") { showLesson = true }
+            #endif
+        }
+        .fullScreenCover(isPresented: $showLesson) {
+            if #available(iOS 27.0, *), let words = dataService.words(forVerse: currentVerseId) {
+                LessonView(
+                    model: LessonModel(verseId: currentVerseId, words: words, audio: audioService, progress: learnProgress),
+                    theme: theme,
+                    fontSize: settings.scaledFontSize,
+                    onClose: { showLesson = false }
+                )
+            }
+        }
         .sheet(isPresented: $showShareSheet) {
             if let verse {
                 let translation = currentTranslation(for: verse)
@@ -220,6 +244,28 @@ struct VerseDetailView: View {
                 ShareSheetView(items: shareImage.map { [$0 as Any] } ?? [shareText])
             }
         }
+    }
+
+    /// Learn (spec 6.1, 6.6): the label shows the verse's progress.
+    private var learnButton: some View {
+        let status = learnProgress.status(currentVerseId)
+        return Button {
+            audioService.stop()
+            showLesson = true
+        } label: {
+            VStack(spacing: 4) {
+                Image(systemName: status == .learned ? "graduationcap.fill" : "graduationcap")
+                    .font(.system(size: 20))
+                Text(status == .learned ? "Learned" : status == .learning ? "Learning" : "Learn")
+                    .font(.caption2)
+            }
+            .foregroundStyle(theme.accentColor)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel("Learn to chant this verse")
+        .accessibilityValue(status == .learned ? "Learned" : status == .learning ? "Learning" : "New")
     }
 
     private func currentTranslation(for verse: Verse) -> Translation? {

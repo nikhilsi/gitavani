@@ -1,5 +1,6 @@
 package com.nikhilsi.gitavani.ui.navigation
 
+import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -12,6 +13,7 @@ import com.nikhilsi.gitavani.ui.chapters.ChapterDetailScreen
 import com.nikhilsi.gitavani.ui.chapters.ChapterListScreen
 import com.nikhilsi.gitavani.ui.common.HelpScreen
 import com.nikhilsi.gitavani.ui.favorites.FavoritesScreen
+import com.nikhilsi.gitavani.ui.learn.LessonScreen
 import com.nikhilsi.gitavani.ui.settings.AboutScreen
 import com.nikhilsi.gitavani.ui.settings.SettingsScreen
 import com.nikhilsi.gitavani.ui.verses.VerseDetailScreen
@@ -25,9 +27,11 @@ object Routes {
     const val HELP = "help"
     const val ABOUT = "about"
     const val FAVORITES = "favorites"
+    const val LEARN = "learn/{verseId}"
 
     fun chapterDetail(chapterNumber: Int) = "chapter_detail/$chapterNumber"
     fun verseDetail(verseId: String) = "verse_detail/$verseId"
+    fun learn(verseId: String) = "learn/$verseId"
 }
 
 @Composable
@@ -83,13 +87,35 @@ fun GitaNavGraph(
                 settings = viewModel.settings,
                 readingProgress = viewModel.readingProgress,
                 audioService = viewModel.audioService,
+                learnProgress = viewModel.learnProgress,
                 theme = theme,
+                onLearnClick = { navController.navigate(Routes.learn(it)) },
                 onSettingsClick = { navController.navigate(Routes.SETTINGS) },
                 onBack = {
                     viewModel.audioService.stop()
                     navController.popBackStack()
                 }
             )
+        }
+
+        composable(
+            route = Routes.LEARN,
+            arguments = listOf(navArgument("verseId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val verseId = backStackEntry.arguments?.getString("verseId") ?: "BG1.1"
+            val words = viewModel.dataService.words(verseId)
+            val fontSize by viewModel.settings.fontSize.collectAsState()
+            if (Build.VERSION.SDK_INT >= 33 && words != null) {
+                LessonScreen(
+                    verseId = verseId,
+                    words = words,
+                    audioService = viewModel.audioService,
+                    learnProgress = viewModel.learnProgress,
+                    theme = theme,
+                    fontSize = fontSize,
+                    onClose = { navController.popBackStack() }
+                )
+            }
         }
 
         composable(Routes.FAVORITES) {

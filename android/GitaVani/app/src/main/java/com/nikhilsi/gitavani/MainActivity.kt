@@ -26,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.nikhilsi.gitavani.theme.GitaVaniTheme
 import com.nikhilsi.gitavani.ui.navigation.GitaNavGraph
+import com.nikhilsi.gitavani.ui.navigation.Routes
 import com.nikhilsi.gitavani.ui.onboarding.OnboardingScreen
 import com.nikhilsi.gitavani.viewmodel.GitaViewModel
 
@@ -80,6 +81,15 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             viewModel = viewModel
                         )
+                        // Screenshot aid for debug builds:
+                        // adb shell am start -n <app>/com.nikhilsi.gitavani.MainActivity --es openVerse BG4.7 [--ez openLesson true]
+                        if (BuildConfig.DEBUG) {
+                            LaunchedEffect(Unit) {
+                                val verse = intent.getStringExtra("openVerse") ?: return@LaunchedEffect
+                                navController.navigate(Routes.verseDetail(verse))
+                                if (intent.getBooleanExtra("openLesson", false)) navController.navigate(Routes.learn(verse))
+                            }
+                        }
                     }
                 }
             }

@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -41,7 +42,9 @@ import com.nikhilsi.gitavani.audio.AudioService
 import com.nikhilsi.gitavani.data.GitaDataService
 import com.nikhilsi.gitavani.model.Verse
 import com.nikhilsi.gitavani.model.VerseWords
+import com.nikhilsi.gitavani.learn.deviceCanLearn
 import com.nikhilsi.gitavani.state.AppSettings
+import com.nikhilsi.gitavani.state.LearnProgress
 import com.nikhilsi.gitavani.state.ReadingProgress
 import com.nikhilsi.gitavani.theme.AppTheme
 import kotlinx.coroutines.launch
@@ -54,7 +57,9 @@ fun VerseDetailScreen(
     settings: AppSettings,
     readingProgress: ReadingProgress,
     audioService: AudioService,
+    learnProgress: LearnProgress,
     theme: AppTheme,
+    onLearnClick: (String) -> Unit,
     onSettingsClick: () -> Unit,
     onBack: () -> Unit
 ) {
@@ -68,6 +73,8 @@ fun VerseDetailScreen(
     val favoriteIds by settings.favoriteVerseIds.collectAsState()
     val isPlaying by audioService.isPlaying.collectAsState()
     val currentAudioVerseId by audioService.currentVerseId.collectAsState()
+    val learnStatuses by learnProgress.statuses.collectAsState()
+    val deviceCanLearn = remember { deviceCanLearn(context) }
     val coroutineScope = rememberCoroutineScope()
 
     val pagerState = rememberPagerState(initialPage = initialIndex) { allVerses.size }
@@ -170,6 +177,10 @@ fun VerseDetailScreen(
                 },
                 onToggleFavorite = { settings.toggleFavorite(verse.id) },
                 onPlayPause = { audioService.play(verse.id) },
+                learnStatus = learnStatuses[verse.id],
+                onLearn = if (deviceCanLearn && dataService.words(verse.id)?.learn == true) {
+                    { audioService.stop(); onLearnClick(verse.id) }
+                } else null,
                 onShare = {
                     val lang = if (defaultLanguage == "hindi") com.nikhilsi.gitavani.model.Language.HINDI else com.nikhilsi.gitavani.model.Language.ENGLISH
                     val translation = verse.translations.firstOrNull { it.language == lang }
@@ -235,6 +246,8 @@ private fun VerseContent(
     onToggleTransliteration: () -> Unit,
     onToggleFavorite: () -> Unit,
     onPlayPause: () -> Unit,
+    learnStatus: LearnProgress.Status?,
+    onLearn: (() -> Unit)?,
     onShare: () -> Unit
 ) {
     Column(
@@ -262,7 +275,9 @@ private fun VerseContent(
             onPlayPause = onPlayPause,
             onToggleTransliteration = onToggleTransliteration,
             onToggleFavorite = onToggleFavorite,
-            onShare = onShare
+            onShare = onShare,
+            learnStatus = learnStatus,
+            onLearn = onLearn
         )
 
         // Word by word meanings

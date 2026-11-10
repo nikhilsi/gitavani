@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.FormatSize
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.automirrored.filled.Subject
 import androidx.compose.material.icons.filled.SwipeRight
 import androidx.compose.material.icons.filled.Translate
@@ -62,6 +63,11 @@ private val helpItems = listOf(
         Icons.AutoMirrored.Filled.ListAlt,
         "Word by Word",
         "Tap Word by word on the reading screen to see each word of the verse in Devanagari and Roman letters, with its meaning. Meanings are from Swami Sivananda."
+    ),
+    HelpItem(
+        Icons.Outlined.School,
+        "Learn to Chant",
+        "Tap Learn on a verse to practice chanting it, one line at a time. The reciter chants a line, then you chant it back. The phone listens on the device and marks each word Right or Slipped, with one tip for the next try. The lesson ends when you chant the whole verse from memory. Headphones help. Audio stays on your phone. Learn needs Android 13 and a one-time download from Google. The lesson is called Abhyāsa, practice, after verse 6.35: the restless mind is steadied by practice and letting go."
     ),
     HelpItem(
         Icons.AutoMirrored.Filled.Subject,

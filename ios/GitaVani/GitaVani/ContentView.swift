@@ -13,6 +13,7 @@ struct ContentView: View {
     let settings: AppSettings
     let readingProgress: ReadingProgress
     let audioService: AudioService
+    let learnProgress: LearnProgress
 
     @State private var navigationPath = NavigationPath()
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
@@ -63,7 +64,8 @@ struct ContentView: View {
                             themeManager: themeManager,
                             settings: settings,
                             readingProgress: readingProgress,
-                            audioService: audioService
+                            audioService: audioService,
+                            learnProgress: learnProgress
                         )
                     }
                 }
@@ -108,6 +110,12 @@ struct ContentView: View {
             let args = ProcessInfo.processInfo.arguments
             if loaded, let i = args.firstIndex(of: "-GVOpenVerse"), i + 1 < args.count {
                 navigationPath.append(args[i + 1])
+            }
+        }
+        .overlay {
+            // Learn's listener check on a real phone: see ListenerSelfTest.swift.
+            if ProcessInfo.processInfo.arguments.contains("-GVListenerSelfTest") {
+                ListenerSelfTestView()
             }
         }
         #endif

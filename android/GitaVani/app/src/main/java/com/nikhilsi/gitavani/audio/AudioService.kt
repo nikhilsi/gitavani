@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -74,6 +75,29 @@ class AudioService(private val context: Context) : DefaultLifecycleObserver {
         player = null
         _isPlaying.value = false
         _currentVerseId.value = null
+    }
+
+    /** Plays one stretch of a verse's recording (a line in Learn) and returns when it ends or is stopped. */
+    suspend fun playLine(verseId: String, fromSec: Double, toSec: Double) {
+        stop()
+        val line = try {
+            MediaPlayer().apply {
+                context.assets.openFd("audio/$verseId.mp3").use { fd ->
+                    setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+                }
+                prepare()
+                seekTo((fromSec * 1000).toLong(), MediaPlayer.SEEK_CLOSEST)
+                start()
+            }
+        } catch (e: Exception) {
+            return
+        }
+        player = line
+        _currentVerseId.value = verseId
+        _isPlaying.value = true
+        val endMs = (toSec * 1000).toInt()
+        while (player === line && line.isPlaying && line.currentPosition < endMs) delay(30)
+        if (player === line) stop()
     }
 
     // Lifecycle: pause audio when app goes to background

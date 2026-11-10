@@ -14,6 +14,7 @@ struct GitaVaniApp: App {
     @State private var settings = AppSettings()
     @State private var readingProgress = ReadingProgress()
     @State private var audioService = AudioService()
+    @State private var learnProgress = LearnProgress()
 
     var body: some Scene {
         WindowGroup {
@@ -22,7 +23,8 @@ struct GitaVaniApp: App {
                 themeManager: themeManager,
                 settings: settings,
                 readingProgress: readingProgress,
-                audioService: audioService
+                audioService: audioService,
+                learnProgress: learnProgress
             )
         }
     }

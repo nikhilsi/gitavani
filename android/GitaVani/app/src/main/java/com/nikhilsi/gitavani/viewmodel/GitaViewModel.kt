@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.nikhilsi.gitavani.audio.AudioService
 import com.nikhilsi.gitavani.data.GitaDataService
 import com.nikhilsi.gitavani.state.AppSettings
+import com.nikhilsi.gitavani.state.LearnProgress
 import com.nikhilsi.gitavani.state.ReadingProgress
 import com.nikhilsi.gitavani.theme.AppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ class GitaViewModel(application: Application) : AndroidViewModel(application) {
     val settings = AppSettings(application)
     val readingProgress = ReadingProgress(application)
     val audioService = AudioService(application)
+    val learnProgress = LearnProgress(application)
 
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
