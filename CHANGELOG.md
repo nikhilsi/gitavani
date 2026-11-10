@@ -12,6 +12,15 @@ Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chan
 - Debug-only listener self-tests for real phones. Through the live streaming path, the 14 trial recordings got the same marks as the Nov 9 file trial on the iPhone.
 - Help entry for Learn, including the meaning of Abhyāsa (6.35).
 
+### Fixed (before release, from an independent code review)
+- A tap on Next while a take was starting could crash the iOS app.
+- The reciter could stop just as a lesson opened (iOS).
+- The microphone could stay on if Android's recognizer stopped answering.
+- Rotating an Android phone restarted the lesson.
+- Android could stay stuck on "Downloading" or on "microphone is off" after it was turned on in Settings.
+- A double tap on Close or Learn acted twice (Android).
+- "All words right" showed when no word could be checked.
+
 ### Added (Word by word)
 - Word by word card on every verse: each word in Devanagari and IAST with its meaning, from the word lists in Swami Sivananda's English commentary. 693 of 701 verses (8,840 word parts). The other 8 say meanings aren't available yet.
 - `scripts/build_chant_data.py` builds `data/chant_data.json`. A verse is shown only if its list passes every check. Hand review lives in `scripts/data/` (2 overrides, 144 word repairs).
@@ -20,7 +29,7 @@ Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chan
 - Spec for Learn (Abhyāsa), the chant coach, with its independent review in `docs/reviews/`.
 
 ### Changed
-- iOS 1.1 (build 5). Android 1.1.0 (versionCode 2).
+- iOS 1.1 (build 7). Android 1.1.0 (versionCode 2).
 - iOS asks for the microphone, Android for RECORD_AUDIO, both only when a lesson opens.
 - iOS debug builds install next to the store app as "GitaVani (test)" (`com.nikhilsi.GitaVani.debug`), as Android debug builds already did.
 - Android adds JUnit 4 for local tests only (`testImplementation`). Nothing new ships in the app.

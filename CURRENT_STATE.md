@@ -84,7 +84,9 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS v1.0.0 has bee
 - [x] Android listener (on-device recognizer, Android 13+): pipe path checked on the Pixel 8a, with a watchdog for a recognizer that stops answering
 - [x] Lesson screens on both platforms: Listen, each line, all lines, from memory; progress on the Learn button
 - [x] Help entry
-- [ ] Lesson checked on the iPhone
+- [x] Lesson checked on the iPhone: opens and calibrates (my check), Nikhil tried 1.1 (build 6)
+- [x] Independent code review: 9 bugs found and fixed (build 7)
+- [x] TestFlight 1.1 (7): internal group; waiting for beta review for Family Testers
 - [ ] Labelled take set and threshold check (spec section 11)
 - [ ] Nikhil chants 4.7 from memory on each phone (spec step 11)
 - [ ] Privacy page paragraph, store text, App Review note
