@@ -92,7 +92,8 @@ All V1 + V2 + V3 (audio) features built, tested, and shipped. iOS 1.1.0 (Word by
 - [ ] Labelled take set and threshold check (spec section 11)
 - [x] Nikhil's check on iOS (Nov 10, verse 1.1): a clean take from memory marked Learned; a planted mistake was caught. Android: not tested by Nikhil (his call); it stands on the Pixel 8a checks
 - [x] Privacy page paragraph, App Store text and App Review note (Nov 10)
-- [ ] Android store text (Play, F-Droid): Nikhil reads it before the Android release
+- [x] Android store text (Play, F-Droid): Nikhil read it (Nov 11)
+- [ ] Android 16 target (compileSdk and targetSdk 36): Google Play takes only updates that target it since Aug 31, 2026. After ClearNews makes the same move
 
 **Website (gitavani.app):**
 - [x] Domain purchased (gitavani.app on GoDaddy)

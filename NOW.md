@@ -8,7 +8,8 @@
 
 - Nikhil is not testing Android himself (Nov 10). Android stands on the session's Pixel 8a checks.
 - Family Testers in both apps keep two old, never-accepted invites (Nikhil's kids). Leave them.
-- Android 1.1 (the v1.1.0 tag, GitHub Releases, F-Droid, Play) waits until Nikhil finishes exploring Android with the ClearNews session (Nov 10).
+- Android 1.1 (the v1.1.0 tag, GitHub Releases, F-Droid, Play) waits until ClearNews's Android work is done (Nov 10). ClearNews is paused until about Nov 12. Its first Android step is the move to Android 16. GitaVani makes the same move after it (Nov 11).
+- The Android store text in `playstore/metadata` and `fastlane/metadata` is approved (Nikhil, Nov 11).
 - F-Droid: no anti-feature note for Learn (Nov 10).
 - The 13 verses without Learn stay without it (Nikhil, Nov 11). Their line timings won't be fixed by hand: 1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78.
 - Google Analytics on gitavani.app is fine as it is (Nikhil, Nov 11). It runs on a few site pages only. The privacy page stays as it is.
@@ -20,7 +21,7 @@
 ### Next
 
 1. Labelled take set (#495, spec section 11): recordings from Nikhil (and Urmila if willing) to check the scoring thresholds.
-2. Android 1.1 release when Nikhil is ready (#506, see Decided). Nikhil reads the Android store text in `playstore/metadata` and `fastlane/metadata` first.
+2. Android 1.1 release after ClearNews's Android work (#506, see Decided). First move GitaVani to Android 16: Google Play takes only updates that target it since Aug 31, 2026. Then tag v1.1.0 on Nikhil's go.
 
 ### Where It Stands
 
