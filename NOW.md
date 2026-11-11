@@ -10,6 +10,8 @@
 - Family Testers in both apps keep two old, never-accepted invites (Nikhil's kids). Leave them.
 - Android 1.1 (the v1.1.0 tag, GitHub Releases, F-Droid, Play) waits until Nikhil finishes exploring Android with the ClearNews session (Nov 10).
 - F-Droid: no anti-feature note for Learn (Nov 10).
+- The 13 verses without Learn stay without it (Nikhil, Nov 11). Their line timings won't be fixed by hand: 1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78.
+- Google Analytics on gitavani.app is fine as it is (Nikhil, Nov 11). It runs on a few site pages only. The privacy page stays as it is.
 
 ### In Flight
 
@@ -17,10 +19,8 @@
 
 ### Next
 
-1. Labelled take set (spec section 11): recordings from Nikhil (and Urmila if willing) to check the scoring thresholds.
-2. Android 1.1 release when Nikhil is ready (see Decided). Read the Android store text in `playstore/metadata` and `fastlane/metadata` first.
-3. gitavani.app loads Google Analytics. Check the privacy page's wording against it.
-4. Optional: hand-fix timings for the 13 verses without Learn (1.20, 1.21, 1.47, 2.1, 2.63, 2.72, 8.16, 10.42, 11.1, 11.55, 13.1, 16.1, 18.78).
+1. Labelled take set (#495, spec section 11): recordings from Nikhil (and Urmila if willing) to check the scoring thresholds.
+2. Android 1.1 release when Nikhil is ready (#506, see Decided). Nikhil reads the Android store text in `playstore/metadata` and `fastlane/metadata` first.
 
 ### Where It Stands
 
