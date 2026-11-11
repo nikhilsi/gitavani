@@ -1,8 +1,12 @@
 # Changelog
 
-## [1.1.0] - Unreleased (iOS in App Review)
+## [1.1.0] - 2026-11-11 (iOS live; Android not released yet)
 
-Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chant-coach-spec.md)). iOS 1.1.0 (build 8) was submitted for App Review on Nov 10, 2026. It releases automatically when Apple approves it. Android waits for Nikhil's go.
+Word by word and Learn, on iOS and Android ([docs/chant-coach-spec.md](docs/chant-coach-spec.md)).
+
+- iOS 1.1.0 (build 8) was submitted for App Review on Nov 10, 2026 at 12:43 PM PT.
+- Apple approved it on Nov 11 at 8:11 AM PT. It went live on the App Store at 8:12 AM.
+- Android 1.1.0 (versionCode 2) is built but not released. It waits for Nikhil's go.
 
 ### Added (Learn)
 - Learn (Abhyāsa): practice chanting a verse one line at a time. The reciter chants a line. You chant it back. The phone marks each word Right, Slipped or Not checked, with one tip. Then all lines together, then from memory (first letters, then nothing). A clean take from memory marks the verse Learned. Progress shows on the Learn button.
